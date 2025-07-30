@@ -15,9 +15,9 @@ class NoticeDAOTest {
 	@Test
 	void insertTest() throws Exception {
 		NoticeVO noticeVO = new NoticeVO();
-		noticeVO.setBoardTitle("title3");
-		noticeVO.setBoardContent("content3");
-		noticeVO.setBoardWriter("writer3");
+		noticeVO.setBoardTitle("title4");
+		noticeVO.setBoardContent("content4");
+		noticeVO.setBoardWriter("writer4");
 		
 		int result = noticeDAO.insert(noticeVO);
 		
@@ -38,7 +38,7 @@ class NoticeDAOTest {
 	
 	@Test
 	void deleteTest() throws Exception {
-		int result = noticeDAO.delete(1);
+		int result = noticeDAO.delete(5);
 		assertEquals(1, result);
 	}
 
