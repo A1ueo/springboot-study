@@ -1,6 +1,6 @@
 /.metadata/
 *.jar
-application.properties
+# application.properties
 
 ### VS Code ###
 .vscode/
