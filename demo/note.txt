@@ -1,0 +1,2 @@
+
+Container: 객체의 생명 주기를 관리 (Spring, Tomcat)

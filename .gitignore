@@ -1,2 +1,6 @@
 /.metadata/
 *.jar
+application.properties
+
+### VS Code ###
+.vscode/
