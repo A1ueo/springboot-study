@@ -21,9 +21,9 @@ class NoticeDAOTest {
 	@Test
 	void insertTest() throws Exception {
 		NoticeVO noticeVO = new NoticeVO();
-		noticeVO.setBoardTitle("title4");
-		noticeVO.setBoardContent("content4");
-		noticeVO.setBoardWriter("writer4");
+		noticeVO.setBoardTitle("title5");
+		noticeVO.setBoardContent("content5");
+		noticeVO.setBoardWriter("writer5");
 		
 		int result = noticeDAO.insert(noticeVO);
 		

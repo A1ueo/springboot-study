@@ -15,7 +15,7 @@
 		INSERT INTO NOTICE
 			(BOARD_NUM, BOARD_TITLE, BOARD_CONTENT, BOARD_WRITER, BOARD_DATE, BOARD_HIT)
 		VALUES
-			(NULL, #{ boardTitle }, #{ boardContent }, #{ boardWriter }, now(), 0)
+			(NULL, #{ boardTitle }, #{ boardContent }, #{ boardWriter }, NOW(), 0)
 	</insert>
 	
 	<update id="update" parameterType="NoticeVO">
