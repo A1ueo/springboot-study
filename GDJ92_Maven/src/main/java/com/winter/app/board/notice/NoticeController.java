@@ -21,4 +21,8 @@ public class NoticeController {
 		
 		int result = noticeDAO.insert(noticeVO);
 	}
+	
+	@GetMapping("/list")
+	public void list() throws Exception {
+	}
 }

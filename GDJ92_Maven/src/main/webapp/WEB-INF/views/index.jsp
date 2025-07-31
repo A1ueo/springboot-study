@@ -20,7 +20,7 @@
 				<!-- Begin Page Content -->
 				<div class="container-fluid">
 					<!-- Page Contents 내용 -->
-					
+					<h1>Index</h1>
 				</div>
 				<!-- /.container-fluid -->
 			</div>
