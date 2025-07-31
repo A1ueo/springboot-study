@@ -11,11 +11,11 @@ import lombok.ToString;
 @ToString
 public class BoardVO {
 
-	private long boardNum;
+	private Long boardNum;
 	private String boardTitle;
 	private String boardContent;
 	private String boardWriter;
 	private LocalDateTime boardDate;
-	private long boardHit;
+	private Long boardHit;
 	
 }
