@@ -21,31 +21,12 @@
 				<!-- Begin Page Content -->
 				<div class="container-fluid">
 					<!-- Page Contents 내용 -->
-					<h1 class="py-2">Notice List</h1>
-					<div class="row col-md-8 mx-auto">
-						<table class="table table-striped">
-							<thead>
-								<tr>
-									<th>Num</th>
-									<th>Title</th>
-									<th>Writer</th>
-									<th>Date</th>
-									<th>Hit</th>
-								</tr>
-							</thead>
-							<tbody>
-								<c:forEach var="notice" items="${ list }">
-									<tr>
-										<td>${ notice.boardNum }</td>
-										<td><a class="d-block" href="./detail?boardNum=${ notice.boardNum }">${ notice.boardTitle }</a></td>
-										<td>${ notice.boardWriter }</td>
-										<td>${ fn:substring(notice.boardDate, 0, 10) }</td>
-										<td>${ notice.boardHit }</td>
-									</tr>
-								</c:forEach>
-							</tbody>
-						</table>
-					</div>
+					<article class="blog-post">
+						<h2 class="display-5 link-body-emphasis mb-1">${ notice.boardTitle }</h2>
+						<p class="blog-post-meta">${ fn:substring(notice.boardDate, 0, 10) } by ${ notice.boardWriter }</p>
+						<hr>
+						<p class="fs-1">${ notice.boardContent }</p>
+					</article>
 				</div>
 				<!-- /.container-fluid -->
 			</div>

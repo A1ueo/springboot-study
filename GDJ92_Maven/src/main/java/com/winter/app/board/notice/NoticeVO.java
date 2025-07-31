@@ -4,5 +4,4 @@ import com.winter.app.board.BoardVO;
 
 public class NoticeVO extends BoardVO {
 
-	
 }
