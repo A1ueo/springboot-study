@@ -28,4 +28,14 @@ public class NoticeService implements BoardService {
 	public int insert(BoardVO boardVO) throws Exception {
 		return noticeDAO.insert(boardVO);
 	}
+	
+	@Override
+	public int update(BoardVO boardVO) throws Exception {
+		return noticeDAO.update(boardVO);
+	}
+	
+	@Override
+	public int delete(long boardNum) throws Exception {
+		return noticeDAO.delete(boardNum);
+	}
 }

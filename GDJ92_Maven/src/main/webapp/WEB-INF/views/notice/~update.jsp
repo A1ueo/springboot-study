@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="fn" uri="jakarta.tags.functions"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,7 +24,6 @@
 					<div class="row col-md-8 mx-auto">
 						<article class="w-100">
 							<form id="frm" method="post">
-								<input type="hidden" name="boardNum" value="${ notice.boardNum }">
 								<div class="mb-3">
 									<label for="exampleFormControlInput1" class="form-label">Writer</label>
 									<input name="boardWriter" type="text" class="form-control" id="exampleFormControlInput1" value="${ notice.boardWriter }" placeholder="작성자">

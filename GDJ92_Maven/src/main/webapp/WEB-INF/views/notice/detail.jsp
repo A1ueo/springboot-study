@@ -26,10 +26,15 @@
 							<h2 class="display-5 link-body-emphasis mb-1">${ notice.boardTitle }</h2>
 							<p class="">${ fn:substring(notice.boardDate, 0, 10) } by ${ notice.boardWriter }</p>
 							<hr>
-							<p class="fs-1">${ notice.boardContent }</p>
+							<% pageContext.setAttribute("newLine", "\n"); %>
+							<p class="fs-1">${ fn:replace(notice.boardContent, newLine, "<br/>") }</p>
 						</article>
 						<div class="w-100 d-flex justify-content-end">
-							<a class="btn btn-primary py-1 px-2" href="./edit">글수정</a>
+							<form id="frm">
+								<input type="hidden" name="boardNum" value="${ notice.boardNum }">
+							</form>
+							<button class="action btn btn-success py-1 px-2" data-kind="u">Update</button>
+							<button class="action btn btn-danger py-1 px-2" data-kind="d">Delete</button>
 						</div>
 					</div>
 				</div>
@@ -40,5 +45,7 @@
 		</div>
 	</div>
 	<c:import url="/WEB-INF/views/include/tail.jsp" />
+	
+	<script type="text/javascript" src="/js/board/board_detail.js"></script>
 </body>
 </html>
