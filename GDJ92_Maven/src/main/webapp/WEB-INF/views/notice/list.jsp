@@ -21,8 +21,8 @@
 				<!-- Begin Page Content -->
 				<div class="container-fluid">
 					<!-- Page Contents 내용 -->
-					<h1 class="py-2">Notice List</h1>
 					<div class="row col-md-8 mx-auto">
+						<h1 class="py-2">Notice List</h1>
 						<table class="table table-striped">
 							<thead>
 								<tr>

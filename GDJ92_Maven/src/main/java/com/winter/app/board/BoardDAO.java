@@ -9,7 +9,7 @@ public interface BoardDAO {
 	// update
 	int update(BoardVO boardVO) throws Exception;
 	// delete
-	int delete(long boardNum) throws Exception;
+	int delete(BoardVO boardVO) throws Exception;
 	// select
 	BoardVO detail(BoardVO boardVO) throws Exception;
 	// selectList

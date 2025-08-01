@@ -8,5 +8,5 @@ public interface BoardService {
 	BoardVO detail(BoardVO boardVO) throws Exception;
 	List<BoardVO> list() throws Exception;
 	int update(BoardVO boardVO) throws Exception;
-	int delete(long boardNum) throws Exception;
+	int delete(BoardVO boardVO) throws Exception;
 }

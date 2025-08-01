@@ -23,10 +23,10 @@
 					<div class="row col-md-8 mx-auto">
 						<article class="w-100">
 							<form id="frm" method="post">
-								<input type="hidden" name="boardNum" value="${ notice.boardNum }">
+								<input type="hidden" name="boardNum" id="boardNum" value="${ notice.boardNum }">
 								<div class="mb-3">
 									<label for="exampleFormControlInput1" class="form-label">Writer</label>
-									<input name="boardWriter" type="text" class="form-control" id="exampleFormControlInput1" value="${ notice.boardWriter }" placeholder="작성자">
+									<input name="boardWriter" type="text" class="form-control" id="exampleFormControlInput1" value="${ notice.boardWriter }" <c:if test="${ not empty notice.boardNum }">readonly</c:if> placeholder="작성자">
 								</div>
 								<div class="mb-3">
 									<label for="exampleFormControlInput1" class="form-label">Title</label>

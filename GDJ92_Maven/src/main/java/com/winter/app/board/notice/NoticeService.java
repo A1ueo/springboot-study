@@ -35,7 +35,7 @@ public class NoticeService implements BoardService {
 	}
 	
 	@Override
-	public int delete(long boardNum) throws Exception {
-		return noticeDAO.delete(boardNum);
+	public int delete(BoardVO boardVO) throws Exception {
+		return noticeDAO.delete(boardVO);
 	}
 }
