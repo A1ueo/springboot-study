@@ -45,6 +45,9 @@
 								</c:forEach>
 							</tbody>
 						</table>
+						<div class="w-100 d-flex justify-content-end">
+							<a class="btn btn-primary py-1 px-2" href="./add">글쓰기</a>
+						</div>
 					</div>
 				</div>
 				<!-- /.container-fluid -->

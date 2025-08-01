@@ -19,7 +19,13 @@ public class NoticeService implements BoardService {
 		return noticeDAO.list();
 	}
 
-	public BoardVO select(BoardVO param) throws Exception {
-		return noticeDAO.select(param);
+	@Override
+	public BoardVO detail(BoardVO boardVO) throws Exception {
+		return noticeDAO.detail(boardVO);
+	}
+	
+	@Override
+	public int insert(BoardVO boardVO) throws Exception {
+		return noticeDAO.insert(boardVO);
 	}
 }

@@ -21,12 +21,17 @@
 				<!-- Begin Page Content -->
 				<div class="container-fluid">
 					<!-- Page Contents 내용 -->
-					<article class="blog-post">
-						<h2 class="display-5 link-body-emphasis mb-1">${ notice.boardTitle }</h2>
-						<p class="blog-post-meta">${ fn:substring(notice.boardDate, 0, 10) } by ${ notice.boardWriter }</p>
-						<hr>
-						<p class="fs-1">${ notice.boardContent }</p>
-					</article>
+					<div class="row col-md-8 mx-auto">
+						<article class="">
+							<h2 class="display-5 link-body-emphasis mb-1">${ notice.boardTitle }</h2>
+							<p class="">${ fn:substring(notice.boardDate, 0, 10) } by ${ notice.boardWriter }</p>
+							<hr>
+							<p class="fs-1">${ notice.boardContent }</p>
+						</article>
+						<div class="w-100 d-flex justify-content-end">
+							<a class="btn btn-primary py-1 px-2" href="./edit">글수정</a>
+						</div>
+					</div>
 				</div>
 				<!-- /.container-fluid -->
 			</div>
