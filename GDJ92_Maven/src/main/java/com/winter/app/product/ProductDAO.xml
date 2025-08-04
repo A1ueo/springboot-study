@@ -38,4 +38,36 @@
 		USING (KIND_NUM)
 		WHERE p.PRODUCT_NUM = #{ productNum }
 	</select>
+	
+	<insert id="insert" parameterType="ProductVO">
+		INSERT INTO PRODUCT
+			(PRODUCT_NAME, PRODUCT_CONTENTS, PRODUCT_DATE, PRODUCT_RATE, KIND_NUM)
+		VALUES (
+			#{ productName }
+			, #{ productContents }
+			, #{ productDate }
+			, #{ productRate }
+			, #{ kindNum }
+		)
+	</insert>
+	
+	<select id="selectKindList">
+		SELECT *
+		FROM PRODUCT_KIND
+	</select>
+	
+	<update id="update" parameterType="ProductVO">
+		UPDATE PRODUCT
+		SET PRODUCT_NAME = #{ productName }
+			, PRODUCT_CONTENTS = #{ productContents }
+			, PRODUCT_DATE = #{ productDate }
+			, PRODUCT_RATE = #{ productRate }
+			, KIND_NUM = #{ kindNum }
+		WHERE PRODUCT_NUM = #{ productNum }
+	</update>
+	
+	<delete id="delete">
+		DELETE FROM PRODUCT
+		WHERE PRODUCT_NUM = #{ productNum }
+	</delete>
 </mapper>

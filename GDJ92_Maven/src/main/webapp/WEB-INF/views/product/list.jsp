@@ -38,13 +38,13 @@
 										<td>${ p.productNum }</td>
 										<td> <a class="d-block" href="./detail?productNum=${ p.productNum }">${ p.productName }</a></td>
 										<td>${ p.productRate }</td>
-										<td>${ fn:substring(p.productDate, 0, 10) }</td>
+										<td>${ p.productDate }</td>
 									</tr>
 								</c:forEach>
 							</tbody>
 						</table>
 						<div class="w-100 d-flex justify-content-end">
-							<a class="btn btn-success py-1 px-2">상품 등록</a>
+							<a class="btn btn-success py-1 px-2" href="./add">상품 등록</a>
 						</div>
 					</div>
 					

@@ -29,8 +29,8 @@
 									<input name="boardWriter" type="text" class="form-control" id="exampleFormControlInput1" value="${ notice.boardWriter }" <c:if test="${ not empty notice.boardNum }">readonly</c:if> placeholder="작성자">
 								</div>
 								<div class="mb-3">
-									<label for="exampleFormControlInput1" class="form-label">Title</label>
-									<input name="boardTitle" type="text" class="form-control" id="exampleFormControlInput1" value="${ notice.boardTitle }" placeholder="제목">
+									<label for="exampleFormControlInput2" class="form-label">Title</label>
+									<input name="boardTitle" type="text" class="form-control" id="exampleFormControlInput2" value="${ notice.boardTitle }" placeholder="제목">
 								</div>
 								<div class="mb-3">
 									<label for="exampleFormControlTextarea1" class="form-label">Contents</label>

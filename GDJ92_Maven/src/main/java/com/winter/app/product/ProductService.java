@@ -22,4 +22,20 @@ public class ProductService {
 	public ProductVO detail(ProductVO param) throws Exception {
 		return productDAO.detail(param);
 	}
+
+	public int insert(ProductVO param) throws Exception {
+		return productDAO.insert(param);
+	}
+
+	public List<ProductKindVO> selectKindList() throws Exception {
+		return productDAO.selectKindList();
+	}
+
+	public int update(ProductVO productVO) throws Exception {
+		return productDAO.update(productVO);
+	}
+
+	public int delete(ProductVO productVO) throws Exception {
+		return productDAO.delete(productVO);
+	}
 }

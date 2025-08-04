@@ -13,17 +13,17 @@ for (a of actions1) {
 		const kind = k.getAttribute("data-kind")
 		
 		switch (kind) {
-			case 'u':
-				frm.setAttribute('action', './update');
+		case 'u':
+			frm.setAttribute('action', './update');
+			frm.submit();
+			break;
+		case 'd':
+			if (confirm('삭제하시겠습니까?')) {
+				frm.setAttribute('action', './delete');
+				frm.setAttribute('method', 'post');
 				frm.submit();
-				break;
-			case 'd':
-				if (confirm('삭제하시겠습니까?')) {
-					frm.setAttribute('action', './delete');
-					frm.setAttribute('method', 'post');
-					frm.submit();
-				}
-				break;
+			}
+			break;
 		}
 	});
 }

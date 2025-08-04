@@ -24,22 +24,21 @@
 					<div class="row col-md-8 mx-auto">
 						<article class="w-100">
 							<h2 class="display-5 link-body-emphasis mb-1">${ product.productName }</h2>
-							<div class="w-100 d-flex justify-content-between">
-								<span>${ product.kindNum }</span>
-								<span>상품 유형: ${ product.productKindVO.kindName }</span>
-								<span>금리: ${ product.productRate }</span>
-								<span>가입 기간: ${ fn:substring(product.productDate, 0, 10) }</span>
-							</div>
+							<ul class="list-unstyled">
+								<li>상품 유형: ${ product.productKindVO.kindName }</li>
+								<li>금리: ${ product.productRate }</li>
+								<li>가입 마감: ${ fn:substring(product.productDate, 0, 10) }</li>
+							</ul>
 							<hr>
 							<% pageContext.setAttribute("newLine", "\n"); %>
 							<p class="fs-1">${ fn:replace(product.productContents, newLine, "<br/>") }</p>
 						</article>
 						<div class="w-100 d-flex justify-content-end">
 							<form id="frm">
-								<input type="hidden" name="boardNum" value="${ product.productNum }">
+								<input type="hidden" name="productNum" value="${ product.productNum }">
 							</form>
-							<button class="action btn btn-success py-1 px-2" data-kind="u">Update</button>
-							<button class="action btn btn-danger py-1 px-2" data-kind="d">Delete</button>
+							<button class="action btn btn-success py-1 px-2" id="upd">Update</button>
+							<button class="action btn btn-danger py-1 px-2" id="del">Delete</button>
 						</div>
 					</div>
 					
@@ -51,5 +50,6 @@
 		</div>
 	</div>
 	<c:import url="/WEB-INF/views/include/tail.jsp" />
+<script type="text/javascript" src="/js/product/detail.js"></script>
 </body>
 </html>
