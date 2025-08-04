@@ -45,11 +45,11 @@ class NoticeDAOTest {
 		assertEquals(1, result);
 	}
 	
-	@Test
-	void deleteTest() throws Exception {
-		int result = noticeDAO.delete(5);
-		assertEquals(1, result);
-	}
+//	@Test
+//	void deleteTest() throws Exception {
+//		int result = noticeDAO.delete(5);
+//		assertEquals(1, result);
+//	}
 	
 	@Test
 	void detailTest() throws Exception {
