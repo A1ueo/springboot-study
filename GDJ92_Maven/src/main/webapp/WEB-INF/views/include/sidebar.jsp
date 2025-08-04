@@ -39,7 +39,7 @@
 			<div class="bg-white py-2 collapse-inner rounded">
 				<h6 class="collapse-header">게시판</h6>
 				<a class="collapse-item" href="/notice/list">Notice</a>
-				<a class="collapse-item" href="/products/list">Products</a>
+				<a class="collapse-item" href="/product/list">Product</a>
 				<a class="collapse-item" href="cards.html">Cards</a>
 			</div>
 		</div>
