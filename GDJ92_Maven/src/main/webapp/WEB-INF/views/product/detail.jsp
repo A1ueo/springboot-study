@@ -24,7 +24,10 @@
 					<div class="row col-md-8 mx-auto">
 						<article class="w-100">
 							<h2 class="display-5 link-body-emphasis mb-1">${ product.productName }</h2>
-							<div class="w-100 d-flex justify-content-end">
+							<div class="w-100 d-flex justify-content-between">
+								<span>${ product.kindNum }</span>
+								<span>상품 유형: ${ product.productKindVO.kindName }</span>
+								<span>금리: ${ product.productRate }</span>
 								<span>가입 기간: ${ fn:substring(product.productDate, 0, 10) }</span>
 							</div>
 							<hr>

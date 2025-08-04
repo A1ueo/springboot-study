@@ -4,14 +4,38 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- namespace의 이름은 사용하려는 DAO의 풀패키지명과 동일하게 작성 -->
 <mapper namespace="com.winter.app.product.ProductDAO">
-	<select id="list" resultType="ProductDTO">
+	<resultMap type="ProductVO" id="detailResult">
+		<!-- PK -->
+		<id column="PRODUCT_NUM" property="productNum" />
+		<result column="PRODUCT_NAME" property="productName" />
+		<result column="PRODUCT_CONTENTS" property="productContents" />
+		<result column="PRODUCT_DATE" property="productDate" />
+		<result column="PRODUCT_RATE" property="productRate" />
+		
+		<!-- 1:1 -->
+		<association property="productKindVO" javaType="ProductKindVO">
+			<id column="KIND_NUM" property="kindNum" />
+			<result column="KIND_NAME" property="kindName" />
+		</association>
+	</resultMap>
+
+	<select id="list" resultType="ProductVO">
 		SELECT *
-		FROM PRODUCT p
-		ORDER BY p.PRODUCT_NUM DESC
+		FROM PRODUCT
+		ORDER BY PRODUCT_NUM DESC
 	</select>
-	<select id="select" parameterType="ProductDTO" resultType="ProductDTO">
+	
+	<select id="select" parameterType="ProductVO" resultType="ProductVO">
 		SELECT *
-		FROM PRODUCT p
+		FROM PRODUCT
 		WHERE PRODUCT_NUM = #{ productNum }
+	</select>
+	
+	<select id="detail" parameterType="ProductVO" resultMap="detailResult">
+		SELECT *
+		FROM PRODUCT AS p
+		JOIN PRODUCT_KIND AS k
+		USING (KIND_NUM)
+		WHERE p.PRODUCT_NUM = #{ productNum }
 	</select>
 </mapper>

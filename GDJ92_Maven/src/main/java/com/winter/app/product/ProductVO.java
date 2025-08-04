@@ -13,7 +13,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class ProductDTO {
+public class ProductVO {
 
 	private Long productNum;
 	private String productName;
@@ -21,4 +21,8 @@ public class ProductDTO {
 	private LocalDateTime productDate;
 	private Double productRate;
 	private Long kindNum;
+	
+	// 1:1
+	// 단방향
+	private ProductKindVO productKindVO;
 }

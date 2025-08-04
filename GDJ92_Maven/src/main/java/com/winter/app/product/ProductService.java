@@ -11,11 +11,15 @@ public class ProductService {
 	@Autowired
 	private ProductDAO productDAO;
 	
-	public List<ProductDTO> list() throws Exception {
+	public List<ProductVO> list() throws Exception {
 		return productDAO.list();
 	}
 	
-	public ProductDTO select(ProductDTO param) throws Exception {
+	public ProductVO select(ProductVO param) throws Exception {
 		return productDAO.select(param);
+	}
+	
+	public ProductVO detail(ProductVO param) throws Exception {
+		return productDAO.detail(param);
 	}
 }

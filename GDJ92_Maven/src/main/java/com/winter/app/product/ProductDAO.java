@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface ProductDAO {
-	List<ProductDTO> list() throws Exception;
-	ProductDTO select(ProductDTO param) throws Exception;
+	List<ProductVO> list() throws Exception;
+	ProductVO select(ProductVO param) throws Exception;
+	ProductVO detail(ProductVO param) throws Exception;
 }

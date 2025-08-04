@@ -17,14 +17,14 @@ public class ProductController {
 	
 	@GetMapping("/list")
 	public void list(Model model) throws Exception {
-		List<ProductDTO> list = productService.list();
+		List<ProductVO> list = productService.list();
 		
 		model.addAttribute("list", list);
 	}
 
 	@GetMapping("/detail")
-	public void detail(Model model, ProductDTO param) throws Exception {
-		ProductDTO result = productService.select(param);
+	public void detail(Model model, ProductVO param) throws Exception {
+		ProductVO result = productService.detail(param);
 		
 		model.addAttribute("product", result);
 	}
