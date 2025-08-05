@@ -23,21 +23,26 @@
 					<!-- Page Contents 내용 -->
 					<div class="row col-md-8 mx-auto">
 						<h1 class="py-2">${ title } List</h1>
-						<table class="table table-striped">
+						<table class="table table-striped text-center">
 							<thead>
 								<tr>
-									<th>Num</th>
+									<th class="col-1">Num</th>
 									<th>Title</th>
-									<th>Writer</th>
-									<th>Date</th>
-									<th>Hit</th>
+									<th class="col-2">Writer</th>
+									<th class="col-3">Date</th>
+									<th class="col-1">Hit</th>
 								</tr>
 							</thead>
 							<tbody>
 								<c:forEach var="board" items="${ list }">
 									<tr>
 										<td>${ board.boardNum }</td>
-										<td><a class="d-block" href="./detail?boardNum=${ board.boardNum }">${ board.boardTitle }</a></td>
+										<td class="text-left"><a class="d-block" href="./detail?boardNum=${ board.boardNum }">
+											<c:catch>
+												<c:forEach var="i" begin="1" end="${ board.boardDepth }">&nbsp&nbsp&nbsp&nbsp</c:forEach><c:if test="${ board.boardDepth ne 0 }">└ </c:if>
+											</c:catch>
+											${ board.boardTitle }
+										</a></td>
 										<td>${ board.boardWriter }</td>
 										<td>${ fn:substring(board.boardDate, 0, 10) }</td>
 										<td>${ board.boardHit }</td>

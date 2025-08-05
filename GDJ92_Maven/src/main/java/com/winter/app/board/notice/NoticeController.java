@@ -3,9 +3,11 @@ package com.winter.app.board.notice;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -20,6 +22,9 @@ public class NoticeController {
 	@Autowired
 	private NoticeService noticeService;
 	
+	@Value("${board.notice}")
+	private String name;
+	
 //	@GetMapping("/add")
 //	public void insert() throws Exception {
 //		NoticeVO noticeVO = new NoticeVO();
@@ -30,11 +35,15 @@ public class NoticeController {
 //		int result = noticeDAO.insert(noticeVO);
 //	}
 	
+	@ModelAttribute("title")
+	public String getBoard() {
+		return name;
+	}
+	
 	@GetMapping("/list")
 	public String list(Model model) throws Exception {
 		List<BoardVO> list = noticeService.list();
 		model.addAttribute("list", list);
-		model.addAttribute("title", "Notice");
 		
 		return "/board/list";
 	}
