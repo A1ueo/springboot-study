@@ -28,6 +28,18 @@ public class QnaService implements BoardService {
 		
 		return result;
 	}
+	
+	public int reply(QnaVO qnaVO) throws Exception {
+		QnaVO parent = (QnaVO) qnaMapper.detail(qnaVO);
+		qnaVO.setBoardRef(parent.getBoardRef());
+		qnaVO.setBoardStep(parent.getBoardStep() + 1);
+		qnaVO.setBoardDepth(parent.getBoardDepth() + 1);
+		
+		int result = qnaMapper.updateSteps(parent);
+		result = qnaMapper.insertReply(qnaVO);
+		
+		return result;
+	}
 
 	@Override
 	public BoardVO detail(BoardVO boardVO) throws Exception {

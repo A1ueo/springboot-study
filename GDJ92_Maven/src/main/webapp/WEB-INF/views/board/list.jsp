@@ -22,7 +22,7 @@
 				<div class="container-fluid">
 					<!-- Page Contents 내용 -->
 					<div class="row col-md-8 mx-auto">
-						<h1 class="py-2">Board List</h1>
+						<h1 class="py-2">${ title } List</h1>
 						<table class="table table-striped">
 							<thead>
 								<tr>

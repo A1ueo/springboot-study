@@ -9,4 +9,6 @@ import com.winter.app.board.BoardVO;
 public interface QnaMapper extends BoardDAO {
 
 	int updateRef(BoardVO boardVO) throws Exception;
+	int updateSteps(QnaVO parent) throws Exception;
+	int insertReply(QnaVO qnaVO) throws Exception;
 }

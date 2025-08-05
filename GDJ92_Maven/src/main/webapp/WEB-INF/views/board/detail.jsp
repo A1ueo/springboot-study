@@ -33,6 +33,7 @@
 							<form id="frm">
 								<input type="hidden" name="boardNum" value="${ board.boardNum }">
 							</form>
+							<button class="action btn btn-primary py-1 px-2" data-kind="r">Reply</button>
 							<button class="action btn btn-success py-1 px-2" data-kind="u">Update</button>
 							<button class="action btn btn-danger py-1 px-2" data-kind="d">Delete</button>
 						</div>

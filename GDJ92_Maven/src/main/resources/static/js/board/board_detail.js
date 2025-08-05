@@ -24,6 +24,10 @@ for (a of actions1) {
 				frm.submit();
 			}
 			break;
+		case 'r':
+			frm.setAttribute('action', './reply');
+			frm.submit();
+			break;
 		}
 	});
 }

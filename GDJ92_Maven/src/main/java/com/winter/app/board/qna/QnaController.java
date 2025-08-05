@@ -23,6 +23,7 @@ public class QnaController {
 		List<BoardVO> list = qnaService.list();
 		
 		model.addAttribute("list", list);
+		model.addAttribute("title", "QnA");
 		
 		return "/board/list";
 	}
@@ -57,4 +58,30 @@ public class QnaController {
 		
 		return "/board/detail";
 	}
+	
+	@GetMapping("reply")
+	public String reply(Model model, QnaVO qnaVO) throws Exception {
+		model.addAttribute("board", qnaVO);
+		
+		return "/board/form";
+	}
+	
+	@PostMapping("reply")
+	public String reply(QnaVO qnaVO) throws Exception {
+		int result = qnaService.reply(qnaVO);
+		
+		return "redirect:./detail?boardNum=" + qnaVO.getBoardNum();
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+

@@ -26,7 +26,7 @@
 								<input type="hidden" name="boardNum" id="boardNum" value="${ board.boardNum }">
 								<div class="mb-3">
 									<label for="exampleFormControlInput1" class="form-label">Writer</label>
-									<input name="boardWriter" type="text" class="form-control" id="exampleFormControlInput1" value="${ board.boardWriter }" <c:if test="${ not empty board.boardNum }">readonly</c:if> placeholder="작성자">
+									<input name="boardWriter" type="text" class="form-control" id="exampleFormControlInput1" value="${ board.boardWriter }" placeholder="작성자">
 								</div>
 								<div class="mb-3">
 									<label for="exampleFormControlInput2" class="form-label">Title</label>
@@ -51,6 +51,6 @@
 	</div>
 	<c:import url="/WEB-INF/views/include/tail.jsp" />
 	
-<script type="text/javascript" src="/js/board/board_update.js"></script>
+<script type="text/javascript" src="/js/board/board_form.js"></script>
 </body>
 </html>

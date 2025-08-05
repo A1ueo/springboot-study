@@ -31,26 +31,32 @@ public class NoticeController {
 //	}
 	
 	@GetMapping("/list")
-	public void list(Model model) throws Exception {
+	public String list(Model model) throws Exception {
 		List<BoardVO> list = noticeService.list();
 		model.addAttribute("list", list);
+		model.addAttribute("title", "Notice");
+		
+		return "/board/list";
 	}
 	
 	@GetMapping("/detail")
-	public void detail(Model model, NoticeVO noticeVO) throws Exception {
+	public String detail(Model model, NoticeVO noticeVO) throws Exception {
 		BoardVO boardVO = noticeService.detail(noticeVO);
 		
-		model.addAttribute("notice", boardVO);
+		model.addAttribute("board", boardVO);
+		
+		return "/board/detail";
 	}
 	
 	@GetMapping("/add")
-	public void add() {
-		
+	public String add() {
+		return "/board/form";
 	}
 	
 	@PostMapping("/add")
 	public String add(NoticeVO noticeVO) throws Exception {
 		int result = noticeService.insert(noticeVO);
+		
 		return "redirect:./list";
 	}
 	
@@ -58,9 +64,9 @@ public class NoticeController {
 	public String update(Model model, BoardVO noticeVO) throws Exception {
 		BoardVO boardVO = noticeService.detail(noticeVO);
 		
-		model.addAttribute("notice", boardVO);
+		model.addAttribute("board", boardVO);
 		
-		return "/notice/add";
+		return "/board/form";
 	}
 	
 	@PostMapping("/update")

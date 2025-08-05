@@ -28,4 +28,19 @@
 		FROM QNA
 		WHERE BOARD_NUM = #{ boardNum }
 	</select>
+	
+	<update id="updateSteps" parameterType="QnaVO">
+		UPDATE QNA
+		SET BOARD_STEP = BOARD_STEP + 1
+		WHERE BOARD_REF = #{ boardRef } AND BOARD_STEP > #{ boardStep }
+	</update>
+	
+	<insert id="insertReply">
+		INSERT INTO QNA
+			(BOARD_TITLE, BOARD_CONTENT, BOARD_WRITER, BOARD_DATE, BOARD_HIT, 
+				BOARD_REF, BOARD_STEP, BOARD_DEPTH)
+		VALUES
+			(#{ boardTitle }, #{ boardContent }, #{ boardWriter }, NOW(), 0, 
+				#{ boardRef }, #{ boardStep }, #{ boardDepth })
+	</insert>
 </mapper>
