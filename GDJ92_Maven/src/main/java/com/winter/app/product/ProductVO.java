@@ -1,6 +1,6 @@
 package com.winter.app.product;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -18,7 +18,7 @@ public class ProductVO {
 	private Long productNum;
 	private String productName;
 	private String productContents;
-	private LocalDateTime productDate;
+	private LocalDate productDate;
 	private Double productRate;
 	private Long kindNum;
 	

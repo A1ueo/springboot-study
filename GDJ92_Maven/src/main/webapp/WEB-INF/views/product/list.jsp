@@ -44,7 +44,7 @@
 							</tbody>
 						</table>
 						<div class="w-100 d-flex justify-content-end">
-							<a class="btn btn-success py-1 px-2" href="./add">상품 등록</a>
+							<a class="btn btn-primary py-1 px-2" href="./add">상품 등록</a>
 						</div>
 					</div>
 					

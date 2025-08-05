@@ -9,7 +9,7 @@
 
 <c:import url="/WEB-INF/views/include/head_css.jsp" />
 
-<title>Insert title here</title>
+<title>${ title }</title>
 </head>
 <body  id="page-top">
 	<div id="wrapper">
@@ -34,11 +34,13 @@
 							<form id="frm">
 								<input type="hidden" name="boardNum" value="${ board.boardNum }">
 							</form>
-							<c:if test="${ title ne 'Notice' }">
-								<button class="action btn btn-primary py-1 px-2" data-kind="r">Reply</button>
-							</c:if>
-							<button class="action btn btn-success py-1 px-2" data-kind="u">Update</button>
-							<button class="action btn btn-danger py-1 px-2" data-kind="d">Delete</button>
+							<div class="justify-content-evenly">
+								<c:if test="${ title ne 'Notice' }">
+									<button class="action btn btn-primary py-1 px-2" data-kind="r">Reply</button>
+								</c:if>
+								<button class="action btn btn-success py-1 px-2" data-kind="u">Update</button>
+								<button class="action btn btn-danger py-1 px-2" data-kind="d">Delete</button>
+							</div>
 						</div>
 					</div>
 				</div>

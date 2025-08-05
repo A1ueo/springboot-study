@@ -8,7 +8,7 @@
 
 <c:import url="/WEB-INF/views/include/head_css.jsp" />
 
-<title>Insert title here</title>
+<title>${ title }</title>
 </head>
 <body  id="page-top">
 	<div id="wrapper">
@@ -21,12 +21,13 @@
 				<div class="container-fluid">
 					<!-- Page Contents 내용 -->
 					<div class="row col-md-8 mx-auto">
+						<h1 class="py-2">${ title } </h1>
 						<article class="w-100">
 							<form id="frm" method="post">
 								<input type="hidden" name="boardNum" id="boardNum" value="${ board.boardNum }">
 								<div class="mb-3">
 									<label for="exampleFormControlInput1" class="form-label">Writer</label>
-									<input name="boardWriter" type="text" class="form-control" id="exampleFormControlInput1" value="${ board.boardWriter }" placeholder="작성자">
+									<input name="boardWriter" type="text" class="form-control" id="exampleFormControlInput1" value="${ board.boardWriter }" <c:if test="${ not empty board.boardWriter }">readonly</c:if> placeholder="작성자">
 								</div>
 								<div class="mb-3">
 									<label for="exampleFormControlInput2" class="form-label">Title</label>

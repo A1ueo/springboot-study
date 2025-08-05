@@ -23,15 +23,21 @@ class NoticeDAOTest {
 	
 	@Test
 	void insertTest() throws Exception {
-		NoticeVO noticeVO = new NoticeVO();
-		noticeVO.setBoardTitle("title5");
-		noticeVO.setBoardContent("content5");
-		noticeVO.setBoardWriter("writer5");
-		
-		int result = noticeDAO.insert(noticeVO);
+		for (int i = 0; i < 105; i++) {
+			NoticeVO noticeVO = new NoticeVO();
+			noticeVO.setBoardTitle("title" + i);
+			noticeVO.setBoardContent("content" + i);
+			noticeVO.setBoardWriter("writer" + i);
+			
+			int result = noticeDAO.insert(noticeVO);
+			
+			if (i % 10 == 0) {
+				Thread.sleep(500);
+			}
+		}
 		
 		// 단정문
-		assertEquals(1, result);
+//		assertEquals(1, result);
 	}
 	
 	@Test

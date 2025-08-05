@@ -9,7 +9,7 @@
 
 <c:import url="/WEB-INF/views/include/head_css.jsp" />
 
-<title>Insert title here</title>
+<title>${ title }</title>
 </head>
 <body  id="page-top">
 	<div id="wrapper">
@@ -50,7 +50,7 @@
 								</c:forEach>
 							</tbody>
 						</table>
-						<div class="w-100 d-flex justify-content-end">
+						<div class="w-100 d-flex justify-content-end mb-2">
 							<a class="btn btn-primary py-1 px-2" href="./add">글쓰기</a>
 						</div>
 					</div>
