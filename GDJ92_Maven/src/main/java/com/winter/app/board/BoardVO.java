@@ -1,6 +1,6 @@
 package com.winter.app.board;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -15,7 +15,7 @@ public class BoardVO {
 	private String boardTitle;
 	private String boardContent;
 	private String boardWriter;
-	private LocalDateTime boardDate;
+	private LocalDate boardDate;
 	private Long boardHit;
 	
 }

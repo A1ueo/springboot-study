@@ -40,7 +40,7 @@
 								</div>
 								<div class="mb-3">
 									<label for="exampleFormControlInput3" class="form-label">Rate</label>
-									<input name="productRate" type="text" class="form-control" id="exampleFormControlInput3" value="${ product.productRate }" placeholder="금리">
+									<input name="productRate" type="number" step="0.01" max="99.99" min="0" class="form-control" id="exampleFormControlInput3" value="${ product.productRate }" placeholder="금리">
 								</div>
 								<div class="mb-3">
 									<label for="exampleFormControlInput4" class="form-label">Date</label>

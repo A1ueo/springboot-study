@@ -40,6 +40,7 @@
 				<h6 class="collapse-header">게시판</h6>
 				<a class="collapse-item" href="/notice/list">Notice</a>
 				<a class="collapse-item" href="/product/list">Product</a>
+				<a class="collapse-item" href="/qna/list">QnA</a>
 				<a class="collapse-item" href="cards.html">Cards</a>
 			</div>
 		</div>

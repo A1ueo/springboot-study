@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/product/*")
@@ -40,25 +41,49 @@ public class ProductController {
 	}
 
 	@PostMapping("/add")
-	public String add(ProductVO param) throws Exception {
+	public ModelAndView add(Model model, ProductVO param) throws Exception {
 		int result = productService.insert(param);
 		
-		return "redirect:./list";
+		String url = "./list";
+		
+		String msg = "등록 실패";
+		if (result > 0) {
+			msg = "등록 성공";
+		}
+		
+//		model.addAttribute("url", url);
+//		model.addAttribute("msg", msg);
+		
+//		return "/common/result";
+		
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("url", url);
+		mv.addObject("msg", msg);
+		
+		mv.setViewName("/common/result");
+		
+		return mv;
 	}
 
 	@GetMapping("/update")
-	public String update(Model model, ProductVO param) throws Exception {
+	public ModelAndView update(ModelAndView mv, ProductVO param) throws Exception {
 		List<ProductKindVO> list = productService.selectKindList();
 		ProductVO result =productService.detail(param);
 
-		model.addAttribute("list", list);
-		model.addAttribute("product", result);
+//		model.addAttribute("list", list);
+//		model.addAttribute("product", result);
 
-		return "/product/product_form";
+//		return "/product/product_form";
+		
+		mv.addObject("list", list);
+		mv.addObject("product", result);
+		mv.setViewName("/product/product_form");
+		
+		return mv;
 	}
 	
 	@PostMapping("/update")
-	public String update(ProductVO productVO, Model model) throws Exception {
+	public String updatePost(Model model, ProductVO productVO) throws Exception {
 		int result = productService.update(productVO);
 		
 		String url = "./detail?productNum=" + productVO.getProductNum();
