@@ -3,10 +3,16 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.winter.app.board.qna.QnaMapper">
-	<select id="list" resultType="QnaVO">
+	<select id="list" parameterType="Pager" resultType="QnaVO">
 		SELECT *
 		FROM QNA
 		ORDER BY BOARD_REF DESC, BOARD_STEP
+		LIMIT #{ startIndex }, #{ endIndex }
+	</select>
+	
+	<select id="totalCount" parameterType="long">
+		SELECT COUNT(BOARD_NUM)
+		FROM QNA
 	</select>
 	
 	<insert id="insert" parameterType="QnaVO" useGeneratedKeys="true" keyProperty="boardNum">

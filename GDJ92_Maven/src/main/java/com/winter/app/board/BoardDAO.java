@@ -2,6 +2,8 @@ package com.winter.app.board;
 
 import java.util.List;
 
+import com.winter.app.common.Pager;
+
 public interface BoardDAO {
 
 	// insert
@@ -13,5 +15,7 @@ public interface BoardDAO {
 	// select
 	BoardVO detail(BoardVO boardVO) throws Exception;
 	// selectList
-	List<BoardVO> list() throws Exception;
+	List<BoardVO> list(Pager pager) throws Exception;
+	// pager
+	Long totalCount() throws Exception;
 }

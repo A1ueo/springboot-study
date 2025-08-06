@@ -29,9 +29,15 @@
 		WHERE BOARD_NUM = #{ boardNum }
 	</delete>
 	
-	<select id="list" resultType="NoticeVO">
+	<select id="list" parameterType="Pager" resultType="NoticeVO">
 		SELECT *
 		FROM NOTICE
 		ORDER BY BOARD_NUM DESC
+		LIMIT #{ startIndex }, #{ endIndex }
+	</select>
+	
+	<select id="totalCount" resultType="long">
+		SELECT COUNT(BOARD_NUM)
+		FROM NOTICE
 	</select>
 </mapper>

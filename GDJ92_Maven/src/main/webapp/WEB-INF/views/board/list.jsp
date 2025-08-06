@@ -50,6 +50,29 @@
 								</c:forEach>
 							</tbody>
 						</table>
+						<div>
+							<nav aria-label="Page navigation example">
+								<ul class="pagination">
+									<c:if test="${ pager.startNum ne 1 }">
+										<li class="page-item">
+											<a class="page-link" href="./list?pageNum=${ pager.startNum - 1 }" aria-label="Previous">
+												<span aria-hidden="true">&laquo;</span>
+											</a>
+										</li>
+									</c:if>
+									<c:forEach var="i" begin="${ pager.startNum }" end="${ pager.endNum }">
+										<li class="page-item <c:if test="${ pager.pageNum eq i }">active</c:if>"><a class="page-link" href="./list?pageNum=${ i }">${ i }</a></li>
+									</c:forEach>
+									<c:if test="${ pager.endNum ne pager.totalPage }">
+										<li class="page-item">
+											<a class="page-link" href="./list?pageNum=${ pager.endNum + 1 }" aria-label="Next">
+												<span aria-hidden="true">&raquo;</span>
+											</a>
+										</li>
+									</c:if>
+								</ul>
+							</nav>
+						</div>
 						<div class="w-100 d-flex justify-content-end mb-2">
 							<a class="btn btn-primary py-1 px-2" href="./add">글쓰기</a>
 						</div>

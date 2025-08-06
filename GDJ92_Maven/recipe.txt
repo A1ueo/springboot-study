@@ -70,6 +70,35 @@ if (totalCount % 10 != 0) totalPage++;
 
 
 
+1. DB에서 일정한 갯수 만큼 조회
+2. JSP에 페이지 번호를 출력
+
+pageNum		startIndex
+1			0
+2			10
+3			20
+
+(pageNum - 1) * endIndex
+
+
+pageNum		curBlock
+1			1
+2			1
+5			1
+6			2
+7			2
+
+(pageNum / perBlock ) + 1
+
+
+curBlock	startNum	endNum
+1			1			5
+
+
+
+
+
+
 
 
 
