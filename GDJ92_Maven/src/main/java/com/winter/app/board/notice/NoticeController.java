@@ -10,12 +10,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.winter.app.board.BoardVO;
 import com.winter.app.common.Pager;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Controller
 @RequestMapping(value = "/notice/*")
+@Slf4j
 public class NoticeController {
 
 //	@Autowired
@@ -57,6 +61,8 @@ public class NoticeController {
 		
 		model.addAttribute("board", boardVO);
 		
+		System.out.println(boardVO);
+		System.out.println(boardVO.getBoardFileVO().getOriName());
 		return "/board/detail";
 	}
 	
@@ -66,8 +72,8 @@ public class NoticeController {
 	}
 	
 	@PostMapping("/add")
-	public String add(NoticeVO noticeVO) throws Exception {
-		int result = noticeService.insert(noticeVO);
+	public String add(NoticeVO noticeVO, MultipartFile attaches) throws Exception {
+		int result = noticeService.insert(noticeVO, attaches);
 		
 		return "redirect:./list";
 	}

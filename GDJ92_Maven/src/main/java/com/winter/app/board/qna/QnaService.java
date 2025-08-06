@@ -3,11 +3,14 @@ package com.winter.app.board.qna;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.winter.app.board.BoardFileVO;
 import com.winter.app.board.BoardService;
 import com.winter.app.board.BoardVO;
+import com.winter.app.common.FileManager;
 import com.winter.app.common.Pager;
 
 @Service
@@ -16,16 +19,30 @@ public class QnaService implements BoardService {
 	@Autowired
 	QnaMapper qnaMapper;
 	
+	@Autowired
+	private FileManager fileManager;
+    
+    @Value("${app.upload}")
+    private String upload;
+    
+    @Value("${board.qna}")
+    private String board;
+	
 	@Override
-	@Transactional
-	public int insert(BoardVO boardVO) throws Exception {
+	public int insert(BoardVO boardVO, MultipartFile attaches) throws Exception {
 		int result = qnaMapper.insert(boardVO);
-		
-		if (result != 1) throw new RuntimeException("insert 트랜잭션 오류");
 		
 		result = qnaMapper.updateRef(boardVO);
 		
-		if (result != 1) throw new RuntimeException("insert 트랜잭션 오류");
+		String fileName = fileManager.fileSave(upload + board, attaches);
+		
+		BoardFileVO fileVO = new BoardFileVO();
+		
+		fileVO.setOriName(attaches.getOriginalFilename());
+		fileVO.setSaveName(fileName);
+		fileVO.setBoardNum(boardVO.getBoardNum());
+		
+		result = qnaMapper.insertFile(fileVO);
 		
 		return result;
 	}

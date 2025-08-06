@@ -30,6 +30,11 @@
 							<% pageContext.setAttribute("newLine", "\n"); %>
 							<p>${ fn:replace(board.boardContent, newLine, "<br/>") }</p>
 						</article>
+						<div>
+							<h4>첨부파일</h4>
+							<a href="/file/${ title }/${ board.boardFileVO.saveName }">${ board.boardFileVO.oriName }</a>
+							<%-- <img alt="" src="/file/${ title }/${ board.boardFileVO.saveName }"> --%>
+						</div>
 						<div class="w-100 d-flex justify-content-end">
 							<form id="frm">
 								<input type="hidden" name="boardNum" value="${ board.boardNum }">

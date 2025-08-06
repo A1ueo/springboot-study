@@ -23,7 +23,7 @@
 					<div class="row col-md-8 mx-auto">
 						<h1 class="py-2">${ title } </h1>
 						<article class="w-100">
-							<form id="frm" method="post">
+							<form id="frm" method="post" enctype="multipart/form-data">
 								<input type="hidden" name="boardNum" id="boardNum" value="${ board.boardNum }">
 								<div class="mb-3">
 									<label for="exampleFormControlInput1" class="form-label">Writer</label>
@@ -36,6 +36,11 @@
 								<div class="mb-3">
 									<label for="exampleFormControlTextarea1" class="form-label">Contents</label>
 									<textarea name="boardContent" class="form-control" id="exampleFormControlTextarea1" rows="9" style="resize: none;" placeholder="내용">${ board.boardContent }</textarea>
+								</div>
+								
+								<div class="mb-3">
+									<label for="formFile" class="form-label">Default file input example</label>
+									<input type="file" class="form-control" id="formFile" name="attaches">
 								</div>
 							</form>
 							<div class="d-flex justify-content-end">

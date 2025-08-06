@@ -3,6 +3,21 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.winter.app.board.qna.QnaMapper">
+	<resultMap type="QnaVO" id="detailResult">
+		<id column="BOARD_NUM" property="boardNum"/>
+		<result column="BOARD_TITLE" property="boardTitle"/>
+		<result column="BOARD_CONTENT" property="boardContent"/>
+		<result column="BOARD_WRITER" property="boardWriter"/>
+		<result column="BOARD_DATE" property="boardDate"/>
+		<result column="BOARD_HIT" property="boardHit"/>
+		
+		<association property="boardFileVO">
+			<id column="FILE_NUM" property="fileNum"/>
+			<result column="ORI_NAME" property="oriName"/>
+			<result column="SAVE_NAME" property="saveName"/>
+		</association>
+	</resultMap>
+	
 	<select id="list" parameterType="Pager" resultType="QnaVO">
 		SELECT *
 		FROM QNA
@@ -29,10 +44,18 @@
 		WHERE BOARD_NUM = #{ boardNum }
 	</update>
 	
-	<select id="detail" parameterType="QnaVO" resultType="QnaVO">
+	<insert id="insertFile" parameterType="BoardFileVO">
+		INSERT INTO QNA_FILE
+			(ORI_NAME, SAVE_NAME, BOARD_NUM)
+		VALUES
+			(#{ oriName }, #{ saveName }, #{ boardNum })
+	</insert>
+	
+	<select id="detail" parameterType="QnaVO" resultMap="detailResult">
 		SELECT *
-		FROM QNA
-		WHERE BOARD_NUM = #{ boardNum }
+		FROM QNA AS q
+		LEFT JOIN QNA_FILE AS f ON q.BOARD_NUM = f.BOARD_NUM
+		WHERE q.BOARD_NUM = #{ boardNum }
 	</select>
 	
 	<update id="updateSteps" parameterType="QnaVO">
