@@ -47,6 +47,10 @@ public class NoticeService implements BoardService {
 	public int insert(BoardVO boardVO, MultipartFile[] attaches) throws Exception {
 		int result = noticeDAO.insert(boardVO);
 		
+		if (attaches == null) {
+			return result;
+		}
+			
 		for (MultipartFile a : attaches) {
 			if (a == null || a.isEmpty()) {
 				continue;

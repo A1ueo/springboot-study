@@ -75,6 +75,7 @@ deleteFile.forEach(function(item) {
 			})
 			.then(r => r.json())
 			.then(r => {
+				console.log(r);
 			});
 		}
 	});
