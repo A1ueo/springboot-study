@@ -16,14 +16,14 @@ submitBtn.addEventListener('click', function () {
 const add = document.getElementById('add');
 const result = document.getElementById('result');
 
-let count = 0;
+let count = result.dataset.fileCount;
 
 add.addEventListener('click', function() {
 	const div = document.createElement('div');
-	div.classList.add('mb-3', 'd-flex', 'justify-content-evenly');
+	div.classList.add('mb-3', 'd-flex', 'w-100', 'justify-content-between');
 
 	div.innerHTML += 
-		`<input type="file" class="form-control" id="formFile" name="attaches">
+		`<input type="file" class="form-control col-11" id="formFile" name="attaches">
 		<button type="button" class="del btn btn-outline-danger">X</button>`;
 
 /*
@@ -57,5 +57,27 @@ result.addEventListener('click', function(e) {
 });
 
 
+const deleteFile = document.querySelectorAll('.deleteFile');
+
+deleteFile.forEach(function(item) {
+	item.addEventListener('click', function(e){
+			const fileNum = item.dataset.fileNum;
+			
+		if (e.target.classList.contains('deleteFile')) {
+			console.log(fileNum);
+	
+			let params = new URLSearchParams();
+			params.append("fileNum", fileNum);
+	
+			fetch('./deleteFile', {
+				method: 'POST',
+				body: params
+			})
+			.then(r => r.json())
+			.then(r => {
+			});
+		}
+	});
+});
 
 

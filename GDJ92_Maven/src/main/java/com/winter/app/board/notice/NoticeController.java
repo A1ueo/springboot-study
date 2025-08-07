@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.winter.app.board.BoardFileVO;
 import com.winter.app.board.BoardVO;
 import com.winter.app.common.Pager;
 
@@ -119,5 +121,17 @@ public class NoticeController {
 		model.addAttribute("url", url);
 		
 		return "/common/result";
+	}
+	
+	@PostMapping("/deleteFile")
+	@ResponseBody
+	public List<BoardVO> deleteFile(Model model, BoardFileVO boardFileVO) throws Exception {
+		log.info("\n=========================================== Delete file ===========================================");
+		log.info("\n{}", boardFileVO.getFileNum());
+		
+		Pager pager = new Pager();
+		List<BoardVO> list = noticeService.list(pager);
+		
+		return list;
 	}
 }

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 	<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+	<%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
 		<!DOCTYPE html>
 		<html>
 
@@ -42,10 +43,20 @@
 										<div class="mb-3">
 											<button type="button" class="btn btn-primary" id="add">ADD</button>
 										</div>
-										<div id="result">
+										<!-- fn:length(board.boardFileVOs) -->
+										<div>
+											<c:forEach var="f" items="${ board.boardFileVOs }">
+												<div class="mb-3 d-flex w-100 justify-content-between">
+													<%-- <input type="file" class="form-control col-11" id="formFile" name="attaches" value="${ f.oriName }"> --%>
+													<input type="button"" class="form-control col-11" id="formFile" name="attaches" value="${ f.oriName }">
+													<button type="button" data-file-num="${ f.fileNum }" class="deleteFile btn btn-outline-danger">X</button>
+												</div>
+											</c:forEach>
+										</div>
+										<div id="result" data-file-count="${ board.boardFileVOs.size() }">
 										</div>
 									</form>
-									<div class="d-flex justify-content-end">
+									<div class="mb-3 d-flex justify-content-end">
 										<button class="btn btn-success" id="submit">Submit</button>
 									</div>
 								</article>
