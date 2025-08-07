@@ -98,7 +98,9 @@ curBlock	startNum	endNum
 
 
 
+kind : k1(title), k2(content), k3(writer)
 
+keyword :
 
 
 

@@ -17,7 +17,7 @@ public interface BoardDAO {
 	// selectList
 	List<BoardVO> list(Pager pager) throws Exception;
 	// pager
-	Long totalCount() throws Exception;
+	Long totalCount(Pager pager) throws Exception;
 	// attach
 	int insertFile(BoardFileVO boardFileVO) throws Exception;
 }

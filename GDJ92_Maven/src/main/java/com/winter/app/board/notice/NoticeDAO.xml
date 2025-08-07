@@ -17,6 +17,17 @@
 			<result column="SAVE_NAME" property="saveName"/>
 		</association>
 	</resultMap>
+	<sql id="search">
+		<where>
+			<choose>
+				<when test="kind == 'k1'">BOARD_TITLE</when>
+				<when test="kind == 'k2'">BOARD_CONTENT</when>
+				<when test="kind == 'k3'">BOARD_WRITER</when>
+				<otherwise>BOARD_TITLE</otherwise>
+			</choose>
+			LIKE CONCAT('%', #{ keyword }, '%')
+		</where>
+	</sql>
 
 	<select id="detail" parameterType="NoticeVO" resultMap="detailResult">
 		SELECT *
@@ -55,12 +66,14 @@
 	<select id="list" parameterType="Pager" resultType="NoticeVO">
 		SELECT *
 		FROM NOTICE
+		<include refid="search"/>
 		ORDER BY BOARD_NUM DESC
 		LIMIT #{ startIndex }, #{ endIndex }
 	</select>
 	
-	<select id="totalCount" resultType="long">
+	<select id="totalCount" parameterType="Pager" resultType="long">
 		SELECT COUNT(BOARD_NUM)
 		FROM NOTICE
+		<include refid="search"/>
 	</select>
 </mapper>

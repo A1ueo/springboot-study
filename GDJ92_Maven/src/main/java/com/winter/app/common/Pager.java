@@ -7,8 +7,13 @@ import lombok.Setter;
 @Setter
 public class Pager {
 
+	// 검색 종류
+	private String kind;
+	// 검색어
+	private String keyword;
 	// 현재 페이지
 	private Long pageNum;
+	
 	// LIMIT의 시작 인덱스 번호
 	private Long startIndex;
 	// LIMIT의 끝
@@ -63,6 +68,13 @@ public class Pager {
 		}
 		
 		return pageNum;
+	}
+	
+	public String getKeyword() {
+		if (this.keyword == null) {
+			this.keyword = "";
+		}
+		return this.keyword;
 	}
 
 	public Long getStartIndex() {
