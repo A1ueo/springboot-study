@@ -17,7 +17,7 @@
 			<result column="SAVE_NAME" property="saveName"/>
 		</association>
 -->
-		<collection property="boardFileVOs" javaType="list" ofType="boardFileVO">
+		<collection property="boardFileVOs" javaType="list" ofType="BoardFileVO">
 			<id column="FILE_NUM" property="fileNum"/>
 			<result column="ORI_NAME" property="oriName"/>
 			<result column="SAVE_NAME" property="saveName"/>
@@ -70,6 +70,11 @@
 		WHERE BOARD_NUM = #{ boardNum }
 	</delete>
 	
+	<delete id="deleteFile" parameterType="NoticeVO">
+		DELETE FROM NOTICE_FILE
+		WHERE BOARD_NUM = #{ boardNum }
+	</delete>
+	
 	<select id="list" parameterType="Pager" resultType="NoticeVO">
 		SELECT *
 		FROM NOTICE
@@ -83,9 +88,4 @@
 		FROM NOTICE
 		<include refid="search"/>
 	</select>
-	
-	<delete id="fileDelete" parameterType="NoticeVO">
-		DELETE FROM NOTICE_FILE
-		WHERE BOARD_NUM = #{ boardNum }
-	</delete>
 </mapper>

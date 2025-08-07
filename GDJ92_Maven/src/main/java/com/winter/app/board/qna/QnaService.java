@@ -29,20 +29,22 @@ public class QnaService implements BoardService {
     private String board;
 	
 	@Override
-	public int insert(BoardVO boardVO, MultipartFile attaches) throws Exception {
+	public int insert(BoardVO boardVO, MultipartFile[] attaches) throws Exception {
 		int result = qnaMapper.insert(boardVO);
 		
 		result = qnaMapper.updateRef(boardVO);
 		
-		String fileName = fileManager.fileSave(upload + board, attaches);
-		
-		BoardFileVO fileVO = new BoardFileVO();
-		
-		fileVO.setOriName(attaches.getOriginalFilename());
-		fileVO.setSaveName(fileName);
-		fileVO.setBoardNum(boardVO.getBoardNum());
-		
-		result = qnaMapper.insertFile(fileVO);
+		for (MultipartFile a : attaches) {
+			String fileName = fileManager.fileSave(upload + board, a);
+			
+			BoardFileVO fileVO = new BoardFileVO();
+			
+			fileVO.setOriName(a.getOriginalFilename());
+			fileVO.setSaveName(fileName);
+			fileVO.setBoardNum(boardVO.getBoardNum());
+			
+			result = qnaMapper.insertFile(fileVO);
+		}
 		
 		return result;
 	}

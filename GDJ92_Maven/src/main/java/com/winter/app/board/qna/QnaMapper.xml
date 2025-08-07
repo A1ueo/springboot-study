@@ -10,12 +10,18 @@
 		<result column="BOARD_WRITER" property="boardWriter"/>
 		<result column="BOARD_DATE" property="boardDate"/>
 		<result column="BOARD_HIT" property="boardHit"/>
-		
+<!-- 
 		<association property="boardFileVO" javaType="BoardFileVO">
 			<id column="FILE_NUM" property="fileNum"/>
 			<result column="ORI_NAME" property="oriName"/>
 			<result column="SAVE_NAME" property="saveName"/>
 		</association>
+ -->
+		<collection property="boardFileVOs" javaType="list" ofType="BoardFileVO">
+			<id column="FILE_NUM" property="fileNum"/>
+			<result column="ORI_NAME" property="oriName"/>
+			<result column="SAVE_NAME" property="saveName"/>
+		</collection>
 	</resultMap>
 	
 	<select id="list" parameterType="Pager" resultType="QnaVO">
@@ -54,7 +60,8 @@
 	<select id="detail" parameterType="QnaVO" resultMap="detailResult">
 		SELECT *
 		FROM QNA AS q
-		LEFT JOIN QNA_FILE AS f ON q.BOARD_NUM = f.BOARD_NUM
+		LEFT JOIN QNA_FILE AS f <!-- ON q.BOARD_NUM = f.BOARD_NUM -->
+		USING (BOARD_NUM)
 		WHERE q.BOARD_NUM = #{ boardNum }
 	</select>
 	

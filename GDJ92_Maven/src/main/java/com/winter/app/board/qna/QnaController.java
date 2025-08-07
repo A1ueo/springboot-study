@@ -48,7 +48,7 @@ public class QnaController {
 	}
 	
 	@PostMapping("/add")
-	public String add(Model model, QnaVO qnaVO, MultipartFile attaches) throws Exception {
+	public String add(Model model, QnaVO qnaVO, MultipartFile[] attaches) throws Exception {
 		int result = qnaService.insert(qnaVO, attaches);
 		
 		String url = "./list";

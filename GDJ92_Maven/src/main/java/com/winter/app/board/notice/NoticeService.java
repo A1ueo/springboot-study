@@ -84,7 +84,7 @@ public class NoticeService implements BoardService {
 		}
 		
 		int result = -1;
-		result = noticeDAO.fileDelete(boardVO);
+		result = noticeDAO.deleteFile(boardVO);
 		
 		result = noticeDAO.delete(boardVO);
 		

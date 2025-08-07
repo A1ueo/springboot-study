@@ -21,5 +21,5 @@ public interface BoardDAO {
 	// attach
 	int insertFile(BoardFileVO boardFileVO) throws Exception;
 	// 
-	int fileDelete(BoardVO boardVO) throws Exception;
+	int deleteFile(BoardVO boardVO) throws Exception;
 }
