@@ -10,12 +10,18 @@
 		<result column="BOARD_WRITER" property="boardWriter"/>
 		<result column="BOARD_DATE" property="boardDate"/>
 		<result column="BOARD_HIT" property="boardHit"/>
-		
+<!--
 		<association property="boardFileVO" javaType="BoardFileVO">
 			<id column="FILE_NUM" property="fileNum"/>
 			<result column="ORI_NAME" property="oriName"/>
 			<result column="SAVE_NAME" property="saveName"/>
 		</association>
+-->
+		<collection property="boardFileVOs" javaType="list" ofType="boardFileVO">
+			<id column="FILE_NUM" property="fileNum"/>
+			<result column="ORI_NAME" property="oriName"/>
+			<result column="SAVE_NAME" property="saveName"/>
+		</collection>
 	</resultMap>
 	<sql id="search">
 		<where>
@@ -32,7 +38,8 @@
 	<select id="detail" parameterType="NoticeVO" resultMap="detailResult">
 		SELECT *
 		FROM NOTICE AS n
-		LEFT JOIN NOTICE_FILE AS f ON n.BOARD_NUM = f.BOARD_NUM
+		LEFT JOIN NOTICE_FILE AS f <!-- ON n.BOARD_NUM = f.BOARD_NUM -->
+		USING (BOARD_NUM)
 		WHERE n.BOARD_NUM = #{ boardNum }
 	</select>
 
@@ -76,4 +83,9 @@
 		FROM NOTICE
 		<include refid="search"/>
 	</select>
+	
+	<delete id="fileDelete" parameterType="NoticeVO">
+		DELETE FROM NOTICE_FILE
+		WHERE BOARD_NUM = #{ boardNum }
+	</delete>
 </mapper>

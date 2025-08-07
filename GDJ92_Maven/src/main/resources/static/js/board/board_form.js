@@ -13,39 +13,49 @@ submitBtn.addEventListener('click', function () {
 	}
 });
 
-
-const addBtn = document.getElementById('add');
+const add = document.getElementById('add');
 const result = document.getElementById('result');
-// let del = document.querySelectorAll('.btn-x');
 
 let count = 0;
 
-addBtn.addEventListener('click', function() {
-	// result.classList.toggle('d-none');
-	const inner = document.createElement('div');
-	inner.classList.add('mb-3');
+add.addEventListener('click', function() {
+	const div = document.createElement('div');
+	div.classList.add('mb-3', 'd-flex', 'justify-content-evenly');
 
-	const content = `
-					<label for="formFile" class="form-label">Default file input example</label>
-					<input type="file" class="form-control" id="formFile" name="attaches">
-					<button type="button" class="btn-x">X</button>
-				`;
-	inner.innerHTML += content;
-	count++;
+	div.innerHTML += 
+		`<input type="file" class="form-control" id="formFile" name="attaches">
+		<button type="button" class="del btn btn-outline-danger">X</button>`;
 
-	result.append(inner);
+/*
+	let el = document.createElement("input");
+	el.setAttribute('type', 'file');
+	el.classList.add('form-control');
+	el.setAttribute('name', 'attaches');
+	div.appendChild(el);
 	
-	// del = document.querySelectorAll('.btn-x');
-});
-
-result.addEventListener('click', function(e) {
-	if(e.target.classList.contains('btn-x')) {
-		e.target.parentElement.remove();
+	el = document.createElement('button');
+	el.classList.add('del', 'btn', 'btn-outline-danger');
+	el.setAttribute('type', 'button');
+	el.innerText='X';
+	div.appendChild(el);
+*/
+	result.appendChild(div);
+	count++;
+	if (count >= 5) {
+		add.setAttribute('disabled', 'disabled');
 	}
 });
 
-/*
-function btnX(p) {
-	console.log(p + 'x버튼');
-}
-*/
+result.addEventListener('click', function(e) {
+	if(e.target.classList.contains('del')) {
+		e.target.parentElement.remove();
+		count--;
+		if (count < 5) {
+			add.removeAttribute('disabled');
+		}
+	}
+});
+
+
+
+

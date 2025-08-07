@@ -38,18 +38,11 @@
 											<label for="exampleFormControlTextarea1" class="form-label">Contents</label>
 											<textarea name="boardContent" class="form-control" id="exampleFormControlTextarea1" rows="9" style="resize: none;" placeholder="내용">${ board.boardContent }</textarea>
 										</div>
-
-										<div>
+										
+										<div class="mb-3">
 											<button type="button" class="btn btn-primary" id="add">ADD</button>
 										</div>
-
 										<div id="result">
-										</div>
-										<div class="mb-3 d-none">
-											<div id="fileBox">
-												<label for="formFile" class="form-label">Default file input example</label>
-												<input type="file" class="form-control" id="formFile" name="attaches">
-											</div>
 										</div>
 									</form>
 									<div class="d-flex justify-content-end">

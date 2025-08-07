@@ -1,6 +1,7 @@
 package com.winter.app.board;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -18,5 +19,5 @@ public class BoardVO {
 	private LocalDate boardDate;
 	private Long boardHit;
 
-	BoardFileVO boardFileVO;
+	private List<BoardFileVO> boardFileVOs;
 }

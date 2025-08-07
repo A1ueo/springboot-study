@@ -30,10 +30,11 @@
 							<% pageContext.setAttribute("newLine", "\n"); %>
 							<p>${ fn:replace(board.boardContent, newLine, "<br/>") }</p>
 						</article>
-						<div>
+						<div class="d-flex flex-column">
 							<h4>첨부파일</h4>
-							<a href="/file/${ title }/${ board.boardFileVO.saveName }">${ board.boardFileVO.oriName }</a>
-							<%-- <img alt="" src="/file/${ title }/${ board.boardFileVO.saveName }"> --%>
+							<c:forEach var="f" items="${ board.boardFileVOs }">
+								<a href="/file/${ title }/${ f.saveName }">${ f.oriName }</a>
+							</c:forEach>
 						</div>
 						<div class="w-100 d-flex justify-content-end">
 							<form id="frm">

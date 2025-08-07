@@ -10,6 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 @Component
 public class FileManager {
 
+	// 파일 저장
 	public String fileSave(String dir, MultipartFile attaches) throws Exception {
 		// 1. 디렉토리 생성
 		File file = new File(dir);
@@ -29,5 +30,12 @@ public class FileManager {
 		FileCopyUtils.copy(attaches.getBytes(), file);
 		
 		return fileName;
+	}
+	
+	// 파일 삭제
+	public boolean fileDelete(String dir, String fileName) throws Exception {
+		File file = new File(dir, fileName);
+		
+		return file.delete();
 	}
 }

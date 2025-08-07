@@ -61,8 +61,6 @@ public class NoticeController {
 		
 		model.addAttribute("board", boardVO);
 		
-		System.out.println(boardVO);
-		System.out.println(boardVO.getBoardFileVO().getOriName());
 		return "/board/detail";
 	}
 	
@@ -72,7 +70,7 @@ public class NoticeController {
 	}
 	
 	@PostMapping("/add")
-	public String add(NoticeVO noticeVO, MultipartFile attaches) throws Exception {
+	public String add(NoticeVO noticeVO, MultipartFile[] attaches) throws Exception {
 		int result = noticeService.insert(noticeVO, attaches);
 		
 		return "redirect:./list";

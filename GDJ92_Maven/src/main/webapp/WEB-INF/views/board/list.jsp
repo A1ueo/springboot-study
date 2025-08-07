@@ -27,7 +27,7 @@
 							<form id="searchForm">
 								<div class="input-group mb-3">
 									<input type="hidden" id="pageNum" name="pageNum">
-									<select class="form-control col-3" name="kind" aria-label="Default select example">
+									<select class="form-select col-3" name="kind" aria-label="Default select example">
 										<option ${ pager.kind eq '' ? 'selected' : '' }>Select</option>
 										<option value="k1" ${ pager.kind eq 'k1' ? 'selected' : '' }>Title</option>
 										<option value="k2" ${ pager.kind eq 'k2' ? 'selected' : '' }>Content</option>
