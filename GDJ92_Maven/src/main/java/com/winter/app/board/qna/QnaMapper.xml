@@ -32,7 +32,7 @@
 					<when test="kind == 'k3'">BOARD_WRITER</when>
 					<otherwise>BOARD_TITLE</otherwise>
 				</choose>
-				LIKE CONCAT('%', #{ keyword }, '%')
+				LIKE CONCAT('%', #{ keyword }, '%') AND BOARD_HIT IS NOT NULL
 			</where>
 		</if>
 	</sql>
@@ -48,6 +48,7 @@
 	<select id="totalCount" parameterType="long">
 		SELECT COUNT(BOARD_NUM)
 		FROM QNA
+		<include refid="search"/>
 	</select>
 	
 	<insert id="insert" parameterType="QnaVO" useGeneratedKeys="true" keyProperty="boardNum">
@@ -76,7 +77,7 @@
 		FROM QNA AS q
 		LEFT JOIN QNA_FILE AS f <!-- ON q.BOARD_NUM = f.BOARD_NUM -->
 		USING (BOARD_NUM)
-		WHERE q.BOARD_NUM = #{ boardNum } AND BOARD_DATE IS NOT NULL
+		WHERE q.BOARD_NUM = #{ boardNum } AND BOARD_HIT IS NOT NULL
 	</select>
 	
 	<update id="updateSteps" parameterType="QnaVO">
@@ -115,7 +116,7 @@
 	
 	<update id="delete" parameterType="QnaVO">
 		UPDATE QNA
-		SET BOARD_DATE = NULL
+		SET BOARD_HIT = NULL
 		WHERE BOARD_NUM = #{ boardNum }
 	</update>
 	

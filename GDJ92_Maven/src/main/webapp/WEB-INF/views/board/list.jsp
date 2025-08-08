@@ -53,8 +53,8 @@
 									<tr>
 										<td>${ board.boardNum }</td>
 										<c:choose>
-											<c:when test="${ empty board.boardDate }">
-												<td class="text-left"><span class="d-block">
+											<c:when test="${ empty board.boardHit }">
+												<td class="text-left" colspan="4"><span class="d-block">
 													<c:catch>
 														<c:forEach var="i" begin="1" end="${ board.boardDepth }">&nbsp&nbsp&nbsp&nbsp</c:forEach><c:if test="${ board.boardDepth ne 0 }">└ </c:if>
 													</c:catch>
