@@ -13,5 +13,5 @@ public interface BoardService {
 	List<BoardVO> list(Pager pager) throws Exception;
 	int update(BoardVO boardVO, MultipartFile[] attaches) throws Exception;
 	int delete(BoardVO boardVO) throws Exception;
-	int deleteFile(BoardFileVO boardFileVO) throws Exception;
+	int deleteOneFile(BoardFileVO boardFileVO) throws Exception;
 }

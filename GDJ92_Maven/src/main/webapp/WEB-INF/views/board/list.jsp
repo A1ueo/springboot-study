@@ -52,15 +52,27 @@
 								<c:forEach var="board" items="${ list }">
 									<tr>
 										<td>${ board.boardNum }</td>
-										<td class="text-left"><a class="d-block" href="./detail?boardNum=${ board.boardNum }">
-											<c:catch>
-												<c:forEach var="i" begin="1" end="${ board.boardDepth }">&nbsp&nbsp&nbsp&nbsp</c:forEach><c:if test="${ board.boardDepth ne 0 }">└ </c:if>
-											</c:catch>
-											${ board.boardTitle }
-										</a></td>
-										<td>${ board.boardWriter }</td>
-										<td>${ fn:substring(board.boardDate, 0, 10) }</td>
-										<td>${ board.boardHit }</td>
+										<c:choose>
+											<c:when test="${ empty board.boardDate }">
+												<td class="text-left"><span class="d-block">
+													<c:catch>
+														<c:forEach var="i" begin="1" end="${ board.boardDepth }">&nbsp&nbsp&nbsp&nbsp</c:forEach><c:if test="${ board.boardDepth ne 0 }">└ </c:if>
+													</c:catch>
+														삭제된 게시물 입니다.
+												</span></td>
+											</c:when>
+											<c:otherwise>
+												<td class="text-left"><a class="d-block" href="./detail?boardNum=${ board.boardNum }">
+													<c:catch>
+														<c:forEach var="i" begin="1" end="${ board.boardDepth }">&nbsp&nbsp&nbsp&nbsp</c:forEach><c:if test="${ board.boardDepth ne 0 }">└ </c:if>
+													</c:catch>
+														${ board.boardTitle }
+												</a></td>
+												<td>${ board.boardWriter }</td>
+												<td>${ fn:substring(board.boardDate, 0, 10) }</td>
+												<td>${ board.boardHit }</td>
+											</c:otherwise>
+										</c:choose>
 									</tr>
 								</c:forEach>
 							</tbody>

@@ -125,8 +125,8 @@ public class NoticeController {
 	
 	@PostMapping("/deleteFile")
 	@ResponseBody
-	public int deleteFile(Model model, BoardFileVO boardFileVO) throws Exception {
-		int result = noticeService.deleteFile(boardFileVO);
+	public int deleteOneFile(Model model, BoardFileVO boardFileVO) throws Exception {
+		int result = noticeService.deleteOneFile(boardFileVO);
 		
 		return result;
 	}

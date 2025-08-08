@@ -34,6 +34,10 @@ public class QnaService implements BoardService {
 		
 		result = qnaMapper.updateRef(boardVO);
 		
+		if (attaches == null) {
+			return result;
+		}
+		
 		for (MultipartFile a : attaches) {
 			String fileName = fileManager.fileSave(upload + board, a);
 			
@@ -76,13 +80,58 @@ public class QnaService implements BoardService {
 	}
 
 	@Override
-	public int update(BoardVO boardVO) throws Exception {
-		return 0;
+	public int update(BoardVO boardVO, MultipartFile[] attaches) throws Exception {
+		int result = qnaMapper.update(boardVO);
+		
+		if (attaches == null) {
+			return result;
+		}
+		
+		for (MultipartFile a : attaches) {
+			String fileName = fileManager.fileSave(upload + board, a);
+			
+			BoardFileVO fileVO = new BoardFileVO();
+			
+			fileVO.setOriName(a.getOriginalFilename());
+			fileVO.setSaveName(fileName);
+			fileVO.setBoardNum(boardVO.getBoardNum());
+			
+			result = qnaMapper.insertFile(fileVO);
+		}
+		
+		return result;
 	}
-
+	
+	@Override
+	public int deleteOneFile(BoardFileVO boardFileVO) throws Exception {
+		// 1. File 조회
+		boardFileVO = qnaMapper.fileDetail(boardFileVO);
+		
+		// 2. File 삭제
+		fileManager.fileDelete(upload + board, boardFileVO.getSaveName());
+		
+		// 3. DB 삭제
+		int result = qnaMapper.deleteOneFile(boardFileVO);
+		
+		return result;
+	}
+	
 	@Override
 	public int delete(BoardVO boardVO) throws Exception {
-		return 0;
+		boardVO = qnaMapper.detail(boardVO);
+		
+		boolean flag = false;
+		
+		for (BoardFileVO bf : boardVO.getBoardFileVOs()) {
+			flag = fileManager.fileDelete(upload + board, bf.getSaveName());
+		}
+		
+		int result = -1;
+		result = qnaMapper.deleteFiles(boardVO);
+		
+		result = qnaMapper.delete(boardVO);
+		
+		return result;
 	}
 
 }

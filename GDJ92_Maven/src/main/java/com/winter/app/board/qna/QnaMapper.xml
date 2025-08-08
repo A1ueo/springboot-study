@@ -23,10 +23,24 @@
 			<result column="SAVE_NAME" property="saveName"/>
 		</collection>
 	</resultMap>
+	<sql id="search">
+		<if test="keyword != null and keyword != ''">
+			<where>
+				<choose>
+					<when test="kind == 'k1'">BOARD_TITLE</when>
+					<when test="kind == 'k2'">BOARD_CONTENT</when>
+					<when test="kind == 'k3'">BOARD_WRITER</when>
+					<otherwise>BOARD_TITLE</otherwise>
+				</choose>
+				LIKE CONCAT('%', #{ keyword }, '%')
+			</where>
+		</if>
+	</sql>
 	
 	<select id="list" parameterType="Pager" resultType="QnaVO">
 		SELECT *
 		FROM QNA
+		<include refid="search"/>
 		ORDER BY BOARD_REF DESC, BOARD_STEP
 		LIMIT #{ startIndex }, #{ endIndex }
 	</select>
@@ -62,7 +76,7 @@
 		FROM QNA AS q
 		LEFT JOIN QNA_FILE AS f <!-- ON q.BOARD_NUM = f.BOARD_NUM -->
 		USING (BOARD_NUM)
-		WHERE q.BOARD_NUM = #{ boardNum }
+		WHERE q.BOARD_NUM = #{ boardNum } AND BOARD_DATE IS NOT NULL
 	</select>
 	
 	<update id="updateSteps" parameterType="QnaVO">
@@ -79,4 +93,34 @@
 			(#{ boardTitle }, #{ boardContent }, #{ boardWriter }, NOW(), 0, 
 				#{ boardRef }, #{ boardStep }, #{ boardDepth })
 	</insert>
+	
+	<update id="update" parameterType="QnaVO">
+		UPDATE QNA
+		SET BOARD_TITLE = #{ boardTitle }
+			, BOARD_CONTENT = #{ boardContent }
+			, BOARD_DATE = NOW()
+		WHERE BOARD_NUM = #{ boardNum }
+	</update>
+	
+	<select id="fileDetail" parameterType="BoardFileVO" resultType="BoardFileVO">
+		SELECT *
+		FROM QNA_FILE
+		WHERE FILE_NUM = #{ fileNum }
+	</select>
+	
+	<delete id="deleteOneFile" parameterType="BoardFileVO">
+		DELETE FROM QNA_FILE
+		WHERE FILE_NUM = #{ fileNum }
+	</delete>
+	
+	<update id="delete" parameterType="QnaVO">
+		UPDATE QNA
+		SET BOARD_DATE = NULL
+		WHERE BOARD_NUM = #{ boardNum }
+	</update>
+	
+	<delete id="deleteFiles" parameterType="QnaVO">
+		DELETE FROM QNA_FILE
+		WHERE BOARD_NUM = #{ boardNum }
+	</delete>
 </mapper>

@@ -112,7 +112,7 @@ public class NoticeService implements BoardService {
 		}
 		
 		int result = -1;
-		result = noticeDAO.deleteFile(boardVO);
+		result = noticeDAO.deleteFiles(boardVO);
 		
 		result = noticeDAO.delete(boardVO);
 		
@@ -120,7 +120,7 @@ public class NoticeService implements BoardService {
 	}
 	
 	@Override
-	public int deleteFile(BoardFileVO boardFileVO) throws Exception {
+	public int deleteOneFile(BoardFileVO boardFileVO) throws Exception {
 		// 1. File 조회
 		boardFileVO = noticeDAO.fileDetail(boardFileVO);
 		

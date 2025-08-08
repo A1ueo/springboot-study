@@ -78,7 +78,7 @@ deleteFile.forEach(function(item) {
 			let params = new URLSearchParams();
 			params.append("fileNum", fileNum);
 
-			fetch('./deleteFile', {
+			fetch('./deleteOneFile', {
 				method: 'POST',
 				body: params
 			})
