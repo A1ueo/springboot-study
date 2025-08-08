@@ -75,6 +75,17 @@
 		WHERE BOARD_NUM = #{ boardNum }
 	</delete>
 	
+	<select id="fileDetail" parameterType="BoardFileVO" resultType="BoardFileVO">
+		SELECT *
+		FROM NOTICE_FILE
+		WHERE FILE_NUM = #{ fileNum }
+	</select>
+	
+	<delete id="deleteOneFile" parameterType="BoardFileVO">
+		DELETE FROM NOTICE_FILE
+		WHERE FILE_NUM = #{ fileNum }
+	</delete>
+	
 	<select id="list" parameterType="Pager" resultType="NoticeVO">
 		SELECT *
 		FROM NOTICE

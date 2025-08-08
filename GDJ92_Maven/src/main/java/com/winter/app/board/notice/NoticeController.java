@@ -88,8 +88,8 @@ public class NoticeController {
 	}
 	
 	@PostMapping("/update")
-	public String update(Model model, NoticeVO noticeVO) throws Exception {
-		int result = noticeService.update(noticeVO);
+	public String update(Model model, NoticeVO noticeVO, MultipartFile[] attaches) throws Exception {
+		int result = noticeService.update(noticeVO, attaches);
 		
 		String msg = "수정 실패";
 		
@@ -125,13 +125,15 @@ public class NoticeController {
 	
 	@PostMapping("/deleteFile")
 	@ResponseBody
-	public List<BoardVO> deleteFile(Model model, BoardFileVO boardFileVO) throws Exception {
-		log.info("\n=========================================== Delete file ===========================================");
-		log.info("\n{}", boardFileVO.getFileNum());
+	public int deleteFile(Model model, BoardFileVO boardFileVO) throws Exception {
+		int result = noticeService.deleteFile(boardFileVO);
 		
-		Pager pager = new Pager();
-		List<BoardVO> list = noticeService.list(pager);
-		
-		return list;
+		return result;
 	}
 }
+
+
+
+
+
+

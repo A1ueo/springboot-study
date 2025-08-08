@@ -22,4 +22,7 @@ public interface BoardDAO {
 	int insertFile(BoardFileVO boardFileVO) throws Exception;
 	// 
 	int deleteFile(BoardVO boardVO) throws Exception;
+	//
+	BoardFileVO fileDetail(BoardFileVO boardFileVO) throws Exception;
+	int deleteOneFile(BoardFileVO boardFileVO) throws Exception;
 }

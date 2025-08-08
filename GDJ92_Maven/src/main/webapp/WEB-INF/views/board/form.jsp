@@ -48,7 +48,7 @@
 											<c:forEach var="f" items="${ board.boardFileVOs }">
 												<div class="mb-3 d-flex w-100 justify-content-between">
 													<%-- <input type="file" class="form-control col-11" id="formFile" name="attaches" value="${ f.oriName }"> --%>
-													<input type="button"" class="form-control col-11" id="formFile" name="attaches" value="${ f.oriName }">
+													<input type="button"" class="form-control col-11 text-left" id="formFile" name="attaches" value="${ f.oriName }">
 													<button type="button" data-file-num="${ f.fileNum }" class="deleteFile btn btn-outline-danger">X</button>
 												</div>
 											</c:forEach>
