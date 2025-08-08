@@ -27,14 +27,14 @@
 							<form id="searchForm">
 								<div class="input-group mb-3">
 									<input type="hidden" id="pageNum" name="pageNum">
-									<select class="form-select col-3" name="kind" aria-label="Default select example">
+									<select class="form-control col-2 col-xl-1 rounded-left" name="kind" aria-label="Default select example">
 										<option ${ pager.kind eq '' ? 'selected' : '' }>Select</option>
 										<option value="k1" ${ pager.kind eq 'k1' ? 'selected' : '' }>Title</option>
 										<option value="k2" ${ pager.kind eq 'k2' ? 'selected' : '' }>Content</option>
 										<option value="k3" ${ pager.kind eq 'k3' ? 'selected' : '' }>Writer</option>
 									</select>
-									<input type="text" class="form-control col-10" name="keyword" value="${ pager.keyword }" placeholder="Recipient’s username" aria-label="Recipient’s username" aria-describedby="button-addon2">
-									<button class="btn btn-outline-secondary" type="submit" id="button-addon2">Button</button>
+									<input type="text" class="form-control col-10 rounded-right" name="keyword" value="${ pager.keyword }" placeholder="Recipient’s username" aria-label="Recipient’s username" aria-describedby="button-addon2">
+									<button class="btn btn-outline-secondary ml-1" type="submit" id="button-addon2">Button</button>
 								</div>
 							</form>
 						</div>
@@ -80,7 +80,7 @@
 						<div>
 							<nav aria-label="Page navigation example">
 								<ul class="pagination">
-									<c:if test="${ pager.startNum ne 1 }">
+									<c:if test="${ pager.startNum gt 1 }">
 										<li class="page-item">
 											<button class="page-link pn" data-pn="${ pager.startNum - 1 }" aria-label="Previous">
 												&laquo;
@@ -92,7 +92,7 @@
 											<button class="page-link pn" data-pn="${ i }">${ i }</button>
 										</li>
 									</c:forEach>
-									<c:if test="${ pager.endNum ne pager.totalPage }">
+									<c:if test="${ pager.endNum lt pager.totalPage }">
 										<li class="page-item">
 											<button class="page-link pn" data-pn="${ pager.endNum + 1 }" aria-label="Next">
 												&raquo;
