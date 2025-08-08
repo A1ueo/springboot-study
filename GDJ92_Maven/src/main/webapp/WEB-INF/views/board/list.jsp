@@ -77,7 +77,7 @@
 								</c:forEach>
 							</tbody>
 						</table>
-						<div>
+						<div class="w-100 d-flex justify-content-center">
 							<nav aria-label="Page navigation example">
 								<ul class="pagination">
 									<c:if test="${ pager.startNum gt 1 }">
