@@ -143,4 +143,21 @@ public class QnaService implements BoardService {
 	public BoardFileVO fileDetail(BoardFileVO boardFileVO) throws Exception {
 		return qnaMapper.fileDetail(boardFileVO);
 	}
+	
+	@Override
+	public String boardFile(MultipartFile multipartFile) throws Exception {
+		if (multipartFile == null || multipartFile.getSize() == 0)
+			return null;
+		
+		String fileName = fileManager.fileSave(upload + board, multipartFile);
+		
+		return "/file/" + board + "/" + fileName;
+	}
+
+	@Override
+	public boolean boardFileDelete(String fileName) throws Exception {
+		int idx = fileName.lastIndexOf("/");
+		fileName = fileName.substring(idx);
+		return fileManager.fileDelete(upload + board, fileName);
+	}
 }

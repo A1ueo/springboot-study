@@ -160,6 +160,18 @@ public class QnaController {
 		
 		return "fileDownView";
 	}
+	
+	@PostMapping("/boardFile")
+	@ResponseBody
+	public String boardFile(MultipartFile bf) throws Exception {
+		return qnaService.boardFile(bf);
+	}
+	
+	@PostMapping("/boardFileDelete")
+	@ResponseBody
+	public boolean boardFileDelete(String fileName) throws Exception {
+		return qnaService.boardFileDelete(fileName);
+	}
 }
 
 
