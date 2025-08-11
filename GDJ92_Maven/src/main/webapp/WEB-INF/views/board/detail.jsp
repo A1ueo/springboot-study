@@ -33,7 +33,8 @@
 						<div class="d-flex flex-column">
 							<h4>첨부파일</h4>
 							<c:forEach var="f" items="${ board.boardFileVOs }">
-								<a href="/file/${ title }/${ f.saveName }">${ f.oriName }</a>
+								<%-- <a href="/file/${ title }/${ f.saveName }">${ f.oriName }</a> --%>
+								<a href="./fileDown/fileNum=${ f.fileNum }">${ f.oriName }</a>
 							</c:forEach>
 						</div>
 						<div class="w-100 d-flex justify-content-end">

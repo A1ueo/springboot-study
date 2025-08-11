@@ -125,10 +125,19 @@ public class NoticeController {
 	
 	@PostMapping("/deleteFile")
 	@ResponseBody
-	public int deleteOneFile(Model model, BoardFileVO boardFileVO) throws Exception {
+	public int deleteOneFile(BoardFileVO boardFileVO) throws Exception {
 		int result = noticeService.deleteOneFile(boardFileVO);
 		
 		return result;
+	}
+	
+	@GetMapping("fileDown")
+	public String fileDown(Model model, BoardFileVO boardFileVO) throws Exception {
+		boardFileVO = noticeService.fileDetail(boardFileVO);
+		
+//		model.addAttribute("vo", boardFileVO);
+		
+		return "fileDownView";
 	}
 }
 
