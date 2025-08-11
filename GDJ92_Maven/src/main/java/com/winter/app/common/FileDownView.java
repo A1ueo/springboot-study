@@ -27,9 +27,6 @@ public class FileDownView extends AbstractView {
 	@Override
 	protected void renderMergedOutputModel(Map<String, Object> model, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		log.info("========= custom view =========");
-		
-		log.info("{}", model);
 		BoardFileVO boardFileVO = (BoardFileVO) model.get("vo");
 		
 		String filePath = path + model.get("title").toString();

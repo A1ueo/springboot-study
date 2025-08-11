@@ -139,6 +139,18 @@ public class NoticeController {
 		
 		return "fileDownView";
 	}
+	
+	@PostMapping("/boardFile")
+	@ResponseBody
+	public String boardFile(MultipartFile bf) throws Exception {
+		return noticeService.boardFile(bf);
+	}
+	
+	@PostMapping("/boardFileDelete")
+	@ResponseBody
+	public boolean boardFileDelete(String fileName) throws Exception {
+		return noticeService.boardFileDelete(fileName);
+	}
 }
 
 
