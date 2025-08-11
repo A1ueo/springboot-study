@@ -131,11 +131,11 @@ public class NoticeController {
 		return result;
 	}
 	
-	@GetMapping("fileDown")
+	@GetMapping("/fileDown")
 	public String fileDown(Model model, BoardFileVO boardFileVO) throws Exception {
 		boardFileVO = noticeService.fileDetail(boardFileVO);
 		
-//		model.addAttribute("vo", boardFileVO);
+		model.addAttribute("vo", boardFileVO);
 		
 		return "fileDownView";
 	}
