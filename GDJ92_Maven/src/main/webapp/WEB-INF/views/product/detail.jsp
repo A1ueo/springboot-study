@@ -31,7 +31,7 @@
 							</ul>
 							<hr>
 							<% pageContext.setAttribute("newLine", "\n"); %>
-							<p class="fs-1">${ fn:replace(product.productContents, newLine, "<br/>") }</p>
+							<p class="fs-1">${ fn:replace(product.productContent, newLine, "<br/>") }</p>
 						</article>
 						<div class="w-100 d-flex justify-content-end">
 							<form id="frm">

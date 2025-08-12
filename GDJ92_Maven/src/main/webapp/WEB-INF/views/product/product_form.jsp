@@ -48,7 +48,7 @@
 								</div>
 								<div class="mb-3">
 									<label for="exampleFormControlTextarea1" class="form-label">Contents</label>
-									<textarea name="productContents" class="form-control" id="exampleFormControlTextarea1" rows="9" style="resize: none;" placeholder="내용">${ product.productContents }</textarea>
+									<textarea name="productContents" class="form-control" id="exampleFormControlTextarea1" rows="9" style="resize: none;" placeholder="내용">${ product.productContent }</textarea>
 								</div>
 								<div class="d-flex justify-content-end">
 									<button class="btn btn-success" id="submit">Submit</button>

@@ -22,7 +22,7 @@
 				<div class="container-fluid">
 					<!-- Page Contents 내용 -->
 					<div class="row col-md-8 mx-auto">
-						<h1 class="py-2">${ title } Detail</h1>
+						<h1 class="py-2 text-uppercase">${ title } Detail</h1>
 						<article class="w-100">
 							<h2 class="display-5 link-body-emphasis mb-1">${ board.boardTitle }</h2>
 							<p class="w-100 text-right">${ board.boardDate } by ${ board.boardWriter }</p>

@@ -8,7 +8,7 @@
 		<!-- PK -->
 		<id column="PRODUCT_NUM" property="productNum" />
 		<result column="PRODUCT_NAME" property="productName" />
-		<result column="PRODUCT_CONTENTS" property="productContents" />
+		<result column="PRODUCT_CONTENT" property="productContent" />
 		<result column="PRODUCT_DATE" property="productDate" />
 		<result column="PRODUCT_RATE" property="productRate" />
 		
@@ -41,10 +41,10 @@
 	
 	<insert id="insert" parameterType="ProductVO">
 		INSERT INTO PRODUCT
-			(PRODUCT_NAME, PRODUCT_CONTENTS, PRODUCT_DATE, PRODUCT_RATE, KIND_NUM)
+			(PRODUCT_NAME, PRODUCT_CONTENT, PRODUCT_DATE, PRODUCT_RATE, KIND_NUM)
 		VALUES (
 			#{ productName }
-			, #{ productContents }
+			, #{ productContent }
 			, #{ productDate }
 			, #{ productRate }
 			, #{ kindNum }
@@ -59,7 +59,7 @@
 	<update id="update" parameterType="ProductVO">
 		UPDATE PRODUCT
 		SET PRODUCT_NAME = #{ productName }
-			, PRODUCT_CONTENTS = #{ productContents }
+			, PRODUCT_CONTENT = #{ productContent }
 			, PRODUCT_DATE = #{ productDate }
 			, PRODUCT_RATE = #{ productRate }
 			, KIND_NUM = #{ kindNum }

@@ -17,7 +17,7 @@ public class ProductVO {
 
 	private Long productNum;
 	private String productName;
-	private String productContents;
+	private String productContent;
 	private LocalDate productDate;
 	private Double productRate;
 	private Long kindNum;

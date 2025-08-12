@@ -27,22 +27,33 @@
 					<h1 class="py-2 text-uppercase">${ title } </h1>
 					<article class="w-100">
 						<form id="frm" method="post" enctype="multipart/form-data">
-							<input type="hidden" name="boardNum" id="boardNum" value="${ board.boardNum }">
 							<div class="mb-3">
-								<label for="exampleFormControlInput1" class="form-label">Writer</label>
-								<input name="boardWriter" type="text" class="form-control" id="exampleFormControlInput1" value="${ board.boardWriter }" <c:if test="${ not empty board.boardWriter }">readonly</c:if> placeholder="작성자">
+								<label for="exampleFormControlInput1" class="form-label">ID</label>
+								<input name="username" type="text" class="form-control" id="exampleFormControlInput1" placeholder="아이디">
 							</div>
 							<div class="mb-3">
-								<label for="exampleFormControlInput2" class="form-label">Title</label>
-								<input name="boardTitle" type="text" class="form-control" id="exampleFormControlInput2" value="${ board.boardTitle }" placeholder="제목">
+								<label for="exampleFormControlInput2" class="form-label">Password</label>
+								<input name="password" type="password" class="form-control" id="exampleFormControlInput2" placeholder="비밀번호">
 							</div>
 							<div class="mb-3">
-								<label for="exampleFormControlTextarea1" class="form-label">Contents</label>
-								<textarea name="boardContent" class="form-control" id="contentsBox" rows="9" style="resize: none;" placeholder="내용">${ board.boardContent }</textarea>
+								<label for="exampleFormControlInput2" class="form-label">Name</label>
+								<input name="name" type="text" class="form-control" id="exampleFormControlInput2" placeholder="이름">
 							</div>
-							
 							<div class="mb-3">
-								<button type="button" class="btn btn-primary" id="add">ADD</button>
+								<label for="exampleFormControlInput2" class="form-label">Email</label>
+								<input name="email" type="email" class="form-control" id="exampleFormControlInput2" placeholder="이메일">
+							</div>
+							<div class="mb-3">
+								<label for="exampleFormControlInput2" class="form-label">Phone</label>
+								<input name="phone" type="text" class="form-control" id="exampleFormControlInput2" placeholder="전화번호">
+							</div>
+							<div class="mb-3">
+								<label for="exampleFormControlInput2" class="form-label">Birthday</label>
+								<input name="birth" type="date" class="form-control" id="exampleFormControlInput2" placeholder="생년월일">
+							</div>
+							<div class="mb-3">
+								<label for="exampleFormControlInput2" class="form-label">Profile</label>
+								<input name="profile" type="file" class="form-control" id="exampleFormControlInput2" >
 							</div>
 							<!-- fn:length(board.boardFileVOs) -->
 							<div>
@@ -72,43 +83,6 @@
 <c:import url="/WEB-INF/views/include/tail.jsp" />
 
 <script type="text/javascript" src="/js/board/board_form.js"></script>
-
-<script src="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote-lite.min.js"></script>
-<script type="text/javascript">
-	$('#contentsBox').summernote({
-		callbacks: {
-			onImageUpload: function (files) {
-				let f = new FormData();
-				f.append("bf", files[0]);
-				
-				fetch('./boardFile', {
-					method: 'POST', 
-					body: f
-				})
-				.then(r=>r.text())
-				.then(r=>{
-					$('#contentsBox').summernote('editor.insertImage', r);
-				})
-				.catch(e=>console.log(e));
-			},
-			onMediaDelete: function(files) {
-				let f = $(files[0]).attr('src');
-				
-				let params = new URLSearchParams();
-				params.append("fileName", f);
-				
-				fetch('./boardFileDelete', {
-					method: 'POST',
-					body: params
-				})
-				.then(r=>r.json())
-				.then(r=>{
-					console.log(r);
-				});
-			}
-		}
-	});
-</script>
 </body>
 
 </html>
