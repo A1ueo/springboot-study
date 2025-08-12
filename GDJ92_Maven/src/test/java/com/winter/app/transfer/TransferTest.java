@@ -4,6 +4,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import com.winter.app.member.MemberVO;
+
 @SpringBootTest
 class TransferTest {
 
@@ -15,9 +17,11 @@ class TransferTest {
 	@Test
 	void test() {
 		
-		transfers.takeBus();
+		transfers.takeBus("111");
 		
-		transfers.takeSubway();
+		MemberVO memberVO = new MemberVO();
+		memberVO.setUsername("user");
+		memberVO = transfers.takeSubway(memberVO);
 		
 	}
 
