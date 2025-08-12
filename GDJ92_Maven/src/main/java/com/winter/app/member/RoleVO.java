@@ -1,7 +1,5 @@
 package com.winter.app.member;
 
-import com.winter.app.common.FileVO;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,7 +9,8 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
-public class ProfileVO extends FileVO {
+public class RoleVO {
 
-	private String username;
+	private Long roleNum;
+	private String roleName;
 }

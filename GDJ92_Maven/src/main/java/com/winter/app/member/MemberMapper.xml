@@ -3,6 +3,24 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.winter.app.member.MemberMapper">
+	<resultMap type="MemberVO" id="loginResult">
+		<id column="USERNAME" property="username"/>
+		<result column="NAME" property="name"/>
+		<result column="EMAIL" property="email"/>
+		<result column="PHONE" property="phone"/>
+		<result column="BIRTH" property="birth"/>
+		
+		<association property="profileVO">
+			<id column="USERNAME" property="username"/>
+			<result column="SAVE_NAME" property="saveName"/>
+			<result column="ORI_NAME" property="oriName"/>
+		</association>
+		<collection property="roleVOs" javaType="java.util.List" ofType="RoleVO">
+			<id column="ROLE_NUM" property="roleNum"/>
+			<result column="ROLE_NAME" property="roleName"/>
+		</collection>
+	</resultMap>
+
 	<insert id="join" parameterType="MemberVO">
 		INSERT INTO MEMBER
 			(USERNAME, PASSWORD, NAME, EMAIL, PHONE, BIRTH)
@@ -15,4 +33,17 @@
 		VALUES
 			(#{ username }, #{ saveName }, #{ oriName })
 	</insert>
+	<insert id="joinRole" parameterType="map">
+		INSERT INTO MEMBER_ROLE (USERNAME, ROLE_NUM)
+		VALUES (#{ username }, (SELECT ROLE_NUM FROM ROLE WHERE ROLE_NAME = 'ROLE_MEMBER'))
+	</insert>
+	
+	<select id="login" parameterType="MemberVO" resultMap="loginResult">
+		SELECT m.*, p.*, r.*
+		FROM MEMBER AS m
+		JOIN PROFILE AS p USING (USERNAME)
+		JOIN MEMBER_ROLE AS mr USING (USERNAME)
+		JOIN ROLE AS r USING (ROLE_NUM)
+		WHERE m.USERNAME = #{ username }
+	</select>
 </mapper>

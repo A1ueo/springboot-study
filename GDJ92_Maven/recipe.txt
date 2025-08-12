@@ -108,8 +108,11 @@ keyword :
 
 =============== 회원 가입 ===============
 
-URL: /member/join, GET, 
-URL: /member/join, POST, params
+URL:
+/member/join, GET, 
+/member/join, POST, username, password
 
+/member/login, GET
+/member/login, POST, username, password
 
 

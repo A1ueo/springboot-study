@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
+import jakarta.servlet.http.HttpSession;
+
 @Controller
 @RequestMapping("/member/*")
 public class MemberController {
@@ -37,5 +39,28 @@ public class MemberController {
 		model.addAttribute("url", "/");
 		
 		return "/common/result";
+	}
+	
+	@GetMapping("/login")
+	public void login() throws Exception {
+	}
+	
+	@PostMapping("/login")
+	public String login(HttpSession session, MemberVO memberVO) throws Exception {
+		memberVO = memberService.login(memberVO);
+		
+		if (memberVO != null) {
+			session.setAttribute("member", memberVO);
+		}
+		
+		return "redirect:/";
+	}
+	
+	@GetMapping("/logout")
+	public String logout(HttpSession session) throws Exception {
+		session.removeAttribute("member");
+		session.setMaxInactiveInterval(0);
+		
+		return "redirect:/";
 	}
 }

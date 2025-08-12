@@ -1,5 +1,7 @@
 package com.winter.app.member;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,6 +21,11 @@ public class MemberVO {
 	private String email;
 	private String phone;
 	private String birth;
+//	private boolean accoun
+//	private boolean
+//	private boolean
+//	private boolean
 	
-	ProfileVO profileVO;
+	private ProfileVO profileVO;
+	private List<RoleVO> roleVOs;
 }
