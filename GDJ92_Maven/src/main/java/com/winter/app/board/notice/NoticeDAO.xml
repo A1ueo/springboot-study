@@ -24,17 +24,18 @@
 		</collection>
 	</resultMap>
 	<sql id="search">
-		<where>
-			<choose>
-				<when test="kind == 'k1'">BOARD_TITLE</when>
-				<when test="kind == 'k2'">BOARD_CONTENT</when>
-				<when test="kind == 'k3'">BOARD_WRITER</when>
-				<otherwise>BOARD_TITLE</otherwise>
-			</choose>
-			LIKE CONCAT('%', #{ keyword }, '%')
-		</where>
+		<if test="keyword != null and keyword != ''">
+			<where>
+				<choose>
+					<when test="kind == 'k1'">BOARD_TITLE</when>
+					<when test="kind == 'k2'">BOARD_CONTENT</when>
+					<when test="kind == 'k3'">BOARD_WRITER</when>
+					<otherwise>BOARD_TITLE</otherwise>
+				</choose>
+				LIKE CONCAT('%', #{ keyword }, '%')
+			</where>
+		</if>
 	</sql>
-
 	<select id="detail" parameterType="NoticeVO" resultMap="detailResult">
 		SELECT *
 		FROM NOTICE AS n
