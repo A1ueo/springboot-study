@@ -35,12 +35,15 @@
 						</article>
 						<div class="w-100 d-flex justify-content-end">
 							<form id="frm">
-								<input type="hidden" name="productNum" value="${ product.productNum }">
+								<input type="hidden" name="productNum" id="productNum" value="${ product.productNum }">
 							</form>
 							<div class="justify-content-evenly">
 								<button class="action btn btn-success py-1 px-2" id="upd">Update</button>
 								<button class="action btn btn-danger py-1 px-2" id="del">Delete</button>
 							</div>
+						</div>
+						<div>
+							<button class="action btn btn-outline-primary py-1 px-2" id="cart">장바구니</button>
 						</div>
 					</div>
 					

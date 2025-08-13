@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.winter.app.member.MemberVO;
+
 @Mapper
 public interface ProductDAO {
 	List<ProductVO> list() throws Exception;
@@ -13,4 +15,5 @@ public interface ProductDAO {
 	List<ProductKindVO> selectKindList() throws Exception;
 	int update(ProductVO productVO) throws Exception;
 	int delete(ProductVO productVO) throws Exception;
+	List<ProductVO> cartList(MemberVO memberVO) throws Exception;
 }

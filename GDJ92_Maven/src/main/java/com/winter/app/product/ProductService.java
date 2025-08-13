@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.winter.app.member.MemberVO;
+
 @Service
 public class ProductService {
 
@@ -37,5 +39,9 @@ public class ProductService {
 
 	public int delete(ProductVO productVO) throws Exception {
 		return productDAO.delete(productVO);
+	}
+
+	public List<ProductVO> cartList(MemberVO memberVO) throws Exception {
+		return productDAO.cartList(memberVO);
 	}
 }

@@ -10,4 +10,5 @@ public interface MemberMapper {
 	int joinProfile(ProfileVO profileVO) throws Exception;
 	int joinRole(Map<String, Object> map) throws Exception;
 	MemberVO login(MemberVO memberVO) throws Exception;
+	int cartAdd(CartVO cartVO) throws Exception;
 }

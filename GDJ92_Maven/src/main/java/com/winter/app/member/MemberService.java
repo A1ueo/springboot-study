@@ -22,7 +22,7 @@ public class MemberService {
 	
 	@Value("${app.upload}")
 	private String upload;
-	@Value("${board.profile}")
+	@Value("${board.member}")
 	private String board;
 	
 	int join(MemberVO memberVO, MultipartFile file) throws Exception {
@@ -62,5 +62,9 @@ public class MemberService {
 		}
 		
 		return null;
+	}
+	
+	int cartAdd(CartVO cartVO) throws Exception {
+		return memberDAO.cartAdd(cartVO);
 	}
 }

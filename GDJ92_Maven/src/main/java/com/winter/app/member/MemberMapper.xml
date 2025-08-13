@@ -46,4 +46,9 @@
 		JOIN ROLE AS r USING (ROLE_NUM)
 		WHERE USERNAME = #{ username }
 	</select>
+	
+	<insert id="cartAdd" parameterType="CartVO">
+		INSERT INTO CART (USERNAME, PRODUCT_NUM)
+		VALUE (#{ username }, #{ productNum })
+	</insert>
 </mapper>

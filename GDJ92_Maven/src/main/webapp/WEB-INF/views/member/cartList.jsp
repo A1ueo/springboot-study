@@ -23,7 +23,28 @@
 					<div class="row col-md-8 mx-auto">
 						<h1 class="py-2 text-uppercase">${ title } Detail</h1>
 						<article class="w-100">
-						
+							<table class="table table-striped text-center">
+								<thead>
+									<tr>
+										<th>Num</th>
+										<th>Name</th>
+										<th>Date</th>
+										<th>Rate</th>
+										<th>Kind</th>
+									</tr>
+								</thead>
+								<tbody>
+									<c:forEach var="p" items="${ list }">
+										<tr>
+											<td>${ p.productNum }</td>
+											<td>${ p.productName }</td>
+											<td>${ p.productDate }</td>
+											<td>${ p.productRate }</td>
+											<td>${ p.productKindVO.kindName }</td>
+										</tr>
+									</c:forEach>
+								</tbody>
+							</table>
 						</article>
 					</div>
 				</div>

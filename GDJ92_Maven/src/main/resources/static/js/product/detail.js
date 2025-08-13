@@ -21,6 +21,24 @@ for (b of buttons) {
 				frm.submit();
 			}
 			break;
+			
+		case 'cart':
+			const productNum = document.getElementById('productNum').value;
+			let params = new URLSearchParams();
+			params.append('productNum', productNum);
+			
+			fetch('/member/cartAdd', {
+				method: 'POST',
+				body: params
+			})
+			.then(r => r.text())
+			.then(r => {
+				if (r == 1) {
+					if (confirm('장바구니로 이동하시겠습니까?')) {
+						location.href = '/member/cartList';
+					}
+				}
+			});
 		}
 	});
 }

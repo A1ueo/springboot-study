@@ -70,4 +70,13 @@
 		DELETE FROM PRODUCT
 		WHERE PRODUCT_NUM = #{ productNum }
 	</delete>
+	
+	<select id="cartList" parameterType="MemberVO" resultMap="detailResult">
+		SELECT p.*, k.*
+		FROM PRODUCT p
+		JOIN PRODUCT_KIND k USING (KIND_NUM)
+		JOIN CART c USING (PRODUCT_NUM)
+		JOIN MEMBER m USING (USERNAME)
+		WHERE USERNAME = #{ username }
+	</select>
 </mapper>

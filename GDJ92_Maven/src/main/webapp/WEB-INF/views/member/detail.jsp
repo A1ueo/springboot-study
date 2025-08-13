@@ -23,7 +23,16 @@
 					<div class="row col-md-8 mx-auto">
 						<h1 class="py-2 text-uppercase">${ title } Detail</h1>
 						<article class="w-100">
-						
+							<h2 class="display-5 link-body-emphasis mb-1">${ board.boardTitle }</h2>
+							<hr>
+							<ul>
+								<li><img alt="" src="/file/Profile/${ member.profileVO.saveName }"/></li>
+								<li><p>${ member.username }</p></li>
+								<li><p>${ member.name }</p></li>
+								<li><p>${ member.birth }</p></li>
+								<li><p>${ member.email }</p></li>
+								<li><p>${ member.phone }</p></li>
+							</ul>
 						</article>
 					</div>
 				</div>
