@@ -20,24 +20,37 @@
 				<!-- Begin Page Content -->
 				<div class="container-fluid">
 					<!-- Page Contents 내용 -->
-					<div class="row col-md-8 mx-auto">
-						<h1 class="py-2 text-uppercase">${ title } Detail</h1>
+					<div class="row col-lg-8 mx-auto">
+						<h1 class="py-2 text-uppercase">${ title } Cart</h1>
 						<article class="w-100">
 							<table class="table table-striped text-center">
 								<thead>
 									<tr>
-										<th>Num</th>
-										<th>Name</th>
-										<th>Date</th>
-										<th>Rate</th>
-										<th>Kind</th>
+										<th class="col-2">
+											<div class="form-check text-left">
+												<input class="form-check-input" type="checkbox" id="checkAll">
+												<label class="form-check-label" for="checkDefault">
+													전체 선택
+												</label>
+											</div>
+										</th>
+										<!-- <th class="col-1">Num</th> -->
+										<th>Title</th>
+										<th class="col-3">Date</th>
+										<th class="col-1">Rate</th>
+										<th class="col-1">Kind</th>
 									</tr>
 								</thead>
 								<tbody>
 									<c:forEach var="p" items="${ list }">
 										<tr>
-											<td>${ p.productNum }</td>
-											<td>${ p.productName }</td>
+											<%-- <td>${ p.productNum }</td> --%>
+											<td class="col-1">
+												<div class="form-check text-left">
+													<input class="form-check-input ch" type="checkbox" value="${ p.productNum }">
+												</div>
+											</td>
+											<td> <a class="d-block" href="/product/detail?productNum=${ p.productNum }">${ p.productName }</a></td>
 											<td>${ p.productDate }</td>
 											<td>${ p.productRate }</td>
 											<td>${ p.productKindVO.kindName }</td>
@@ -55,5 +68,6 @@
 		</div>
 	</div>
 	<c:import url="/WEB-INF/views/include/tail.jsp" />
+	<script type="text/javascript" src="/js/member/cartList.js"></script>
 </body>
 </html>

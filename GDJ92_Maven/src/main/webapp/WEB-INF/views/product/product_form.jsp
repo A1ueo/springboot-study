@@ -21,7 +21,7 @@
 				<div class="container-fluid">
 					<!-- Page Contents 내용 -->
 					<h1>Products Form</h1>
-					<div class="row col-md-8 mx-auto">
+					<div class="row col-lg-8 mx-auto">
 						<article class="w-100">
 							<form id="frm" method="post">
 								<input type="hidden" name="boardNum" id="boardNum" value="${ product.productNum }">

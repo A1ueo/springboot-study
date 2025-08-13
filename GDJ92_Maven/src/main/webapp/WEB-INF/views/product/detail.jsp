@@ -21,7 +21,7 @@
 				<!-- Begin Page Content -->
 				<div class="container-fluid">
 					<!-- Page Contents 내용 -->
-					<div class="row col-md-8 mx-auto">
+					<div class="row col-lg-8 mx-auto">
 						<article class="w-100">
 							<h2 class="display-5 link-body-emphasis mb-1">${ product.productName }</h2>
 							<ul class="list-unstyled">
