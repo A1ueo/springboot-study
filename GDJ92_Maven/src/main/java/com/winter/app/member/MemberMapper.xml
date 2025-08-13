@@ -44,6 +44,6 @@
 		JOIN PROFILE AS p USING (USERNAME)
 		JOIN MEMBER_ROLE AS mr USING (USERNAME)
 		JOIN ROLE AS r USING (ROLE_NUM)
-		WHERE m.USERNAME = #{ username }
+		WHERE USERNAME = #{ username }
 	</select>
 </mapper>

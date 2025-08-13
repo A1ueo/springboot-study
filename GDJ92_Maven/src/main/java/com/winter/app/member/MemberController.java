@@ -59,7 +59,7 @@ public class MemberController {
 	@GetMapping("/logout")
 	public String logout(HttpSession session) throws Exception {
 		session.removeAttribute("member");
-		session.setMaxInactiveInterval(0);
+		session.invalidate();
 		
 		return "redirect:/";
 	}
