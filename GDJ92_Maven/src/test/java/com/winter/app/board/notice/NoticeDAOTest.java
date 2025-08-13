@@ -38,6 +38,24 @@ class NoticeDAOTest {
 		// 단정문
 		assertEquals(1, result);
 	}
+	@Test
+	void insertTest2() throws Exception {
+		for (int i = 0; i < 105; i++) {
+			NoticeVO noticeVO = new NoticeVO();
+			noticeVO.setBoardTitle("title" + i);
+			noticeVO.setBoardContent("content" + i);
+			noticeVO.setBoardWriter("writer" + i);
+			
+			int result = noticeDAO.insert(noticeVO);
+			
+			if (i % 10 == 0) {
+				Thread.sleep(500);
+			}
+		}
+		
+		// 단정문
+//		assertEquals(1, result);
+	}
 	
 	@Test
 	void updateTest() throws Exception {

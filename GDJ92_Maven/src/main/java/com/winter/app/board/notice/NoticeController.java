@@ -16,7 +16,9 @@ import org.springframework.web.multipart.MultipartFile;
 import com.winter.app.board.BoardFileVO;
 import com.winter.app.board.BoardVO;
 import com.winter.app.common.Pager;
+import com.winter.app.member.MemberVO;
 
+import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
@@ -72,7 +74,11 @@ public class NoticeController {
 	}
 	
 	@PostMapping("/add")
-	public String add(NoticeVO noticeVO, MultipartFile[] attaches) throws Exception {
+	public String add(HttpSession session, NoticeVO noticeVO, MultipartFile[] attaches) throws Exception {
+		MemberVO memberVO = (MemberVO) session.getAttribute("member");
+		
+		noticeVO.setBoardWriter(memberVO.getUsername());
+		
 		int result = noticeService.insert(noticeVO, attaches);
 		
 		return "redirect:./list";

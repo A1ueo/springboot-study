@@ -28,10 +28,12 @@
 					<article class="w-100">
 						<form id="frm" method="post" enctype="multipart/form-data">
 							<input type="hidden" name="boardNum" id="boardNum" value="${ board.boardNum }">
+<%-- 
 							<div class="mb-3">
 								<label for="exampleFormControlInput1" class="form-label">Writer</label>
 								<input name="boardWriter" type="text" class="form-control" id="exampleFormControlInput1" value="${ board.boardWriter }" <c:if test="${ not empty board.boardWriter }">readonly</c:if> placeholder="작성자">
 							</div>
+ --%>
 							<div class="mb-3">
 								<label for="exampleFormControlInput2" class="form-label">Title</label>
 								<input name="boardTitle" type="text" class="form-control" id="exampleFormControlInput2" value="${ board.boardTitle }" placeholder="제목">
