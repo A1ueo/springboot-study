@@ -47,8 +47,8 @@
 									<input name="productDate" type="date" class="form-control" id="exampleFormControlInput4" value="${ product.productDate }">
 								</div>
 								<div class="mb-3">
-									<label for="exampleFormControlTextarea1" class="form-label">Contents</label>
-									<textarea name="productContents" class="form-control" id="exampleFormControlTextarea1" rows="9" style="resize: none;" placeholder="내용">${ product.productContent }</textarea>
+									<label for="exampleFormControlTextarea1" class="form-label">Content</label>
+									<textarea name="productContent" class="form-control" id="exampleFormControlTextarea1" rows="9" style="resize: none;" placeholder="내용">${ product.productContent }</textarea>
 								</div>
 								<div class="d-flex justify-content-end">
 									<button class="btn btn-success" id="submit">Submit</button>

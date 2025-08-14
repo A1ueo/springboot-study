@@ -67,8 +67,17 @@ public class MemberService {
 	int cartAdd(CartVO cartVO) throws Exception {
 		return memberDAO.cartAdd(cartVO);
 	}
-
+/*
 	public int deleteCart(CartVO cartVO) throws Exception {
 		return memberDAO.deleteCart(cartVO);
 	}
+*/
+	public int deleteCart(MemberVO memberVO, Long[] numArr) throws Exception {
+		Map<String, Object> map = new HashMap<>();
+		map.put("username", memberVO.getUsername());
+		map.put("numArr", numArr);
+		
+		return memberDAO.deleteCart(map);
+	}
+	
 }

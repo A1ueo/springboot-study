@@ -93,10 +93,20 @@ public class MemberController {
 		List<ProductVO> list = productService.cartList(memberVO);
 		model.addAttribute("list", list);
 	}
-	
+/*
 	@ResponseBody
 	@PostMapping("/deleteCart")
-	public int deleteCart(CartVO cartVO) throws Exception {
+	public int deleteCart(HttpSession session, CartVO cartVO) throws Exception {
+		MemberVO memberVO = (MemberVO) session.getAttribute("member");
+		cartVO.setUsername(memberVO.getUsername());
+		
 		return memberService.deleteCart(cartVO);
+	}
+*/
+	@ResponseBody
+	@PostMapping("/deleteCart")
+	public int deleteCart(HttpSession session, Long[] numArr) throws Exception {
+		MemberVO memberVO = (MemberVO) session.getAttribute("member");
+		return memberService.deleteCart(memberVO, numArr);
 	}
 }

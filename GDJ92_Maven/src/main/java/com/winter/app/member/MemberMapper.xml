@@ -15,7 +15,7 @@
 			<result column="SAVE_NAME" property="saveName"/>
 			<result column="ORI_NAME" property="oriName"/>
 		</association>
-		<collection property="roleVOs" javaType="java.util.List" ofType="RoleVO">
+		<collection property="roleVOs" javaType="list" ofType="RoleVO">
 			<id column="ROLE_NUM" property="roleNum"/>
 			<result column="ROLE_NAME" property="roleName"/>
 		</collection>
@@ -51,9 +51,20 @@
 		INSERT INTO CART (USERNAME, PRODUCT_NUM)
 		VALUE (#{ username }, #{ productNum })
 	</insert>
-	
+<!-- 
 	<delete id="deleteCart" parameterType="CartVO">
 		DELETE FROM CART
-		WHERE PRODUCT_NUM = #{ productNum }
+		WHERE USERNAME = #{ username } AND PRODUCT_NUM = #{ productNum }
+	</delete>
+ -->
+	<delete id="deleteCart" parameterType="map">
+		DELETE FROM CART
+		<where>
+			USERNAME = #{ username }
+			AND PRODUCT_NUM IN
+			<foreach collection="numArr" item="item" open="(" close=")" separator=", ">
+				#{ item }
+			</foreach>
+		</where>
 	</delete>
 </mapper>
