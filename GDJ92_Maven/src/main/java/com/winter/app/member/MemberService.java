@@ -67,4 +67,8 @@ public class MemberService {
 	int cartAdd(CartVO cartVO) throws Exception {
 		return memberDAO.cartAdd(cartVO);
 	}
+
+	public int deleteCart(CartVO cartVO) throws Exception {
+		return memberDAO.deleteCart(cartVO);
+	}
 }

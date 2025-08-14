@@ -93,4 +93,10 @@ public class MemberController {
 		List<ProductVO> list = productService.cartList(memberVO);
 		model.addAttribute("list", list);
 	}
+	
+	@ResponseBody
+	@PostMapping("/deleteCart")
+	public int deleteCart(CartVO cartVO) throws Exception {
+		return memberService.deleteCart(cartVO);
+	}
 }

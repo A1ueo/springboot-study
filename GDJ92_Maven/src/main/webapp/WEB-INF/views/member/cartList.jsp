@@ -58,6 +58,7 @@
 									</c:forEach>
 								</tbody>
 							</table>
+							<button id="delBtn" class="btn btn-danger">DELETE</button>
 						</article>
 					</div>
 				</div>

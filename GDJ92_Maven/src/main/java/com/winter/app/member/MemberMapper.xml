@@ -51,4 +51,9 @@
 		INSERT INTO CART (USERNAME, PRODUCT_NUM)
 		VALUE (#{ username }, #{ productNum })
 	</insert>
+	
+	<delete id="deleteCart" parameterType="CartVO">
+		DELETE FROM CART
+		WHERE PRODUCT_NUM = #{ productNum }
+	</delete>
 </mapper>
