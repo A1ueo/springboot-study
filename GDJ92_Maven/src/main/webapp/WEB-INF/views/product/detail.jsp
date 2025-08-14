@@ -43,8 +43,8 @@
 							</div>
 						</div>
 						<div>
-							<button class="action btn btn-primary py-1 px-2" id="signUp">상품 가입</button>
-							<button class="action btn btn-outline-primary py-1 px-2" id="cart">장바구니</button>
+							<button class="action btn btn-primary py-1 px-2" id="signUp">Sign Up</button>
+							<button class="action btn btn-outline-primary py-1 px-2" id="cart">Cart</button>
 						</div>
 					</div>
 					

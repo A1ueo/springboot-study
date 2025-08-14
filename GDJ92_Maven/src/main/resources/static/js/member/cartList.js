@@ -58,7 +58,7 @@ delBtn.onclick = function () {
 			elArr.forEach((c) => {
 				c.remove();
 			});
-			// alert('삭제 완료');
+			alert('삭제 완료');
 			checkAll.checked = false;
 		} else {
 			alert('삭제 실패');
@@ -94,13 +94,10 @@ signUpBtn.onclick = function () {
 	.then(r => {
 		r = r.trim();
 		if (r > 0) {
-			delBtn.click();
-			/*
+			alert('가입 완료');
 			elArr.forEach((c) => {
 				c.remove();
 			});
-			*/
-			alert('가입 완료');
 			checkAll.checked = false;
 		} else {
 			alert('가입 실패');
