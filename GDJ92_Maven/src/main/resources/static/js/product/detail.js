@@ -23,7 +23,7 @@ for (b of buttons) {
 			break;
 			
 		case 'cart':
-			const productNum = document.getElementById('productNum').value;
+			let productNum = document.getElementById('productNum').value;
 			let params = new URLSearchParams();
 			params.append('productNum', productNum);
 			
@@ -39,6 +39,29 @@ for (b of buttons) {
 					}
 				}
 			});
+			
+		case 'signUp':
+			if (confirm('가입 하시겠습니까?')) {
+				productNum = document.getElementById('productNum').value;
+				const numArr = [];
+				numArr.push(productNum);
+				
+				params = new URLSearchParams();
+				params.append('numArr', numArr);
+	
+				fetch('/account/signUp', {
+					method: 'POST',
+					body: params
+				})
+				.then(r => r.text())
+				.then(r => {
+					if (r == 1) {
+						alert('가입 완료');
+					} else {
+						alert('가입 실패');
+					}
+				});
+			}
 		}
 	});
 }
