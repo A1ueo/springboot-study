@@ -10,16 +10,16 @@ import jakarta.servlet.Filter;
 @Configuration
 public class FilterConfig implements WebMvcConfigurer {
 
-	@Bean
-	FilterRegistrationBean<Filter> filterRegistrationBean() {
-		FilterRegistrationBean<Filter> fr = new FilterRegistrationBean<>();
-		
-		fr.setFilter(new TestFilter());
-		fr.addUrlPatterns("");
-		fr.setOrder(2);
-		
-		return fr;
-	}
+//	@Bean
+//	FilterRegistrationBean<Filter> filterRegistrationBean() {
+//		FilterRegistrationBean<Filter> fr = new FilterRegistrationBean<>();
+//		
+//		fr.setFilter(new TestFilter());
+//		fr.addUrlPatterns("");
+//		fr.setOrder(2);
+//		
+//		return fr;
+//	}
 	
 	@Bean
 	FilterRegistrationBean<Filter> adminFilterRegistrationBean() {

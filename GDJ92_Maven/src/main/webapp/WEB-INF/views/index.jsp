@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,8 +22,14 @@
 				<div class="container-fluid">
 					<!-- Page Contents 내용 -->
 					<h1>Index</h1>
+					<h3>
+						<spring:message code="welcome.message2" text="Hi"/>
+					</h3>
 					<c:if test="${ not empty member }">
 						<h3>${ member.name }</h3>
+						<h3>
+							<spring:message code="user.info" arguments="${ member.username }, ${ member.email }" argumentSeparator=","/>
+						</h3>
 					</c:if>
 				</div>
 				<!-- /.container-fluid -->
