@@ -62,7 +62,7 @@
 		<where>
 			USERNAME = #{ username }
 			AND PRODUCT_NUM IN
-			<foreach collection="numArr" item="item" open="(" close=")" separator=", ">
+			<foreach collection="numArr" item="item" open="(" close=")" separator=",">
 				#{ item }
 			</foreach>
 		</where>

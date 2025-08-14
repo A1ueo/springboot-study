@@ -1,11 +1,11 @@
 package com.winter.app.account;
 
-import java.util.Map;
+import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface AccountMapper {
 
-	void signUp(Map<String, Object> map) throws Exception;
+	int signUp(List<AccountVO> list) throws Exception;
 }

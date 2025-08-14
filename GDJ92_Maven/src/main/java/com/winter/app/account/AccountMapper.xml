@@ -2,8 +2,15 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="AccountMapper">
-	<insert id="signUp">
+<mapper namespace="com.winter.app.account.AccountMapper">
+	<insert id="signUp" parameterType="list">
 		INSERT INTO ACCOUNT
+			(ACCOUNT_NUM, USERNAME, PRODUCT_NUM, ACCOUNT_DATE, ACCOUNT_BALANCE)
+		VALUES
+			<foreach collection="list" item="item" separator="," >
+				(#{ item.accountNum }, #{ item.username }, #{ item.productNum }, 
+					NOW(), 0)
+					<!-- #{ item.accountDate }, #{ item.accountBalance }) -->
+			</foreach>
 	</insert>
 </mapper>

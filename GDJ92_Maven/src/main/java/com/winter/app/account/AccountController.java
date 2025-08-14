@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.winter.app.member.MemberVO;
 
@@ -16,10 +17,11 @@ public class AccountController {
 	@Autowired
 	AccountService accountService;
 	
-	@PostMapping("/singUp")
-	public void signUp(HttpSession session, Long[] numArr) {
+	@PostMapping("/signUp")
+	@ResponseBody
+	public int signUp(HttpSession session, Long[] numArr) throws Exception {
 		MemberVO memberVO = (MemberVO) session.getAttribute("member");
 		
-		accountService.signUp(memberVO, numArr);
+		return accountService.signUp(memberVO, numArr);
 	}
 }

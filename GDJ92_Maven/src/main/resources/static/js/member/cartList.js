@@ -31,6 +31,10 @@ checkArr.forEach((c) => {
 const delBtn = document.getElementById('delBtn');
 delBtn.onclick = function () {
 	checkArr = document.querySelectorAll('.ch');
+	if (checkArr.length == 0) {
+		return;
+	}
+	
 	const numArr = [];
 	const elArr = [];
 	checkArr.forEach(function (c) {
@@ -54,7 +58,7 @@ delBtn.onclick = function () {
 			elArr.forEach((c) => {
 				c.remove();
 			});
-			alert('삭제 완료');
+			// alert('삭제 완료');
 			checkAll.checked = false;
 		} else {
 			alert('삭제 실패');
@@ -66,6 +70,10 @@ const signUpBtn = document.getElementById('signUpBtn');
 
 signUpBtn.onclick = function () {
 	checkArr = document.querySelectorAll('.ch');
+	if (checkArr.length == 0) {
+		return;
+	}
+	
 	const numArr = [];
 	const elArr = [];
 	checkArr.forEach(function (c) {
@@ -86,9 +94,12 @@ signUpBtn.onclick = function () {
 	.then(r => {
 		r = r.trim();
 		if (r > 0) {
+			delBtn.click();
+			/*
 			elArr.forEach((c) => {
 				c.remove();
 			});
+			*/
 			alert('가입 완료');
 			checkAll.checked = false;
 		} else {

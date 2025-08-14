@@ -14,6 +14,7 @@ for (b of buttons) {
 			frm.setAttribute('action', './update');
 			frm.submit();
 			break;
+			
 		case 'del':
 			if (confirm('삭제하시겠습니까?')) {
 				frm.setAttribute('action', './delete');
@@ -23,8 +24,8 @@ for (b of buttons) {
 			break;
 			
 		case 'cart':
-			let productNum = document.getElementById('productNum').value;
-			let params = new URLSearchParams();
+			const productNum = document.getElementById('productNum').value;
+			const params = new URLSearchParams();
 			params.append('productNum', productNum);
 			
 			fetch('/member/cartAdd', {
@@ -39,14 +40,15 @@ for (b of buttons) {
 					}
 				}
 			});
+			break;
 			
 		case 'signUp':
 			if (confirm('가입 하시겠습니까?')) {
-				productNum = document.getElementById('productNum').value;
+				const productNum = document.getElementById('productNum').value;
 				const numArr = [];
 				numArr.push(productNum);
 				
-				params = new URLSearchParams();
+				const params = new URLSearchParams();
 				params.append('numArr', numArr);
 	
 				fetch('/account/signUp', {
@@ -62,6 +64,7 @@ for (b of buttons) {
 					}
 				});
 			}
+			break;
 		}
 	});
 }
