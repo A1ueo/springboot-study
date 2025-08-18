@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 
@@ -26,26 +27,36 @@
 				<div class="row col-lg-8 mx-auto">
 					<h1 class="py-2 text-uppercase">${ title } </h1>
 					<article class="w-100">
-						<form id="frm" method="post" enctype="multipart/form-data">
+						<form:form modelAttribute="memberVO" id="frm" method="post" enctype="multipart/form-data">
 							<div class="mb-3">
 								<label for="exampleFormControlInput1" class="form-label">ID</label>
-								<input name="username" type="text" class="form-control" id="exampleFormControlInput1" placeholder="아이디">
+								<form:input path="username" cssClass="form-control"/>
+								<form:errors path="username"></form:errors>
+								<!-- <input name="username" type="text" class="form-control" id="exampleFormControlInput1" placeholder="아이디"> -->
 							</div>
 							<div class="mb-3">
 								<label for="exampleFormControlInput2" class="form-label">Password</label>
-								<input name="password" type="password" class="form-control" id="exampleFormControlInput2" placeholder="비밀번호">
+								<form:password path="password" cssClass="form-control"/>
+								<form:errors path="password"></form:errors>
+								<!-- <input name="password" type="password" class="form-control" id="exampleFormControlInput2" placeholder="비밀번호"> -->
 							</div>
 							<div class="mb-3">
 								<label for="exampleFormControlInput2" class="form-label">Name</label>
-								<input name="name" type="text" class="form-control" id="exampleFormControlInput2" placeholder="이름">
+								<form:input path="name" cssClass="form-control"/>
+								<form:errors path="name"></form:errors>
+								<!-- <input name="name" type="text" class="form-control" id="exampleFormControlInput2" placeholder="이름"> -->
 							</div>
 							<div class="mb-3">
 								<label for="exampleFormControlInput2" class="form-label">Email</label>
-								<input name="email" type="email" class="form-control" id="exampleFormControlInput2" placeholder="이메일">
+								<form:input path="email" cssClass="form-control"/>
+								<form:errors path="email"></form:errors>
+								<!-- <input name="email" type="email" class="form-control" id="exampleFormControlInput2" placeholder="이메일"> -->
 							</div>
 							<div class="mb-3">
 								<label for="exampleFormControlInput2" class="form-label">Phone</label>
-								<input name="phone" type="text" class="form-control" id="exampleFormControlInput2" placeholder="전화번호">
+								<form:input path="phone" cssClass="form-control"/>
+								<form:errors path="phone"></form:errors>
+								<!-- <input name="phone" type="text" class="form-control" id="exampleFormControlInput2" placeholder="전화번호"> -->
 							</div>
 							<div class="mb-3">
 								<label for="exampleFormControlInput2" class="form-label">Birthday</label>
@@ -67,7 +78,7 @@
 							</div>
 							<div id="result" data-file-count="${ board.boardFileVOs.size() }">
 							</div>
-						</form>
+						</form:form>
 						<div class="mb-3 d-flex justify-content-end">
 							<button class="btn btn-success" id="submit">Submit</button>
 						</div>

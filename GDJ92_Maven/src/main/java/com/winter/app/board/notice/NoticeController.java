@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,6 +20,7 @@ import com.winter.app.common.Pager;
 import com.winter.app.member.MemberVO;
 
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
@@ -69,12 +71,17 @@ public class NoticeController {
 	}
 	
 	@GetMapping("/add")
-	public String add() {
+	public String add(/* Model model, */ @ModelAttribute("boardVO") BoardVO noticeVO) {
+//		model.addAttribute("boardVO", new NoticeVO());
 		return "/board/form";
 	}
 	
 	@PostMapping("/add")
-	public String add(HttpSession session, NoticeVO noticeVO, MultipartFile[] attaches) throws Exception {
+	public String add(HttpSession session, @Valid BoardVO noticeVO, BindingResult bindingResult, MultipartFile[] attaches) throws Exception {
+		if (bindingResult.hasErrors()) {
+			return "/board/form";
+		}
+		
 		MemberVO memberVO = (MemberVO) session.getAttribute("member");
 		
 		noticeVO.setBoardWriter(memberVO.getUsername());

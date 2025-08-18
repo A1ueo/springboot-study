@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 
@@ -26,8 +27,9 @@
 				<div class="row col-lg-8 mx-auto">
 					<h1 class="py-2 text-uppercase">${ title } </h1>
 					<article class="w-100">
-						<form id="frm" method="post" enctype="multipart/form-data">
-							<input type="hidden" name="boardNum" id="boardNum" value="${ board.boardNum }">
+						<form:form modelAttribute="boardVO" id="frm" method="post" enctype="multipart/form-data">
+							<form:hidden path="boardNum" />
+							<%-- <input type="hidden" name="boardNum" id="boardNum" value="${ board.boardNum }"> --%>
 <%-- 
 							<div class="mb-3">
 								<label for="exampleFormControlInput1" class="form-label">Writer</label>
@@ -36,7 +38,9 @@
  --%>
 							<div class="mb-3">
 								<label for="exampleFormControlInput2" class="form-label">Title</label>
-								<input name="boardTitle" type="text" class="form-control" id="exampleFormControlInput2" value="${ board.boardTitle }" placeholder="제목">
+								<form:input path="boardTitle" cssClass="form-control"/>
+								<%-- <input name="boardTitle" type="text" class="form-control" id="exampleFormControlInput2" value="${ board.boardTitle }" placeholder="제목"> --%>
+								<form:errors path="boardTitle"></form:errors>
 							</div>
 							<div class="mb-3">
 								<label for="exampleFormControlTextarea1" class="form-label">Contents</label>
@@ -58,7 +62,7 @@
 							</div>
 							<div id="result" data-file-count="${ board.boardFileVOs.size() }">
 							</div>
-						</form>
+						</form:form>
 						<div class="mb-3 d-flex justify-content-end">
 							<button class="btn btn-success" id="submit">Submit</button>
 						</div>

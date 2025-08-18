@@ -1,7 +1,6 @@
 package com.winter.app.filter;
 
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -21,7 +20,7 @@ public class FilterConfig implements WebMvcConfigurer {
 //		return fr;
 //	}
 	
-	@Bean
+	// @Bean
 	FilterRegistrationBean<Filter> adminFilterRegistrationBean() {
 		FilterRegistrationBean<Filter> fr = new FilterRegistrationBean<>();
 		

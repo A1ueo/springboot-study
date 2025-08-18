@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,6 +18,7 @@ import com.winter.app.product.ProductService;
 import com.winter.app.product.ProductVO;
 
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 
 @Controller
 @RequestMapping("/member/*")
@@ -36,11 +38,16 @@ public class MemberController {
 	}
 	
 	@GetMapping("/join")
-	public void join() {
+	public void join(MemberVO memberVO) throws Exception {
 	}
 	
 	@PostMapping("/join")
-	public String join(Model model, MemberVO memberVO, MultipartFile profile) throws Exception {
+	public String join(Model model, @Valid MemberVO memberVO, BindingResult bindingResult, 
+			MultipartFile profile) throws Exception {
+		if (bindingResult.hasErrors()) {
+			return "/member/join";
+		}
+		
 		int result = memberService.join(memberVO, profile);
 		
 		model.addAttribute("msg", "가입 성공");
