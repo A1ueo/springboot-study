@@ -53,16 +53,17 @@ public class MemberController {
 			return "/member/memberUpdate";
 		}
 		
-		MemberVO param = (MemberVO) session.getAttribute("member");
+		MemberVO logined = (MemberVO) session.getAttribute("member");
 		
-		memberVO.setUsername(param.getUsername());
+		memberVO.setUsername(logined.getUsername());
 		int result = memberService.update(memberVO);
 		
 		String msg = "수정 실패";
 		if (result > 0) {
 			msg = "수정 성공";
-			param = memberService.login(memberVO);
-			session.setAttribute("member", param);
+			memberVO.setPassword(logined.getPassword());
+			logined = memberService.login(memberVO);
+			session.setAttribute("member", logined);
 		}
 		String url = "./detail";
 		
