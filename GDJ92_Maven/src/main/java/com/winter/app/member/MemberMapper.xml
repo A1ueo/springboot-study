@@ -73,4 +73,13 @@
 		FROM MEMBER
 		WHERE USERNAME = #{ username }
 	</select>
+	
+	<update id="update" parameterType="MemberVO">
+		UPDATE MEMBER
+		SET NAME = #{ name }
+			, EMAIL = #{ email }
+			, PHONE = #{ phone }
+			, BIRTH = #{ birth }
+		WHERE USERNAME = #{ username }
+	</update>
 </mapper>

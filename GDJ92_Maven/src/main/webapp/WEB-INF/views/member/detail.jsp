@@ -26,13 +26,16 @@
 							<h2 class="display-5 link-body-emphasis mb-1">${ board.boardTitle }</h2>
 							<hr>
 							<ul>
-								<li><img alt="" src="/file/Profile/${ member.profileVO.saveName }"/></li>
+								<li><img alt="" height="200" src="/file/Profile/${ member.profileVO.saveName }"/></li>
 								<li><p>${ member.username }</p></li>
 								<li><p>${ member.name }</p></li>
 								<li><p>${ member.birth }</p></li>
 								<li><p>${ member.email }</p></li>
 								<li><p>${ member.phone }</p></li>
 							</ul>
+							<div class="w-100 d-flex justify-content-end mb-2">
+								<a class="btn btn-primary py-1 px-2" href="./update">정보 수정</a>
+							</div>
 						</article>
 					</div>
 				</div>

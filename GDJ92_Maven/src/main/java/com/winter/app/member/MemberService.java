@@ -105,5 +105,9 @@ public class MemberService {
 		
 		return memberDAO.deleteCart(map);
 	}
+
+	public int update(MemberVO memberVO) throws Exception {
+		return memberDAO.update(memberVO);
+	}
 	
 }

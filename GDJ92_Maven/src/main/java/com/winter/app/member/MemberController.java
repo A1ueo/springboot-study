@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,11 +15,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.winter.app.member.validation.AddGroup;
+import com.winter.app.member.validation.UpdateGroup;
 import com.winter.app.product.ProductService;
 import com.winter.app.product.ProductVO;
 
 import jakarta.servlet.http.HttpSession;
-import jakarta.validation.Valid;
 
 @Controller
 @RequestMapping("/member/*")
@@ -37,12 +39,45 @@ public class MemberController {
 		return name;
 	}
 	
+	@GetMapping("/update")
+	public String update(HttpSession session, Model model) throws Exception {
+		MemberVO memberVO = (MemberVO) session.getAttribute("member");
+		model.addAttribute("memberVO", memberVO);
+		return "/member/memberUpdate";
+	}
+	
+	@PostMapping("/update")
+	public String update(@Validated(UpdateGroup.class) MemberVO memberVO, BindingResult bindingResult, 
+			MultipartFile profile, HttpSession session, Model model) throws Exception {
+		if (bindingResult.hasErrors()) {
+			return "/member/memberUpdate";
+		}
+		
+		MemberVO param = (MemberVO) session.getAttribute("member");
+		
+		memberVO.setUsername(param.getUsername());
+		int result = memberService.update(memberVO);
+		
+		String msg = "수정 실패";
+		if (result > 0) {
+			msg = "수정 성공";
+			param = memberService.login(memberVO);
+			session.setAttribute("member", param);
+		}
+		String url = "./detail";
+		
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		
+		return "/common/result";
+	}
+	
 	@GetMapping("/join")
 	public void join(MemberVO memberVO) throws Exception {
 	}
 	
 	@PostMapping("/join")
-	public String join(Model model, @Valid MemberVO memberVO, BindingResult bindingResult, 
+	public String join(Model model, @Validated({AddGroup.class, UpdateGroup.class}) MemberVO memberVO, BindingResult bindingResult, 
 			MultipartFile profile) throws Exception {
 		memberService.hasMemeberError(memberVO, bindingResult);
 		
