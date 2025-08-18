@@ -31,37 +31,42 @@
 							<div class="mb-3">
 								<label for="exampleFormControlInput1" class="form-label">ID</label>
 								<form:input path="username" cssClass="form-control"/>
-								<form:errors path="username"></form:errors>
+								<form:errors path="username"/>
 								<!-- <input name="username" type="text" class="form-control" id="exampleFormControlInput1" placeholder="아이디"> -->
 							</div>
 							<div class="mb-3">
 								<label for="exampleFormControlInput2" class="form-label">Password</label>
 								<form:password path="password" cssClass="form-control"/>
-								<form:errors path="password"></form:errors>
+								<form:errors path="password"/>
 								<!-- <input name="password" type="password" class="form-control" id="exampleFormControlInput2" placeholder="비밀번호"> -->
+							</div>
+							<div class="mb-3">
+								<label for="exampleFormControlInput2" class="form-label">Password Check</label>
+								<form:password path="passwordCheck" cssClass="form-control"/>
+								<form:errors path="passwordCheck"/>
 							</div>
 							<div class="mb-3">
 								<label for="exampleFormControlInput2" class="form-label">Name</label>
 								<form:input path="name" cssClass="form-control"/>
-								<form:errors path="name"></form:errors>
+								<form:errors path="name"/>
 								<!-- <input name="name" type="text" class="form-control" id="exampleFormControlInput2" placeholder="이름"> -->
 							</div>
 							<div class="mb-3">
 								<label for="exampleFormControlInput2" class="form-label">Email</label>
 								<form:input path="email" cssClass="form-control"/>
-								<form:errors path="email"></form:errors>
+								<form:errors path="email"/>
 								<!-- <input name="email" type="email" class="form-control" id="exampleFormControlInput2" placeholder="이메일"> -->
 							</div>
 							<div class="mb-3">
 								<label for="exampleFormControlInput2" class="form-label">Phone</label>
 								<form:input path="phone" cssClass="form-control"/>
-								<form:errors path="phone"></form:errors>
+								<form:errors path="phone"/>
 								<!-- <input name="phone" type="text" class="form-control" id="exampleFormControlInput2" placeholder="전화번호"> -->
 							</div>
 							<div class="mb-3">
 								<label for="exampleFormControlInput2" class="form-label">Birthday</label>
 								<input name="birth" type="date" class="form-control" id="exampleFormControlInput2" placeholder="생년월일">
-								<form:errors path="birth"></form:errors>
+								<form:errors path="birth"/>
 							</div>
 							<div class="mb-3">
 								<label for="exampleFormControlInput2" class="form-label">Profile</label>

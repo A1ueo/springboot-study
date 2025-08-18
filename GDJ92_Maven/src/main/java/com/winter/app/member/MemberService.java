@@ -2,11 +2,13 @@ package com.winter.app.member;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.winter.app.common.FileManager;
@@ -24,6 +26,30 @@ public class MemberService {
 	private String upload;
 	@Value("${board.member}")
 	private String board;
+	
+	// 검증 메서드
+	public boolean hasMemeberError(MemberVO memberVO, BindingResult bindingResult) throws Exception {
+		// check: true => 검증 실패
+		// check: false => 검증 통과
+		
+		// 1. Annotation 검증
+		boolean check = bindingResult.hasErrors();
+		
+		// 2. 사용자 정의로 패스워드가 일치하는지 검증
+		if (!Objects.equals(memberVO.getPassword(), memberVO.getPasswordCheck())) {
+			check = true;
+			bindingResult.rejectValue("passwordCheck", "member.password.check");
+		}
+		
+		// 3. ID 중복 검사
+		int count = memberDAO.checkUsername(memberVO);
+		if (count > 0) {
+			check = true;
+			bindingResult.rejectValue("username", "member.username.check");
+		}
+		
+		return check;
+	}
 	
 	int join(MemberVO memberVO, MultipartFile file) throws Exception {
 		int result = memberDAO.join(memberVO);

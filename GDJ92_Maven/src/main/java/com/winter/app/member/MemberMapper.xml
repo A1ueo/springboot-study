@@ -67,4 +67,10 @@
 			</foreach>
 		</where>
 	</delete>
+	
+	<select id="checkUsername" parameterType="MemberVO" resultType="int">
+		SELECT COUNT(USERNAME)
+		FROM MEMBER
+		WHERE USERNAME = #{ username }
+	</select>
 </mapper>

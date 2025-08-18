@@ -44,6 +44,8 @@ public class MemberController {
 	@PostMapping("/join")
 	public String join(Model model, @Valid MemberVO memberVO, BindingResult bindingResult, 
 			MultipartFile profile) throws Exception {
+		memberService.hasMemeberError(memberVO, bindingResult);
+		
 		if (bindingResult.hasErrors()) {
 			return "/member/join";
 		}
