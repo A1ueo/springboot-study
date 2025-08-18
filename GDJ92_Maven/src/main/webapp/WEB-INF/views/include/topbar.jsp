@@ -199,6 +199,10 @@
 			</ul>
 		</c:otherwise>
 	</c:choose>
+	<ul>
+		<li><a href="/?lang=ko">KO</a></li>
+		<li><a href="/?lang=en">EN</a></li>
+	</ul>
 
 </nav>
 <!-- End of Topbar -->
