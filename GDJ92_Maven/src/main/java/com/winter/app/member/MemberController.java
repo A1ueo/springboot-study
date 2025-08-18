@@ -48,7 +48,7 @@ public class MemberController {
 			return "/member/join";
 		}
 		
-		int result = memberService.join(memberVO, profile);
+		// int result = memberService.join(memberVO, profile);
 		
 		model.addAttribute("msg", "가입 성공");
 		model.addAttribute("url", "/");

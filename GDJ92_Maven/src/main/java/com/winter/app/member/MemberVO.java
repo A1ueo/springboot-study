@@ -6,6 +6,7 @@ import java.util.List;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Past;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -26,11 +27,11 @@ public class MemberVO {
 	private String password;
 	@NotBlank
 	private String name;
-	@Email
+	@Email(regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$", message = "유효하지 않은 이메일 형식입니다.")
 	private String email;
-	// @Pattern(regexp = "")	// 정규 표현식
+	@Pattern(regexp = "^\\d{3}-\\d{3,4}-\\d{4}$", message = "유효하지 않은 전화번호 형식입니다.")	// 정규 표현식
 	private String phone;
-	@Past
+	@Past(message = "유효하지 않은 날짜입니다.")
 	private LocalDate birth;
 	private boolean accountNonExpired;
 	private boolean accountNonLocked;

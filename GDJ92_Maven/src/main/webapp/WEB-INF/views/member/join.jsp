@@ -61,6 +61,7 @@
 							<div class="mb-3">
 								<label for="exampleFormControlInput2" class="form-label">Birthday</label>
 								<input name="birth" type="date" class="form-control" id="exampleFormControlInput2" placeholder="생년월일">
+								<form:errors path="birth"></form:errors>
 							</div>
 							<div class="mb-3">
 								<label for="exampleFormControlInput2" class="form-label">Profile</label>
