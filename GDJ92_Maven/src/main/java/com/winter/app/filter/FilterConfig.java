@@ -1,10 +1,7 @@
 package com.winter.app.filter;
 
-import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-
-import jakarta.servlet.Filter;
 
 @Configuration
 public class FilterConfig implements WebMvcConfigurer {
@@ -21,13 +18,13 @@ public class FilterConfig implements WebMvcConfigurer {
 //	}
 	
 	// @Bean
-	FilterRegistrationBean<Filter> adminFilterRegistrationBean() {
-		FilterRegistrationBean<Filter> fr = new FilterRegistrationBean<>();
-		
-		fr.setFilter(new AdminCheckFilter());
-		fr.addUrlPatterns("/notice/add","/notice/update","/notice/delete");
-		fr.setOrder(1);
-		
-		return fr;
-	}
+//	FilterRegistrationBean<Filter> adminFilterRegistrationBean() {
+//		FilterRegistrationBean<Filter> fr = new FilterRegistrationBean<>();
+//		
+//		fr.setFilter(new AdminCheckFilter());
+//		fr.addUrlPatterns("/notice/add","/notice/update","/notice/delete");
+//		fr.setOrder(1);
+//		
+//		return fr;
+//	}
 }

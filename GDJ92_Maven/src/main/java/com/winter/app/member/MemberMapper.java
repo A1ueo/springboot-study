@@ -14,4 +14,5 @@ public interface MemberMapper {
 	int deleteCart(Map<String, Object> map) throws Exception;
 	int checkUsername(MemberVO memberVO) throws Exception;
 	int update(MemberVO memberVO) throws Exception;
+	int passwordUpdate(MemberVO memberVO) throws Exception;
 }

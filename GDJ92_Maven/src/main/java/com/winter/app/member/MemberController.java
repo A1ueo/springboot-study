@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -40,20 +41,22 @@ public class MemberController {
 	}
 	
 	@GetMapping("/update")
-	public String update(HttpSession session, Model model) throws Exception {
-		MemberVO memberVO = (MemberVO) session.getAttribute("member");
+	public String update(Authentication authentication, Model model) throws Exception {
+		MemberVO memberVO = (MemberVO) authentication.getPrincipal();
 		model.addAttribute("memberVO", memberVO);
 		return "/member/memberUpdate";
 	}
 	
 	@PostMapping("/update")
 	public String update(@Validated(UpdateGroup.class) MemberVO memberVO, BindingResult bindingResult, 
-			MultipartFile profile, HttpSession session, Model model) throws Exception {
+			MultipartFile profile, Authentication authentication, Model model) throws Exception {
 		if (bindingResult.hasErrors()) {
 			return "/member/memberUpdate";
 		}
 		
-		MemberVO logined = (MemberVO) session.getAttribute("member");
+		MemberVO logined = (MemberVO) authentication.getPrincipal();
+		
+		System.out.println(logined);
 		
 		memberVO.setUsername(logined.getUsername());
 		int result = memberService.update(memberVO);
@@ -61,9 +64,9 @@ public class MemberController {
 		String msg = "수정 실패";
 		if (result > 0) {
 			msg = "수정 성공";
-			memberVO.setPassword(logined.getPassword());
-			logined = memberService.login(memberVO);
-			session.setAttribute("member", logined);
+//			memberVO.setPassword(logined.getPassword());
+//			logined = memberService.login(memberVO);
+//			session.setAttribute("member", logined);
 		}
 		String url = "./detail";
 		
@@ -98,24 +101,24 @@ public class MemberController {
 	public void login() throws Exception {
 	}
 	
-	@PostMapping("/login")
-	public String login(HttpSession session, MemberVO memberVO) throws Exception {
-		memberVO = memberService.login(memberVO);
-		
-		if (memberVO != null) {
-			session.setAttribute("member", memberVO);
-		}
-		
-		return "redirect:/";
-	}
-	
-	@GetMapping("/logout")
-	public String logout(HttpSession session) throws Exception {
-		session.removeAttribute("member");
-		session.invalidate();
-		
-		return "redirect:/";
-	}
+//	@PostMapping("/login")
+//	public String login(HttpSession session, MemberVO memberVO) throws Exception {
+//		memberVO = memberService.login(memberVO);
+//		
+//		if (memberVO != null) {
+//			session.setAttribute("member", memberVO);
+//		}
+//		
+//		return "redirect:/";
+//	}
+//	
+//	@GetMapping("/logout")
+//	public String logout(HttpSession session) throws Exception {
+//		session.removeAttribute("member");
+//		session.invalidate();
+//		
+//		return "redirect:/";
+//	}
 	
 	@GetMapping("/detail")
 	public void detail() throws Exception {

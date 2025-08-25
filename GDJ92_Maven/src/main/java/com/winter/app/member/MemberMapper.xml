@@ -5,10 +5,16 @@
 <mapper namespace="com.winter.app.member.MemberMapper">
 	<resultMap type="MemberVO" id="loginResult">
 		<id column="USERNAME" property="username"/>
+		<result column="PASSWORD" property="password"/>
 		<result column="NAME" property="name"/>
 		<result column="EMAIL" property="email"/>
 		<result column="PHONE" property="phone"/>
 		<result column="BIRTH" property="birth"/>
+		
+		<result column="ACCOUNT_NON_EXPIRED" property="accountNonExpired"/>
+		<result column="ACCOUNT_NON_LOCKED" property="accountNonLocked"/>
+		<result column="CREDENTIAL_NON_EXPIRED" property="credentialNonExpired"/>
+		<result column="ENABLED" property="enabled"/>
 		
 		<association property="profileVO">
 			<id column="USERNAME" property="username"/>
@@ -80,6 +86,12 @@
 			, EMAIL = #{ email }
 			, PHONE = #{ phone }
 			, BIRTH = #{ birth }
+		WHERE USERNAME = #{ username }
+	</update>
+	
+	<update id="passwordUpdate" parameterType="MemberVO">
+		UPDATE MEMBER
+		SET PASSWORD = #{ password }
 		WHERE USERNAME = #{ username }
 	</update>
 </mapper>
