@@ -29,13 +29,16 @@
 						<form id="frm" method="post" >
 							<div class="mb-3">
 								<label for="exampleFormControlInput1" class="form-label">ID</label>
-								<input name="username" type="text" class="form-control" id="exampleFormControlInput1" placeholder="아이디">
+								<input name="username" type="text" class="form-control" value="${ cookie.remember_id.value }" placeholder="아이디">
 							</div>
 							<div class="mb-3">
 								<label for="exampleFormControlInput2" class="form-label">Password</label>
 								<input name="password" type="password" class="form-control" id="exampleFormControlInput2" placeholder="비밀번호">
 							</div>
-							<div class="mb-3 d-flex justify-content-end">
+							<div class="mb-3 d-flex justify-content-between">
+								<label class="form-label">
+									<input type="checkbox" name="rememberId" value="1" ${ empty cookie.remember_id ? '' : 'checked' } > Remeber ID
+								</label>
 								<button class="btn btn-success" id="submit">Login</button>
 							</div>
 						</form>

@@ -1,5 +1,6 @@
 package com.winter.app.config.security;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -12,6 +13,9 @@ import org.springframework.security.web.firewall.HttpFirewall;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
+
+	@Autowired
+	LoginSuccessHandler loginSuccessHandler;
 	
 	@Bean
 	HttpFirewall defaultFirewall() {
@@ -48,20 +52,27 @@ public class SecurityConfig {
 					.requestMatchers("/member/detail", "/member/update", "/memeber/delete")
 //					.access("hasRole('ROLE_MEMBER') or hasRole('ROLE_MANAGER')")
 					.authenticated()
+					
 					.requestMatchers("/member/login").permitAll()
 					.anyRequest().permitAll() // 다른 모든 요청은 허용
 					;
 			})
 			// form 관련 설정
+			// 개발자가 로그인 검증을 하지 않는다, Security Filter에서 검증
 			.formLogin(form -> {
 				form
 					.loginPage("/member/login")
-//					.usernameParameter("username") // 기본 세팅은 생략 가능
+//					.usernameParameter("username") // 기본 이름은 생략 가능
 //					.passwordParameter("password")
-					.defaultSuccessUrl("/")
+//					.usernameParameter("id")
+//					.passwordParameter("pw")
+//					.defaultSuccessUrl("/")		// redirect
+//					.successForwardUrl("")		// foward
+					.successHandler(loginSuccessHandler)
 					.failureUrl("/member/login")
 					;
 			})
+			// 개발자가 아닌 Security Filter에서 처리
 			.logout((logout) -> {
 				logout
 					.logoutUrl("/member/logout")
