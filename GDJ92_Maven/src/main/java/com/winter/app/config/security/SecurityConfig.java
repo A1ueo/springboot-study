@@ -16,6 +16,8 @@ public class SecurityConfig {
 
 	@Autowired
 	LoginSuccessHandler loginSuccessHandler;
+	@Autowired
+	LoginFailHandler loginFailHandler;
 	
 	@Bean
 	HttpFirewall defaultFirewall() {
@@ -68,8 +70,9 @@ public class SecurityConfig {
 //					.passwordParameter("pw")
 //					.defaultSuccessUrl("/")		// redirect
 //					.successForwardUrl("")		// foward
-					.successHandler(loginSuccessHandler)
-					.failureUrl("/member/login")
+					.successHandler(loginSuccessHandler)	// URL과 같이 쓰면 URL이 우선순위
+//					.failureUrl("/member/login")
+					.failureHandler(loginFailHandler)
 					;
 			})
 			// 개발자가 아닌 Security Filter에서 처리
@@ -77,6 +80,7 @@ public class SecurityConfig {
 				logout
 					.logoutUrl("/member/logout")
 //					.logoutRequestMatcher(new AntPathRequestMatcher("/member/logout"))
+//					.logoutSuccessHandler()
 					.invalidateHttpSession(true)
 					.deleteCookies("JSESSIONID")
 					.logoutSuccessUrl("/")

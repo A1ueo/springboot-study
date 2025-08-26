@@ -53,7 +53,7 @@ public class MemberVO implements UserDetails {
 	
 	private boolean accountNonExpired;
 	private boolean accountNonLocked;
-	private boolean credentialNonExpired;
+	private boolean credentialsNonExpired;
 	private boolean enabled;
 	
 	private ProfileVO profileVO;

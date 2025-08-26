@@ -13,7 +13,7 @@
 		
 		<result column="ACCOUNT_NON_EXPIRED" property="accountNonExpired"/>
 		<result column="ACCOUNT_NON_LOCKED" property="accountNonLocked"/>
-		<result column="CREDENTIAL_NON_EXPIRED" property="credentialNonExpired"/>
+		<result column="CREDENTIALS_NON_EXPIRED" property="credentialsNonExpired"/>
 		<result column="ENABLED" property="enabled"/>
 		
 		<association property="profileVO">

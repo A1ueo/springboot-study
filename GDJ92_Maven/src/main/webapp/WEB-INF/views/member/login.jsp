@@ -23,6 +23,7 @@
 			<!-- Begin Page Content -->
 			<div class="container-fluid">
 				<!-- Page Contents 내용 -->
+				<h3>${ param.failMessage }</h3>
 				<div class="row col-lg-8 mx-auto">
 					<h1 class="py-2 text-uppercase">${ title } </h1>
 					<article class="w-100">
