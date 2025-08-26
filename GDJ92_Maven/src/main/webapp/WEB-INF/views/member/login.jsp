@@ -42,6 +42,9 @@
 								</label>
 								<button class="btn btn-success" id="submit">Login</button>
 							</div>
+							<label class="form-label">
+								<input type="checkbox" name="remember-me" value="1"> 자동로그인
+							</label>
 						</form>
 					</article>
 				</div>

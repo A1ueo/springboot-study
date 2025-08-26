@@ -10,6 +10,8 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.firewall.DefaultHttpFirewall;
 import org.springframework.security.web.firewall.HttpFirewall;
 
+import com.winter.app.member.MemberService;
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
@@ -22,6 +24,8 @@ public class SecurityConfig {
 	private CustomLogoutHandler logoutHandler;
 	@Autowired
 	private CustomLogoutSuccessHandler logoutSuccessHandler;
+	@Autowired
+	MemberService memberService;
 	
 	@Bean
 	HttpFirewall defaultFirewall() {
@@ -90,6 +94,16 @@ public class SecurityConfig {
 					.deleteCookies("JSESSIONID")
 //					.logoutSuccessUrl("/")
 					.logoutSuccessHandler(logoutSuccessHandler);
+					;
+			})
+			.rememberMe((remember) -> {
+				remember
+					.rememberMeParameter("remember-me")	// 기본값
+					.tokenValiditySeconds(60)	// 로그아웃시 삭제
+					.key("remember")	// 암호문 생성에 들어가는 키
+					.userDetailsService(memberService)
+					.authenticationSuccessHandler(loginSuccessHandler)
+					.useSecureCookie(false)
 					;
 			})
 			;

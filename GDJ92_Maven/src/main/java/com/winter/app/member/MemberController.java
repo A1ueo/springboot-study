@@ -1,5 +1,6 @@
 package com.winter.app.member;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -77,7 +78,11 @@ public class MemberController {
 	}
 	
 	@GetMapping("/join")
-	public void join(MemberVO memberVO) throws Exception {
+	public String join(MemberVO memberVO, Authentication authentication) throws Exception {
+		if (authentication != null) {
+			return "/index";
+		}
+		return "/member/join";
 	}
 	
 	@PostMapping("/join")
@@ -98,7 +103,11 @@ public class MemberController {
 	}
 	
 	@GetMapping("/login")
-	public void login() throws Exception {
+	public String login(Principal principal) throws Exception {
+		if (principal != null) {
+			return "/index";
+		}
+		return "/member/login";
 	}
 	
 //	@PostMapping("/login")
