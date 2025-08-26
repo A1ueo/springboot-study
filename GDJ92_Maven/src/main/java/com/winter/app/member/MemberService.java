@@ -6,6 +6,9 @@ import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
@@ -15,7 +18,7 @@ import com.winter.app.common.FileManager;
 
 @Service
 @Transactional(rollbackFor = Exception.class)
-public class MemberService {
+public class MemberService implements UserDetailsService {
 
 	@Autowired
 	private MemberMapper memberDAO;
@@ -26,6 +29,19 @@ public class MemberService {
 	private String upload;
 	@Value("${board.member}")
 	private String board;
+	
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		MemberVO memberVO = new MemberVO();
+		memberVO.setUsername(username);
+		try {
+			memberVO = memberDAO.login(memberVO);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return memberVO;
+	}
 	
 	// 검증 메서드
 	public boolean hasMemeberError(MemberVO memberVO, BindingResult bindingResult) throws Exception {
@@ -80,15 +96,15 @@ public class MemberService {
 		return result;
 	}
 	
-	MemberVO login(MemberVO memberVO) throws Exception {
-		MemberVO result = memberDAO.login(memberVO);
-		
-		if (result != null) {
-			return result;
-		}
-		
-		return null;
-	}
+//	MemberVO login(MemberVO memberVO) throws Exception {
+//		MemberVO result = memberDAO.login(memberVO);
+//		
+//		if (result != null) {
+//			return result;
+//		}
+//		
+//		return null;
+//	}
 	
 	int cartAdd(CartVO cartVO) throws Exception {
 		return memberDAO.cartAdd(cartVO);

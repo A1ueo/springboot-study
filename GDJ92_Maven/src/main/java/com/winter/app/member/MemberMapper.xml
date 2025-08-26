@@ -5,10 +5,16 @@
 <mapper namespace="com.winter.app.member.MemberMapper">
 	<resultMap type="MemberVO" id="loginResult">
 		<id column="USERNAME" property="username"/>
+		<result column="PASSWORD" property="password"/>
 		<result column="NAME" property="name"/>
 		<result column="EMAIL" property="email"/>
 		<result column="PHONE" property="phone"/>
 		<result column="BIRTH" property="birth"/>
+		
+		<result column="ACCOUNT_NON_EXPIRED" property="accountNonExpired"/>
+		<result column="ACCOUNT_NON_LOCKED" property="accountNonLocked"/>
+		<result column="CREDENTIALS_NON_EXPIRED" property="credintialsNonExpired"/>
+		<result column="ENABLED" property="enabled"/>
 		
 		<association property="profileVO">
 			<id column="USERNAME" property="username"/>

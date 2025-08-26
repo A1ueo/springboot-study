@@ -23,8 +23,9 @@
 			<!-- Begin Page Content -->
 			<div class="container-fluid">
 				<!-- Page Contents 내용 -->
-				<div class="row col-lg-8 mx-auto">
+				<div class="col-lg-8 mx-auto">
 					<h1 class="py-2 text-uppercase">${ title } </h1>
+					<h3>${ param.failMessage }</h3>
 					<article class="w-100">
 						<form id="frm" method="post" >
 							<div class="mb-3">

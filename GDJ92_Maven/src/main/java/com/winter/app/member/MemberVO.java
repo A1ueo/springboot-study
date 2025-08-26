@@ -1,7 +1,14 @@
 package com.winter.app.member;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import com.winter.app.member.validation.AddGroup;
 import com.winter.app.member.validation.UpdateGroup;
@@ -23,7 +30,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class MemberVO {
+public class MemberVO implements UserDetails {
 
 	@NotBlank(groups = AddGroup.class)
 	private String username;
@@ -52,4 +59,31 @@ public class MemberVO {
 	
 	private ProfileVO profileVO;
 	private List<RoleVO> roleVOs;
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(password, username);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		MemberVO other = (MemberVO) obj;
+		return Objects.equals(password, other.password) && Objects.equals(username, other.username);
+	}
+	
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		List<GrantedAuthority> list = new ArrayList<>();
+		for (RoleVO r : roleVOs) {
+			list.add(new SimpleGrantedAuthority(r.getRoleName()));
+		}
+		
+		return list;
+	}
 }

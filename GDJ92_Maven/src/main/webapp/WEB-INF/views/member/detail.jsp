@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,6 +15,9 @@
 	<div id="wrapper">
 		<c:import url="/WEB-INF/views/include/sidebar.jsp" />
 		<!-- Content Wrapper -->
+		<sec:authorize access="isAuthenticated()">
+			<sec:authentication property="principal" var="member"/>
+		</sec:authorize>
 		<div id="content-wrapper" class="d-flex flex-column">
 			<div id="content">
 				<c:import url="/WEB-INF/views/include/topbar.jsp" />

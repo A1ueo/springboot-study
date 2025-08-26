@@ -62,8 +62,8 @@ public class MemberController {
 		if (result > 0) {
 			msg = "수정 성공";
 			memberVO.setPassword(logined.getPassword());
-			logined = memberService.login(memberVO);
-			session.setAttribute("member", logined);
+//			logined = memberService.login(memberVO);
+//			session.setAttribute("member", logined);
 		}
 		String url = "./detail";
 		
@@ -98,24 +98,24 @@ public class MemberController {
 	public void login() throws Exception {
 	}
 	
-	@PostMapping("/login")
-	public String login(HttpSession session, MemberVO memberVO) throws Exception {
-		memberVO = memberService.login(memberVO);
-		
-		if (memberVO != null) {
-			session.setAttribute("member", memberVO);
-		}
-		
-		return "redirect:/";
-	}
+//	@PostMapping("/login")
+//	public String login(HttpSession session, MemberVO memberVO) throws Exception {
+//		memberVO = memberService.login(memberVO);
+//		
+//		if (memberVO != null) {
+//			session.setAttribute("member", memberVO);
+//		}
+//		
+//		return "redirect:/";
+//	}
 	
-	@GetMapping("/logout")
-	public String logout(HttpSession session) throws Exception {
-		session.removeAttribute("member");
-		session.invalidate();
-		
-		return "redirect:/";
-	}
+//	@GetMapping("/logout")
+//	public String logout(HttpSession session) throws Exception {
+//		session.removeAttribute("member");
+//		session.invalidate();
+//		
+//		return "redirect:/";
+//	}
 	
 	@GetMapping("/detail")
 	public void detail() throws Exception {
