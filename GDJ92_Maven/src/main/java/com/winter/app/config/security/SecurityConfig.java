@@ -15,9 +15,13 @@ import org.springframework.security.web.firewall.HttpFirewall;
 public class SecurityConfig {
 
 	@Autowired
-	LoginSuccessHandler loginSuccessHandler;
+	private LoginSuccessHandler loginSuccessHandler;
 	@Autowired
-	LoginFailHandler loginFailHandler;
+	private LoginFailHandler loginFailHandler;
+	@Autowired
+	private CustomLogoutHandler logoutHandler;
+	@Autowired
+	private CustomLogoutSuccessHandler logoutSuccessHandler;
 	
 	@Bean
 	HttpFirewall defaultFirewall() {
@@ -79,11 +83,13 @@ public class SecurityConfig {
 			.logout((logout) -> {
 				logout
 					.logoutUrl("/member/logout")
+					.addLogoutHandler(logoutHandler)
 //					.logoutRequestMatcher(new AntPathRequestMatcher("/member/logout"))
 //					.logoutSuccessHandler()
 					.invalidateHttpSession(true)
 					.deleteCookies("JSESSIONID")
-					.logoutSuccessUrl("/")
+//					.logoutSuccessUrl("/")
+					.logoutSuccessHandler(logoutSuccessHandler);
 					;
 			})
 			;
