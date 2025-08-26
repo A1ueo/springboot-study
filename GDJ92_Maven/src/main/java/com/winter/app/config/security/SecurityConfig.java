@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
+import org.springframework.security.core.session.SessionRegistryImpl;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.firewall.DefaultHttpFirewall;
 import org.springframework.security.web.firewall.HttpFirewall;
@@ -104,6 +105,15 @@ public class SecurityConfig {
 					.userDetailsService(memberService)
 					.authenticationSuccessHandler(loginSuccessHandler)
 					.useSecureCookie(false)
+					;
+			})
+			.sessionManagement((manage) -> {
+				manage
+					.invalidSessionUrl("/member/login")
+					.maximumSessions(1)
+					.maxSessionsPreventsLogin(true)	// false: 이전 사용자X, true: 현재 접속 시도X
+					.expiredUrl("/")
+					.sessionRegistry(new SessionRegistryImpl())
 					;
 			})
 			;
