@@ -86,6 +86,7 @@ public class MemberService extends DefaultOAuth2UserService implements UserDetai
 		memberVO.setAttributes(map);
 		
 		memberVO.setSns("kakao");
+		memberVO.setAccessToken(userRequest.getAccessToken().getTokenValue());
 		
 		return memberVO;
 	}
