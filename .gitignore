@@ -5,4 +5,7 @@
 ### VS Code ###
 .vscode/
 
+#########################
+
 test/
+**/application-dev.properties

@@ -22,24 +22,24 @@
 				<!-- Begin Page Content -->
 				<div class="container-fluid">
 					<!-- Page Contents 내용 -->
+					<sec:authorize access="isAuthenticated()">
+						<sec:authentication property="principal" var="member"/>
+					</sec:authorize>
 					<h1>Index</h1>
 					<h3>
 						<spring:message code="welcome.message2" text="Hi"/>
 					</h3>
-					<%-- <c:if test="${ not empty member }">
+					<c:if test="${ not empty member }">
 						<h3>Add GitHub</h3>
 						<h3>${ member.name }</h3>
 						<h3>
 							<spring:message code="user.info" arguments="${ member.username }, ${ member.email }" argumentSeparator=","/>
 						</h3>
-					</c:if> --%>
-					<sec:authorize access="isAuthenticated()">
-						<h3><sec:authentication property="name"/></h3>
-						<sec:authentication property="principal" var="member"/>
-						<h3>
-							<spring:message code="user.info" arguments="${ member.username }, ${ member.email }" argumentSeparator=","/>
-						</h3>
-					</sec:authorize>
+					</c:if>
+					<h3><sec:authentication property="name"/></h3>
+					<h3>
+						<spring:message code="user.info" arguments="${ member.username }, ${ member.email }" argumentSeparator=","/>
+					</h3>
 				</div>
 				<!-- /.container-fluid -->
 			</div>

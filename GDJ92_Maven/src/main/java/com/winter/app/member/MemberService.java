@@ -1,6 +1,9 @@
 package com.winter.app.member;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -10,6 +13,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
+import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
+import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
@@ -17,9 +24,12 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.winter.app.common.FileManager;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Service
 @Transactional(rollbackFor = Exception.class)
-public class MemberService implements UserDetailsService {
+public class MemberService extends DefaultOAuth2UserService implements UserDetailsService {
 
 	@Autowired
 	private MemberMapper memberDAO;
@@ -33,6 +43,52 @@ public class MemberService implements UserDetailsService {
 	private String upload;
 	@Value("${board.member}")
 	private String board;
+	
+	@Override
+	public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
+//		log.info("{}", userRequest.getAccessToken());
+//		log.info("{}", userRequest.getAdditionalParameters());
+//		log.info("{}", userRequest.getClientRegistration());
+		
+		String sns = userRequest.getClientRegistration().getRegistrationId();
+		
+		OAuth2User user = null;
+		if (sns.toUpperCase().equals("KAKAO")) {
+			user = this.useKakao(userRequest);
+		}
+		
+		return user;
+	}
+	
+	private OAuth2User useKakao(OAuth2UserRequest userRequest) {
+		OAuth2User user = super.loadUser(userRequest);
+		
+//		log.info("{}", user.getName());
+//		log.info("{}", user.getAttributes());
+//		log.info("{}", user.getAuthorities());
+		
+		Map<String, Object> map = user.getAttributes();
+		LinkedHashMap<String, Object> m = (LinkedHashMap<String, Object>) map.get("properties");
+		
+		MemberVO memberVO = new MemberVO();
+		memberVO.setUsername(m.get("nickname").toString());
+		
+		ProfileVO profileVO = new ProfileVO();
+		profileVO.setSaveName(m.get("profile_image").toString());
+		memberVO.setProfileVO(profileVO);
+		
+		List<RoleVO> roleVOs = new ArrayList<>();
+		RoleVO roleVO = new RoleVO();
+		roleVO.setRoleName("ROLE_MEMBER");
+		roleVOs.add(roleVO);
+		memberVO.setRoleVOs(roleVOs);
+		
+		memberVO.setAttributes(map);
+		
+		memberVO.setSns("kakao");
+		
+		return memberVO;
+	}
 	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

@@ -116,6 +116,11 @@ public class SecurityConfig {
 					.sessionRegistry(new SessionRegistryImpl())
 					;
 			})
+			.oauth2Login(o -> o
+				.userInfoEndpoint(user -> user
+					.userService(memberService)
+				)
+			)
 			;
 		
 		return httpSecurity.build();

@@ -38,7 +38,7 @@
 							</div>
 							<div class="mb-3 d-flex justify-content-between">
 								<label class="form-label">
-									<input type="checkbox" name="rememberId" value="1" ${ empty cookie.remember_id ? '' : 'checked' } > Remeber ID
+									<%-- <input type="checkbox" name="rememberId" value="1" ${ empty cookie.remember_id ? '' : 'checked' } > Remeber ID --%>
 								</label>
 								<button class="btn btn-success" id="submit">Login</button>
 							</div>
@@ -47,7 +47,7 @@
 							</label>
 						</form>
 						<div>
-							<a class="btn btn-warning" href="/member/kakaoLogin">카카오 로그인</a>
+							<a class="btn btn-warning" href="/oauth2/authorization/kakao">카카오 로그인</a>
 						</div>
 					</article>
 				</div>

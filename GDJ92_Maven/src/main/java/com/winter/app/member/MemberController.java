@@ -166,9 +166,4 @@ public class MemberController {
 		MemberVO memberVO = (MemberVO) session.getAttribute("member");
 		return memberService.deleteCart(memberVO, numArr);
 	}
-	
-	@GetMapping("/kakaoLogin")
-	public void kakaoLogin() throws Exception {
-		
-	}
 }
