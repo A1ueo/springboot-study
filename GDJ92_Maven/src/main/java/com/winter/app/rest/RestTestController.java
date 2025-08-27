@@ -1,5 +1,6 @@
 package com.winter.app.rest;
 
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -65,11 +66,13 @@ public class RestTestController {
 		postVO.setUserId(1L);
 		
 		WebClient webClient = WebClient.builder()
+				.defaultHeader("Content-type", MediaType.APPLICATION_JSON_VALUE)
 				.build();
 		
 		Mono<PostVO> res = webClient.post()
 				.uri("https://jsonplaceholder.typicode.com/posts")
 				.bodyValue(postVO)
+				.accept(MediaType.APPLICATION_JSON)
 				.retrieve()
 				.bodyToMono(PostVO.class)
 				;
