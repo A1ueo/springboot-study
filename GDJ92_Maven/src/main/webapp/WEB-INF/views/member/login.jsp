@@ -46,6 +46,9 @@
 								<input type="checkbox" name="remember-me" value="1"> 자동로그인
 							</label>
 						</form>
+						<div>
+							<a class="btn btn-warning" href="/member/kakaoLogin">카카오 로그인</a>
+						</div>
 					</article>
 				</div>
 			</div>
