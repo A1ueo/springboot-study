@@ -1,5 +1,6 @@
 package com.winter.app.member;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,9 +41,9 @@ public class MemberController {
 	}
 	
 	@GetMapping("/update")
-	public String update(HttpSession session, Model model) throws Exception {
-		MemberVO memberVO = (MemberVO) session.getAttribute("member");
-		model.addAttribute("memberVO", memberVO);
+	public String update(Principal principal, Model model) throws Exception {
+		System.out.println(principal);
+		model.addAttribute("memberVO", principal);
 		return "/member/memberUpdate";
 	}
 	

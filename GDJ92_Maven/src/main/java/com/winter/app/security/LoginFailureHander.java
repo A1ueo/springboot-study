@@ -10,13 +10,16 @@ import org.springframework.stereotype.Component;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Component
 public class LoginFailureHander implements AuthenticationFailureHandler {
 
 	@Override
 	public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
 			AuthenticationException exception) throws IOException, ServletException {
+//		log.info("{}", exception);
 		
 		String message = null;
 		switch (exception.getClass().getSimpleName()) {
@@ -38,12 +41,16 @@ public class LoginFailureHander implements AuthenticationFailureHandler {
 		case "CredentialsExpiredException":
 			message = "자격 증명 유효 기간이 만료되었습니다.";
 			break;
+		case "SessionAuthenticationException":
+			message = "중복 접속 아이디입니다.";
+			break;
 		default:
 			message = "관리자에게 문의하세요.";
 			break;
 		}
 		
 		message = URLEncoder.encode(message, "UTF-8");
+		
 		response.sendRedirect("/member/login?failMessage=" + message);
 	}
 

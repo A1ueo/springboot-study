@@ -6,7 +6,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
-import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.firewall.DefaultHttpFirewall;
 import org.springframework.security.web.firewall.HttpFirewall;
@@ -15,14 +14,8 @@ import org.springframework.security.web.firewall.HttpFirewall;
 @EnableWebSecurity
 public class SecurityConfig {
 
-    private final SessionRegistry sessionRegistry;
-
 	@Autowired
 	LoginFailureHander loginFailureHander;
-
-    SecurityConfig(SessionRegistry sessionRegistry) {
-        this.sessionRegistry = sessionRegistry;
-    }
 	
 	@Bean
 	HttpFirewall defaultFireWall() {
@@ -68,15 +61,11 @@ public class SecurityConfig {
 					.logoutSuccessUrl("/")
 					;
 			})
-			.sessionManagement(session -> {
-				session
+			.sessionManagement(session -> session
+					.invalidSessionUrl("/member/login")
 					.maximumSessions(1)
 					.maxSessionsPreventsLogin(true)
 					.expiredUrl("/")
-					;
-			})
-			.sessionManagement(session -> session
-					.invalidSessionUrl("/member/login")
 			)
 			;
 		return httpSecurity.build();

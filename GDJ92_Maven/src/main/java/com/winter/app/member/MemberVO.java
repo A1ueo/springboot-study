@@ -59,7 +59,7 @@ public class MemberVO implements UserDetails {
 	
 	private ProfileVO profileVO;
 	private List<RoleVO> roleVOs;
-	
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(password, username);
