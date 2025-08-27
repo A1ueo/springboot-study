@@ -8,4 +8,4 @@
 #########################
 
 test/
-src/main/resources/application-dev.properties
+**/application-dev.properties
