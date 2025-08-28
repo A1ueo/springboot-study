@@ -53,6 +53,9 @@ public class NoticeController {
 	
 	@GetMapping("/list")
 	public String list(Model model, /* @ModelAttribute */ Pager pager) throws Exception {
+		
+		if (pager != null) throw new NullPointerException();
+		
 		List<BoardVO> list = noticeService.list(pager);
 		
 		model.addAttribute("list", list);
@@ -164,6 +167,18 @@ public class NoticeController {
 	public boolean boardFileDelete(String fileName) throws Exception {
 		return noticeService.boardFileDelete(fileName);
 	}
+	
+//	@ExceptionHandler(exception = NullPointerException.class)
+//	public String error() {
+//		
+//		return "/errors/error";
+//	}
+//	
+//	@ExceptionHandler(exception = Exception.class)
+//	public String error2() {
+//		
+//		return "/errors/error";
+//	}
 }
 
 
