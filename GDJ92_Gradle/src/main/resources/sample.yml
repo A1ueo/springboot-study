@@ -1,0 +1,14 @@
+server:
+  port: 80
+
+spring:
+  application:
+    name: GDJ92_Gradle
+  datasource:
+    url: jdbc:mysql://localhost:3306/user02
+    driver-class-name: com:mysql:cj:jdbc:Driver
+    hikari:
+      username: user02
+      password: user02
+
+
