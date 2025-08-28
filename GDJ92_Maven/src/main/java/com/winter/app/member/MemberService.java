@@ -21,10 +21,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.reactive.function.client.WebClient;
 
 import com.winter.app.common.FileManager;
 
 import lombok.extern.slf4j.Slf4j;
+import reactor.core.publisher.Mono;
 
 @Slf4j
 @Service
@@ -72,6 +74,7 @@ public class MemberService extends DefaultOAuth2UserService implements UserDetai
 		
 		MemberVO memberVO = new MemberVO();
 		memberVO.setUsername(m.get("nickname").toString());
+		memberVO.setName(user.getName());
 		
 		ProfileVO profileVO = new ProfileVO();
 		profileVO.setSaveName(m.get("profile_image").toString());
@@ -192,5 +195,21 @@ public class MemberService extends DefaultOAuth2UserService implements UserDetai
 //		passwordEncoder.matches(memberVO.getPassword(), passwordEncoder.encode("user1"));
 		
 		return memberDAO.update(memberVO);
+	}
+
+	public int delete(MemberVO memberVO) {
+		WebClient webClient = WebClient.create();
+		
+		Mono<Map> result = webClient.post()
+				.uri("https://kapi.kakao.com/v1/user/unlink")
+				.header("Authorization", "Bearer " + memberVO.getAccessToken())
+				.retrieve()
+				.bodyToMono(Map.class)
+				;
+		
+		log.info("{}", result.block());
+		// if (Objects.equals(result.block().get("id"), memberVO.get)) // 아이디 비교
+		
+		return 1;
 	}
 }

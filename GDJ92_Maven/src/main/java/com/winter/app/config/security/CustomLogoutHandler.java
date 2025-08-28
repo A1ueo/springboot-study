@@ -24,36 +24,28 @@ public class CustomLogoutHandler implements LogoutHandler{
 
 	@Value("${spring.security.oauth2.client.registration.kakao.client-id}")
 	private String clientId;
+	@Value("${spring.security.oauth2.client.registration.kakao.client-secret}")
+	private String adminKey;
 	@Value("${spring.security.oauth2.client.registration.kakao.redirect-uri}")
 	private String uri;
 	
 	
 	@Override
-	public void logout(HttpServletRequest request, HttpServletResponse response, Authentication authentication) {
+	public void logout(HttpServletRequest request, HttpServletResponse response,
+			Authentication authentication) {
 //		log.info("logout handler");
 //		log.info("{}", authentication);
-		
-		if (authentication instanceof OAuth2AuthenticationToken) {
-			MemberVO memberVO = (MemberVO) authentication.getPrincipal();
-			
-			if (memberVO.getSns().toUpperCase().equals("KAKAO")) {
-//				String url = this.useWithKakao(memberVO);
+		try {
+			if (authentication instanceof OAuth2AuthenticationToken) {
+				MemberVO memberVO = (MemberVO) authentication.getPrincipal();
+				if (memberVO.getSns().toUpperCase().equals("KAKAO")) {
+					this.useKakao(memberVO);
+					response.sendRedirect("/");
+				}
 			}
+		} catch (Exception e) {
+			log.error(e.getMessage());
 		}
-	}
-	
-	private String useWithKakao(MemberVO memberVO) {
-//		WebClient webClient = WebClient.create();
-//		
-//		Mono<String> result = webClient.get()
-//				.uri("",
-//						clientId, "http://localhost/member/logout")
-//				.retrieve()
-//				.bodyToMono(String.class)
-//				;
-//		
-//		log.info("Logout2 {}", result.block());
-		return "https://kauth.kakao.com/oauth/logout?client_id=" + clientId + "&logout_redirect_uri=http://localhost/member/logout";
 	}
 	
 	private void useKakao(MemberVO memberVO) {
@@ -71,10 +63,8 @@ public class CustomLogoutHandler implements LogoutHandler{
 				.bodyToMono(String.class)
 				;
 		
-		log.info("Logout: {}", result.doOnSuccess(null).block());
+		log.info("Logout: {}", result.block());
 	}
-	
-	
 }
 
 

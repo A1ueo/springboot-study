@@ -32,14 +32,11 @@
 					<c:if test="${ not empty member }">
 						<h3>Add GitHub</h3>
 						<h3>${ member.name }</h3>
+					<h3><sec:authentication property="name"/></h3>
 						<h3>
 							<spring:message code="user.info" arguments="${ member.username }, ${ member.email }" argumentSeparator=","/>
 						</h3>
 					</c:if>
-					<h3><sec:authentication property="name"/></h3>
-					<h3>
-						<spring:message code="user.info" arguments="${ member.username }, ${ member.email }" argumentSeparator=","/>
-					</h3>
 				</div>
 				<!-- /.container-fluid -->
 			</div>

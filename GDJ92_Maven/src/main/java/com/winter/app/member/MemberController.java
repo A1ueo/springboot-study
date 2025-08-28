@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -23,7 +24,9 @@ import com.winter.app.product.ProductService;
 import com.winter.app.product.ProductVO;
 
 import jakarta.servlet.http.HttpSession;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Controller
 @RequestMapping("/member/*")
 public class MemberController {
@@ -165,5 +168,21 @@ public class MemberController {
 	public int deleteCart(HttpSession session, Long[] numArr) throws Exception {
 		MemberVO memberVO = (MemberVO) session.getAttribute("member");
 		return memberService.deleteCart(memberVO, numArr);
+	}
+	
+	@GetMapping("/delete")
+	public String delete(@AuthenticationPrincipal MemberVO memberVO) throws Exception {
+		int result = 0;
+		
+		if (memberVO.getSns() == null) {
+			// service에서 삭제
+		} else if (memberVO.getSns().equalsIgnoreCase("KAKAO")) {
+			// 연결 해제
+			result = memberService.delete(memberVO);
+		}
+		
+		if (result > 0) return "redirect:/member/logout";
+		
+		return "";
 	}
 }

@@ -40,6 +40,9 @@
 							<div class="w-100 d-flex justify-content-end mb-2">
 								<a class="btn btn-primary py-1 px-2" href="./update">정보 수정</a>
 							</div>
+							<div>
+								<a class="btn btn-outline-danger" href="./delete">탈퇴</a>
+							</div>
 						</article>
 					</div>
 				</div>
