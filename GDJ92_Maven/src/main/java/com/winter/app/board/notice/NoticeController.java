@@ -54,7 +54,7 @@ public class NoticeController {
 	@GetMapping("/list")
 	public String list(Model model, /* @ModelAttribute */ Pager pager) throws Exception {
 		
-		if (pager != null) throw new NullPointerException();
+//		if (pager != null) throw new NullPointerException();
 		
 		List<BoardVO> list = noticeService.list(pager);
 		

@@ -4,12 +4,15 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import ch.qos.logback.core.model.Model;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @ControllerAdvice
 public class ExceptionController {
 
 	@ExceptionHandler(exception = NullPointerException.class)
-	public String error(Model model) {
+	public String error(Model model, Exception e) {
+		log.error(e.getMessage());
 		return "/errors/error";
 	}
 	
