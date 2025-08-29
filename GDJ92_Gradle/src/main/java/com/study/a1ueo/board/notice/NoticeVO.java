@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.study.a1ueo.board.BoardVO;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.OneToMany;
@@ -21,6 +22,6 @@ import lombok.ToString;
 @Table(name="notice")	// DB에 존재하는 테이블 이름을 매핑, 생략하면 클래스명이 테이블명이 됨
 public class NoticeVO extends BoardVO {
 
-	@OneToMany(mappedBy = "noticeVO", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "noticeVO", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<NoticeFileVO> list;
 }

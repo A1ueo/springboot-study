@@ -1,5 +1,7 @@
 package com.study.a1ueo.board.notice;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -10,12 +12,11 @@ import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 @NoArgsConstructor
 @Getter
 @Setter
-@ToString
+//@ToString
 @Entity
 @Table(name = "notice_file")
 public class NoticeFileVO {
@@ -28,7 +29,8 @@ public class NoticeFileVO {
 	private String oriName;
 	
 
-	@JoinColumn(name = "board_num", nullable = false)
+	@JoinColumn(name = "board_num")
 	@ManyToOne
+	@JsonIgnore // JSON 직렬화 할 때 제외
 	private NoticeVO noticeVO;
 }
