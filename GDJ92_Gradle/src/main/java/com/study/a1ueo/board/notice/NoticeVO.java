@@ -23,5 +23,5 @@ import lombok.ToString;
 public class NoticeVO extends BoardVO {
 
 	@OneToMany(mappedBy = "noticeVO", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	private List<NoticeFileVO> list;
+	private List<NoticeFileVO> fileVOs;
 }

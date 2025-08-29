@@ -2,9 +2,9 @@ package com.study.a1ueo.board;
 
 import java.time.LocalDateTime;
 
+import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -41,7 +41,8 @@ public class BoardVO {
 	@CreationTimestamp	// 현재 시간
 	// @UpdateTimestamp	// 수정 시간
 	private LocalDateTime boardDate;
-	@Column(columnDefinition = "BIGINT DEFAULT 0", insertable = false)
+//	@Column(columnDefinition = "BIGINT DEFAULT 0", insertable = false)
+	@ColumnDefault(value = "0")
 	private Long boardHit;
 	
 	@Transient	// DB에 사용되지 않음
