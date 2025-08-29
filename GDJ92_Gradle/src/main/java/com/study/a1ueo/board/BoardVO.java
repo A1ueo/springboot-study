@@ -37,10 +37,11 @@ public class BoardVO {
 //	@Column(columnDefinition = "LONGTEXT")
 	@Lob
 	private String boardContents;
-	@Temporal(TemporalType.TIMESTAMP)
-	@CreationTimestamp
+	@Temporal(TemporalType.TIMESTAMP)	// LocalDateTime은 생략 가능
+	@CreationTimestamp	// 현재 시간
+	// @UpdateTimestamp	// 수정 시간
 	private LocalDateTime boardDate;
-	@Column(columnDefinition = "BIGINT DEFAULT 0", insertable = false, nullable = false)
+	@Column(columnDefinition = "BIGINT DEFAULT 0", insertable = false)
 	private Long boardHit;
 	
 	@Transient	// DB에 사용되지 않음
