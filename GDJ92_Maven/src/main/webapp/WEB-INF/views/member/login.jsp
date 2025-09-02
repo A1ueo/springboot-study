@@ -27,7 +27,7 @@
 				<div class="row col-lg-8 mx-auto">
 					<h1 class="py-2 text-uppercase">${ title } </h1>
 					<article class="w-100">
-						<form id="frm" method="post" >
+						<form id="frm" method="post" action="loginProcess">
 							<div class="mb-3">
 								<label for="exampleFormControlInput1" class="form-label">ID</label>
 								<input name="username" type="text" class="form-control" value="${ cookie.remember_id.value }" placeholder="아이디">
