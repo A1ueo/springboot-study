@@ -47,6 +47,10 @@ public class JwtAuthenticationFilter extends BasicAuthenticationFilter {
 					System.out.println(authentication.getName());
 				} catch (Exception e) {
 					e.printStackTrace();
+					// SecurityException || MalformedException || SignatureException : 유효하지 않은 JWT 서명
+					// ExpiredJwtException : 기간이 만료된 토큰
+					// UnSupportedJwtException : 지원되지 않는 토큰
+					// IllegalArgumentException : 잘못된 토큰
 				}
 			}
 		}
