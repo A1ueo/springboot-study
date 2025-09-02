@@ -18,9 +18,9 @@ class MemberMapperTest {
 	@Test
 	void testPasswordUpdate() throws Exception {
 		MemberVO memberVO = new MemberVO();
-		memberVO.setUsername("user1");
+		memberVO.setUsername("user01");
 		
-		memberVO.setPassword(passwordEncoder.encode("user1"));
+		memberVO.setPassword(passwordEncoder.encode("user01"));
 		
 		int result = memberDAO.passwordUpdate(memberVO);
 		
