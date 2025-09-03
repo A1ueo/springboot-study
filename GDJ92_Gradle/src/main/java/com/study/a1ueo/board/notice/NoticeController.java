@@ -8,6 +8,8 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,7 +24,6 @@ public class NoticeController {
 	// 페이징처리
 	// https://juntcom.tistory.com/219
 	
-	
 	@GetMapping("")
 	public Page<NoticeVO> list(@PageableDefault(
 			sort = "boardNum", direction = Sort.Direction.DESC
@@ -34,5 +35,25 @@ public class NoticeController {
 	public NoticeVO detail(@PathVariable("boardNum") Long boardNum) throws Exception {
 		NoticeVO noticeVO = noticeService.detail(boardNum);
 		return noticeVO;
+	}
+	
+	@PostMapping("")
+	public boolean save(@RequestBody NoticeVO noticeVO) throws Exception {
+		noticeVO = noticeService.save(noticeVO);
+		if (noticeVO != null) {
+			return true;
+		}
+		
+		return false;
+	}
+	
+	@PostMapping("form")
+	public boolean form(NoticeVO noticeVO) throws Exception {
+		noticeVO = noticeService.save(noticeVO);
+		if (noticeVO != null) {
+			return true;
+		}
+		
+		return false;
 	}
 }

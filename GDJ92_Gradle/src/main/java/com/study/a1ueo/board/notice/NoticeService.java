@@ -24,4 +24,8 @@ public class NoticeService {
 	public Page<NoticeVO> list(Pageable pageable) {
 		return noticeRepository.findAll(pageable);
 	}
+
+	public NoticeVO save(NoticeVO noticeVO) throws Exception {
+		return noticeRepository.save(noticeVO);
+	}
 }

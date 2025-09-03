@@ -2,6 +2,8 @@ package com.study.a1ueo.board.notice;
 
 import java.util.List;
 
+import org.hibernate.annotations.DynamicInsert;
+
 import com.study.a1ueo.board.BoardVO;
 
 import jakarta.persistence.CascadeType;
@@ -20,6 +22,7 @@ import lombok.ToString;
 @ToString
 @Entity	// 해당 객체가 JPA에서 관리하고 있다라는것을 정의, 필수
 @Table(name="notice")	// DB에 존재하는 테이블 이름을 매핑, 생략하면 클래스명이 테이블명이 됨
+@DynamicInsert	// null인 값은 insert하지 않음
 public class NoticeVO extends BoardVO {
 
 	@OneToMany(mappedBy = "noticeVO", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
