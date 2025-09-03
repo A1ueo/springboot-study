@@ -83,7 +83,7 @@ public class SecurityConfig {
 			.logout(logout -> logout
 					.logoutUrl("/member/logout")
 					.invalidateHttpSession(true)
-					.deleteCookies("accessToken")
+					.deleteCookies("accessToken", "refreshToken")
 					.logoutSuccessUrl("/")
 			)
 			// Session 인증 방식이 아닌
