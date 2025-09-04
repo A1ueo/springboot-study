@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { createContext, useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 
 function List() {
@@ -17,7 +17,7 @@ function List() {
   // })
 
   useEffect(() => {
-    fetch(`http://localhost/notice?page=${page}`)
+    fetch(`http://localhost/api/notice?page=${page}`)
       .then((r) => r.json())
       .then((r) => {
         console.log(r)

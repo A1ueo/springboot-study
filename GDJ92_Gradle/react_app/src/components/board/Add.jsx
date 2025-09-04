@@ -16,7 +16,7 @@ function Add() {
       boardContents: contents.current.value,
     }
 
-    fetch("http://localhost/notice", {
+    fetch("http://localhost/api/notice", {
       method: "POST",
       body: JSON.stringify(params),
       headers: {
@@ -54,7 +54,7 @@ function Add() {
     e.preventDefault()
     const formdata = new FormData(e.target)
 
-    fetch("http://localhost/notice/form", {
+    fetch("http://localhost/api/notice/form", {
       method: "POST",
       body: formdata,
     })
@@ -66,6 +66,35 @@ function Add() {
           navigate("../list")
         }
       })
+  }
+
+  const [files, setFiles] = useState([])
+  const fileIdx = useRef(0)
+
+  function delFile(e) {
+    const idx = e.target.dataset.delIdx
+
+    setFiles((prev) => prev.filter((f) => f.key !== idx))
+  }
+
+  function addFile() {
+    if (files.length > 4) {
+      alert("최대 5개까지 가능")
+      return
+    }
+    const el = (
+      <div key={fileIdx.current}>
+        <input type='file' name='attaches' />
+        <button data-del-idx={fileIdx.current} type='button' onClick={delFile}>
+          X
+        </button>
+      </div>
+    )
+
+    fileIdx.current = fileIdx.current + 1
+
+    const newFiles = [...files, el]
+    setFiles(newFiles)
   }
 
   return (
@@ -90,6 +119,12 @@ function Add() {
           name='boardContents'
           onChange={inputChange}
         ></textarea>
+        <>{files}</>
+        <div>
+          <button type='button' onClick={addFile}>
+            Add File
+          </button>
+        </div>
         <button>USEFORM</button>
       </form>
       <button onClick={get}>CLICK</button>

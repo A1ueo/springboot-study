@@ -12,7 +12,19 @@ function Header() {
           <Link to='/notice/list'>Notice</Link>
         </li>
         <li>
+          <Link to='/member/login'>Login</Link>
+        </li>
+
+        <li>
           <Link to='/study/param?num=10&name=winter'>StudyParam</Link>
+        </li>
+        <li>
+          <Link to='/study/param/10/winter'>StudyParam2</Link>
+        </li>
+        <li>
+          <Link to='/study/param' state={{ age: 10, user: "winter" }}>
+            StudyParam3
+          </Link>
         </li>
       </ul>
     </>
