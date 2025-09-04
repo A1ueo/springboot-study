@@ -1,7 +1,11 @@
 package com.study.a1ueo.member;
 
 import java.time.LocalDate;
+import java.util.Collection;
 import java.util.List;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -23,7 +27,7 @@ import lombok.ToString;
 @ToString
 @Entity
 @Table(name = "member")
-public class MemberVO {
+public class MemberVO implements UserDetails {
 
 	@Id
 	private String username;
@@ -36,4 +40,9 @@ public class MemberVO {
 	
 	@OneToMany(mappedBy = "memberVO", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	List<MemberRoleVO> memberRoleVOs;
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		return null;
+	}
 }

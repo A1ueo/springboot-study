@@ -12,10 +12,19 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
+import jakarta.servlet.annotation.MultipartConfig;
+
+@MultipartConfig(
+	fileSizeThreshold = 1024 * 1024 * 2,
+	maxFileSize = 1024 * 1024 * 10,
+	maxRequestSize = 1024 * 1024 * 50
+	
+)
 @CrossOrigin
 @RestController
-@RequestMapping("/notice/**")
+@RequestMapping("/api/notice/**")
 public class NoticeController {
 
 	@Autowired
@@ -48,7 +57,7 @@ public class NoticeController {
 	}
 	
 	@PostMapping("form")
-	public boolean form(NoticeVO noticeVO) throws Exception {
+	public boolean form(NoticeVO noticeVO, MultipartFile attaches) throws Exception {
 		noticeVO = noticeService.save(noticeVO);
 		if (noticeVO != null) {
 			return true;
