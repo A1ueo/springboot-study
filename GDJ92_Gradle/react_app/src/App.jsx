@@ -1,14 +1,12 @@
-import Add from './components/Add'
-import Header from './layout/Header'
-
+import Header from "./layout/Header"
+import AppRoutes from "./route/AppRoutes"
 
 function App() {
-
   return (
     <>
       <Header />
-      <h1>Index Page</h1>
-      <Add />
+      <AppRoutes />
+      {/* <Add /> */}
     </>
   )
 }
