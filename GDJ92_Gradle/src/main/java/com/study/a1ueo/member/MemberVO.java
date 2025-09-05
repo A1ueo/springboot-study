@@ -1,10 +1,12 @@
 package com.study.a1ueo.member;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import jakarta.persistence.CascadeType;
@@ -38,11 +40,17 @@ public class MemberVO implements UserDetails {
 	@Temporal(TemporalType.DATE)
 	private LocalDate birth;
 	
-	@OneToMany(mappedBy = "memberVO", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "memberVO", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	List<MemberRoleVO> memberRoleVOs;
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return null;
+		ArrayList<GrantedAuthority> list = new ArrayList<>();
+		memberRoleVOs.forEach(m -> {
+			SimpleGrantedAuthority authority = new SimpleGrantedAuthority(m.getRoleVO().getRoleName());
+			list.add(authority);
+		});
+		
+		return list;
 	}
 }

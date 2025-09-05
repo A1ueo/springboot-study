@@ -11,9 +11,6 @@ function Header() {
         <li>
           <Link to='/notice/list'>Notice</Link>
         </li>
-        <li>
-          <Link to='/member/login'>Login</Link>
-        </li>
 
         <li>
           <Link to='/study/param?num=10&name=winter'>StudyParam</Link>
@@ -26,6 +23,23 @@ function Header() {
             StudyParam3
           </Link>
         </li>
+
+        <div>
+          <li>
+            <Link to='/member/login'>Login</Link>
+          </li>
+          <li>
+            <Link to='/member/join'>Join</Link>
+          </li>
+        </div>
+        <div>
+          <li>
+            <Link to='/member/logout'>Logout</Link>
+          </li>
+          <li>
+            <Link to='/member/mypage'>Mypage</Link>
+          </li>
+        </div>
       </ul>
     </>
   )

@@ -10,4 +10,10 @@ public class HomeController {
 //	public String home() {
 //		return "<h1>home</h1>";
 //	}
+//	@Autowired
+//	MemberService memberService;
+//	@GetMapping("/")
+//	public void a() {
+//		memberService.updatePassword();
+//	}
 }

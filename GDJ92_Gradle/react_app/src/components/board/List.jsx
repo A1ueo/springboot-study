@@ -1,5 +1,5 @@
-import { createContext, useEffect, useState } from "react"
-import { Link } from "react-router-dom"
+import { createContext, useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 
 function List() {
   const [boards, setBoards] = useState([])
@@ -17,10 +17,14 @@ function List() {
   // })
 
   useEffect(() => {
-    fetch(`http://localhost/api/notice?page=${page}`)
+    fetch(`http://localhost/api/notice?page=${page}`, {
+      headers: {
+        Authorization: 'Bearer ' + localStorage.getItem('access_token'),
+      },
+    })
       .then((r) => r.json())
       .then((r) => {
-        console.log(r)
+        // console.log(r)
         const b = r.content.map((v) => <li key={v.boardNum}>{v.boardTitle}</li>)
         setBoards(b)
       })
