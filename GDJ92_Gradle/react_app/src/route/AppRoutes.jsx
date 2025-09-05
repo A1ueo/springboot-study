@@ -1,9 +1,10 @@
-import { Route, Routes } from "react-router-dom"
-import List from "../components/board/List"
-import Index from "../components/Index"
-import Add from "../components/board/Add"
-import StudyParam from "../study/StudyParam"
-import Login from "../components/member/Login"
+import { Route, Routes } from 'react-router-dom'
+import List from '../components/board/List'
+import Index from '../components/Index'
+import Add from '../components/board/Add'
+import StudyParam from '../study/StudyParam'
+import Login from '../components/member/Login'
+import Logout from '../components/member/Logout'
 
 export default function AppRoutes() {
   return (
@@ -18,6 +19,7 @@ export default function AppRoutes() {
         <Route path='/study/param/:num/:name' element={<StudyParam />} />
         <Route path='/member/'>
           <Route path='login' element={<Login />} />
+          <Route path='logout' element={<Logout />} />
         </Route>
       </Routes>
     </>
