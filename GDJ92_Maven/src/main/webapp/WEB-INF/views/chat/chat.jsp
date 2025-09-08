@@ -9,44 +9,31 @@
 <body>
 	<h1>Chat Page</h1>
 	<div>
+		<button onclick="connect()">Connect</button>
+	</div>
+	<div>
 		<form>
 			<input type="text" id="msg">
 			<button id="send">send</button>
 		</form>
 	</div>
 	
+	<script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/stompjs@2.3.3/lib/stomp.min.js"></script>
+	
 	<script type="text/javascript">
-		const send = document.getElementById('send');
-		const msg = document.getElementById('msg');
-		
-		// websocket 연결
-		const socket = new WebSocket('ws://192.168.1.10/chat')
-		
-		socket.addEventListener('open', function() {
-			console.log('소켓 연결 성공');
+		function connect() {
+			const socket = new SockJS('/ws');
+			stompClient = Stomp.over(socket);
 			
-		});
-		
-		socket.addEventListener('message', (e) => {
-			// console.log('메세지 수신');
-			console.log(e.data)
-		});
-		
-		socket.addEventListener('close', (e) => {
-			console.log('연결 종료');
-		});
-		
-		socket.addEventListener('error', (e) => {
-			console.log('에러 발생');
-		});
-		
-		send.addEventListener('click', function(e) {
-			e.preventDefault();
-			
-			const m = msg.value;
-			socket.send(m);
-			msg.value = '';
-		});
+			stompClient.connect({}, function(frame) {
+				console.log('Connected: ' + frame);
+				
+				stompClient.subscribe('/topic/messages', function(message) {
+					console.log(message.body);
+				});
+			});
+		}
 	</script>
 </body>
 </html>
